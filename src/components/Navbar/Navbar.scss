@@ -1,0 +1,111 @@
+@import "styles/global";
+
+nav {
+  width: 100%;
+  height: 80px;
+  display: flex;
+  position: fixed;
+  padding: 0 20px;
+  z-index: $nav-z-index;
+  background: $nav-bg-color;
+  justify-content: space-between;
+  border-bottom: 1px solid $nav-border-color;
+  box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.03);
+}
+
+.logo {
+  font-size: 24px;
+  transition: all 0.3s;
+  &:hover {
+    @include up-animation;
+  }
+  &:active {
+    transition: all 0.1s;
+    @include up-animation-off;
+  }
+}
+
+.search-input {
+  border: none;
+  outline: none;
+  width: 140px;
+  padding: 10px;
+  overflow: hidden;
+  background: #fff;
+  padding-right: 30px;
+  white-space: nowrap;
+  transition: all 0.3s;
+  text-overflow: ellipsis;
+  @include main-box-shadow;
+  border-radius: $border-radius;
+  &:hover {
+    @include up-animation;
+  }
+  &:hover + .search-icon {
+    @include up-animation;
+  }
+  &:active,
+  &:active + .search-icon {
+    @include up-animation-off;
+  }
+  &:focus {
+    width: 160px;
+  }
+}
+
+.search-icon {
+  border: 0;
+  padding: 0;
+  z-index: 1;
+  border: none;
+  margin-left: -26px;
+  margin-right: 26px;
+  transition: all 0.3s;
+}
+
+.nav-link {
+  height: 100%;
+  display: flex;
+  padding: 0 16px;
+  cursor: pointer;
+  color: $nav-color;
+  align-items: center;
+  text-decoration: none;
+  &:active {
+    color: $darken-accent-color;
+  }
+}
+
+.nav-btn-container {
+  display: flex;
+  align-items: center;
+}
+
+.shopping-cart {
+  display: flex;
+  color: black;
+  @include main-box-shadow;
+}
+
+.hamb-icon,
+.hamb-container {
+  display: none;
+  color: $nav-color;
+}
+
+@media screen and (max-width: 768px) {
+  .nav-btn-container {
+    display: none;
+  }
+
+  .hamb-container {
+    display: flex;
+    align-items: center;
+  }
+
+  .hamb-icon {
+    display: block;
+    font-size: 30px;
+    cursor: pointer;
+  }
+}
