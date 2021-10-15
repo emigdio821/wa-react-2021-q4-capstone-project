@@ -1,16 +1,24 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import {
-  BiHomeHeart,
-  BiSearchAlt,
-  BiCartAlt,
-  BiGridHorizontal,
-} from "react-icons/bi";
+import { BiHomeHeart, BiSearchAlt, BiCartAlt, BiMenu } from "react-icons/bi";
 import "./Navbar.scss";
 
-const Navbar = () => {
+const Navbar = ({ isDisabled }) => {
+  const [scrolledNav, setScrolledNav] = useState(false);
+  const onWindowScroll = () => {
+    if (window.scrollY >= 10) {
+      setScrolledNav(true);
+    } else {
+      setScrolledNav(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", onWindowScroll);
+  }, []);
+
   return (
-    <nav>
+    <nav className={scrolledNav ? "nav-scrolled" : undefined}>
       <Link className="nav-link logo uppercase" to="/">
         <BiHomeHeart />
         <span>
@@ -18,14 +26,29 @@ const Navbar = () => {
         </span>
       </Link>
       <div className="hamb-container">
-        <BiGridHorizontal className="hamb-icon" />
+        <BiMenu className="hamb-icon" />
       </div>
       <div className="nav-btn-container">
-        <input type="text" placeholder="Search..." className="search-input" />
+        <input
+          type="text"
+          placeholder={!isDisabled ? "Search..." : ""}
+          className="search-input"
+          disabled={isDisabled}
+        />
         <BiSearchAlt className="search-icon" />
-        <Link className="btn shopping-cart" to="/shopping_cart">
-          <BiCartAlt />
-        </Link>
+        {isDisabled ? (
+          <Link
+            to="/"
+            className="btn shopping-cart disabled"
+            onClick={(event) => event.preventDefault()}
+          >
+            <BiCartAlt />
+          </Link>
+        ) : (
+          <Link className="btn shopping-cart" to="/">
+            <BiCartAlt />
+          </Link>
+        )}
       </div>
     </nav>
   );

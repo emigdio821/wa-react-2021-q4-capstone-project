@@ -10,11 +10,14 @@ nav {
   background: $nav-bg-color;
   justify-content: space-between;
   border-bottom: 1px solid $nav-border-color;
-  box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.03);
+  transition: box-shadow 0.3s;
+  &.nav-scrolled {
+    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.03);
+  }
 }
 
 .logo {
-  font-size: 24px;
+  font-size: 1.5rem;
   transition: all 0.3s;
   &:hover {
     @include up-animation;
@@ -51,6 +54,11 @@ nav {
   &:focus {
     width: 160px;
   }
+  &:disabled,
+  &:disabled + .search-icon {
+    color: $disabled-color;
+    background: $disabled-bg-color;
+  }
 }
 
 .search-icon {
@@ -66,7 +74,6 @@ nav {
 .nav-link {
   height: 100%;
   display: flex;
-  padding: 0 16px;
   cursor: pointer;
   color: $nav-color;
   align-items: center;
@@ -87,6 +94,12 @@ nav {
   @include main-box-shadow;
 }
 
+.hamb-icon{
+  @include main-box-shadow;
+  border-radius: $border-radius;
+  background: $nav-border-color;
+}
+
 .hamb-icon,
 .hamb-container {
   display: none;
@@ -105,7 +118,7 @@ nav {
 
   .hamb-icon {
     display: block;
-    font-size: 30px;
     cursor: pointer;
+    font-size: 1.875rem;
   }
 }
