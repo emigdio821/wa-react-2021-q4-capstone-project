@@ -42,7 +42,7 @@ h1 {
     background: $semi-transparent-bg;
   }
   &:hover .item-content {
-      @include up-animation;
+    @include up-animation;
     background: darken($semi-transparent-bg, 100%);
   }
 }
