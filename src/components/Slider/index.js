@@ -37,7 +37,7 @@ const Slider = () => {
         <h1 className="uppercase">Featured products</h1>
         <h2>{title}</h2>
         {description.map((d) => (
-          <p key={d}>{d.text}</p>
+          <p key={d} className="description">{d.text}</p>
         ))}
         <div
           href="#"
