@@ -6,20 +6,28 @@ nav {
   display: flex;
   position: fixed;
   padding: 0 20px;
+  align-items: center;
+  transition: all 0.3s;
   z-index: $nav-z-index;
-  background: $nav-bg-color;
+  align-content: center;
+  background: transparent;
   justify-content: space-between;
-  border-bottom: 1px solid $nav-border-color;
-  transition: box-shadow 0.3s;
   &.nav-scrolled {
+    background: darken($footer-background, 5%);
     box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.03);
   }
 }
 
 .logo {
+  display: flex;
   font-size: 1.5rem;
+  color: $nav-color;
+  align-items: center;
   transition: all 0.3s;
+  text-decoration: none;
+  border-radius: $border-radius;
   &:hover {
+    opacity: 0.85;
     @include up-animation;
   }
   &:active {
@@ -90,14 +98,12 @@ nav {
 
 .shopping-cart {
   display: flex;
-  color: black;
   @include main-box-shadow;
 }
 
-.hamb-icon{
+.hamb-icon {
   @include main-box-shadow;
   border-radius: $border-radius;
-  background: $nav-border-color;
 }
 
 .hamb-icon,

@@ -1,0 +1,33 @@
+@import "styles/global";
+
+footer {
+  color: white;
+  height: 120px;
+  display: flex;
+  padding: 0 20px;
+  align-items: center;
+  justify-content: center;
+  background: $footer-background;
+  border-top: 1px solid $nav-border-color;
+  & .footer-item {
+    padding: 10px;
+  }
+  & .footer-container {
+    text-align: center;
+  }
+  & .footer-link {
+    color: white;
+    padding: 2px 6px;
+    font-weight: 500;
+    border-radius: 4px;
+    transition: all 0.3s;
+    text-decoration: none;
+    background: lighten($footer-background, 3%);
+    &:hover {
+      background: lighten($footer-background, 5%);
+    }
+  }
+  & .github-link svg {
+    vertical-align: middle;
+  }
+}
