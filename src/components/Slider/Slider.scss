@@ -29,16 +29,20 @@
   }
   .description {
     width: 80%;
+    height: 140px;
     overflow: auto;
     margin-top: 10px;
-    max-height: 140px;
   }
 }
 
 .transition-btn {
   display: flex;
-  margin-top: 4rem;
+  opacity: 0.6;
+  margin-top: 2rem;
   align-items: center;
+  &:hover {
+    opacity: 1;
+  }
 }
 
 @media (max-width: 768px) {
