@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 import { BiHomeHeart, BiSearchAlt, BiCartAlt, BiMenu } from "react-icons/bi";
 import "./Navbar.scss";
 
@@ -19,7 +20,7 @@ const Navbar = ({ isDisabled }) => {
 
   return (
     <nav className={scrolledNav ? "nav-scrolled" : undefined}>
-      <Link className="nav-link logo uppercase" to="/">
+      <Link className="logo uppercase" to="/">
         <BiHomeHeart />
         <span>
           ・The<span className="bold-font">cool</span>house
@@ -55,3 +56,11 @@ const Navbar = ({ isDisabled }) => {
 };
 
 export default Navbar;
+
+Navbar.propTypes = {
+  isDisabled: PropTypes.bool,
+};
+
+Navbar.defaultProps = {
+  isDisabled: false,
+};
