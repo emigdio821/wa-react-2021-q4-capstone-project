@@ -8,6 +8,8 @@
 }
 
 .main-container {
-  // padding: 100px 20px;
   min-height: calc(100vh - 120px);
+  & .container {
+    padding: 100px 20px;
+  }
 }
