@@ -1,29 +1,26 @@
 import React, { useState, useEffect } from "react";
 import { BiTransfer } from "react-icons/bi";
 import FeaturedBanners from "mocks/en-us/featured-banners.json";
-import "./ImgSlider.scss";
+import "./Slider.scss";
 
-const ImgSlider = () => {
+const Slider = () => {
   const { results } = FeaturedBanners;
-  const {
-    data: {
-      main_image: { url: defaultImgUrl },
-    },
-  } = results[0];
-  const [imgUrl, setImgUrl] = useState(defaultImgUrl);
+  const { data } = results[0];
+  const [banners, setBanners] = useState(data);
   const [transitionActive, setTransitionActive] = useState(true);
+  const {
+    description,
+    main_image: { url },
+    title,
+  } = banners;
 
   useEffect(() => {
     if (transitionActive) {
       let idx = 1;
       const interval = setInterval(() => {
         const result = results[idx];
-        const {
-          data: {
-            main_image: { url },
-          },
-        } = result;
-        setImgUrl(url);
+        const { data } = result;
+        setBanners(data);
         idx++;
         if (idx === results.length) {
           idx = 0;
@@ -35,9 +32,13 @@ const ImgSlider = () => {
   }, [results, transitionActive]);
 
   return (
-    <div className="slider" style={{ backgroundImage: `url("${imgUrl}")` }}>
+    <div className="slider" style={{ backgroundImage: `url("${url}")` }}>
       <div className="slider-content">
         <h1 className="uppercase">Featured products</h1>
+        <h2>{title}</h2>
+        {description.map((d) => (
+          <p key={d}>{d.text}</p>
+        ))}
         <div
           href="#"
           className="btn transition-btn"
@@ -60,4 +61,4 @@ const ImgSlider = () => {
   );
 };
 
-export default ImgSlider;
+export default Slider;

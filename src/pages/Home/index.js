@@ -1,8 +1,8 @@
 import React from "react";
-import ImgSlider from "components/ImgSlider";
+import Slider from "components/Slider";
 
 const Home = () => (
-  <ImgSlider />
+  <Slider />
 );
 
 export default Home;
