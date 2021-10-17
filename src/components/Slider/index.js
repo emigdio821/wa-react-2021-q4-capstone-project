@@ -34,8 +34,7 @@ const Slider = () => {
   return (
     <div className="slider" style={{ backgroundImage: `url("${url}")` }}>
       <div className="slider-content">
-        <h1 className="uppercase">Featured products</h1>
-        <h2>{title}</h2>
+        <h1 className="slider-title">{title}</h1>
         {description.map((d) => (
           <p key={d} className="description">
             {d.text}
