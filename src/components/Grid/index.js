@@ -8,7 +8,7 @@ const Grid = () => {
 
   return (
     <div className="container">
-      <h1>Categories</h1>
+      <h1 className="category-title">Categories</h1>
       <div className="grid">
         {results.map(({ id, data }) => (
           <GridItem key={id} item={data} />
