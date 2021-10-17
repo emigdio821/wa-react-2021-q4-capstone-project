@@ -2,11 +2,12 @@
 
 .slider {
   width: 100%;
-  height: calc(70vh - 50px);
   min-height: 560px;
   position: relative;
+  margin-bottom: 20px;
   background: $nav-color;
   background-size: cover;
+  height: calc(70vh - 50px);
   background-position: center;
   transition: all 0.3s ease-in-out;
 }
@@ -23,21 +24,18 @@
   flex-direction: column;
   justify-content: center;
   background: $semi-transparent-bg;
-  h1 {
+  .slider-title {
     display: flex;
     height: 120px;
     font-size: 2.5rem;
-    align-items: center;
-  }
-  h2 {
-    height: 60px;
-    overflow: auto;
-    margin-bottom: 16px;
+    margin-bottom: 10px;
+    align-items: flex-end;
   }
   .description {
     width: 80%;
-    height: 140px;
+    height: 80px;
     overflow: auto;
+    font-size: 1.125rem;
   }
 }
 
@@ -52,6 +50,9 @@
 }
 
 @media (max-width: 768px) {
+  .slider-title {
+    margin-bottom: 20px;
+  }
   .slider {
     min-height: 600px;
   }

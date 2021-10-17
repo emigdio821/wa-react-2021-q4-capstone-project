@@ -75,8 +75,9 @@
   }
   .grid-item {
     width: 100%;
+    min-height: 100px;
   }
-  h1 {
+  .category-title {
     text-align: center;
   }
 }
