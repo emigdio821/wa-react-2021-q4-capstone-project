@@ -1,7 +1,10 @@
 @import "styles/global";
 
 .category-title {
-  padding-bottom: 20px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  align-content: center;
 }
 
 .grid {
@@ -76,8 +79,5 @@
   .grid-item {
     width: 100%;
     min-height: 100px;
-  }
-  .category-title {
-    text-align: center;
   }
 }

@@ -5,16 +5,15 @@ import "./Featured.scss";
 const FeaturedItem = ({ item }) => {
   const {
     name,
+    alt,
     mainimage: { url },
   } = item;
 
   return (
-    <div
-      className="featured-item"
-      style={{ backgroundImage: `url("${url}")` }}
-    >
-      <div className="item-content">
-        <h2>{name}</h2>
+    <div className="featured-item">
+      <img src={url} alt={alt} className="featured-img" />
+      <div className="featured-item-title">
+        <h3>{name}</h3>
       </div>
     </div>
   );

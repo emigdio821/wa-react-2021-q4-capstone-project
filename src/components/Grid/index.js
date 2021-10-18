@@ -1,5 +1,6 @@
 import React from "react";
 import GridItem from "./GridItem";
+import { BiCategory } from "react-icons/bi";
 import ProductCategories from "mocks/en-us/product-categories.json";
 import "./Grid.scss";
 
@@ -8,7 +9,10 @@ const Grid = () => {
 
   return (
     <div className="container">
-      <h1 className="category-title">Categories</h1>
+      <h1 className="category-title">
+        <BiCategory />
+        ・Categories
+      </h1>
       <div className="grid">
         {results.map(({ id, data }) => (
           <GridItem key={id} item={data} />
