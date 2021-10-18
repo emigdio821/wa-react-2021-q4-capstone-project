@@ -6,6 +6,7 @@ import "./Navbar.scss";
 
 const Navbar = ({ isDisabled }) => {
   const [scrolledNav, setScrolledNav] = useState(false);
+
   const onWindowScroll = () => {
     if (window.scrollY >= 10) {
       setScrolledNav(true);
@@ -62,5 +63,5 @@ Navbar.propTypes = {
 };
 
 Navbar.defaultProps = {
-  isDisabled: false,
+  isDisabled: true,
 };
