@@ -21,7 +21,7 @@ const Navbar = ({ isDisabled }) => {
   return (
     <nav className={scrolledNav ? "nav-scrolled" : undefined}>
       <Link className="logo uppercase" to="/">
-        <BiHomeHeart />
+        <BiHomeHeart role="img" />
         <span>
           ・The<span className="bold-font">cool</span>house
         </span>
