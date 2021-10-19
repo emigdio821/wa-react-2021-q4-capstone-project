@@ -6,6 +6,7 @@ import Home from "pages/Home";
 import Products from "pages/Products";
 import "./App.scss";
 import PageContext from "context/PageContext";
+import ScrollTop from "components/ScrollTop";
 
 const App = () => {
   const { currentPage } = useContext(PageContext);
@@ -23,6 +24,7 @@ const App = () => {
           {currentPage === "/products" && <Products />}
         </div>
         <Footer />
+        <ScrollTop />
       </div>
       {/* </Router> */}
     </>

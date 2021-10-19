@@ -22,6 +22,11 @@ const Navbar = ({ isDisabled, currentPage }) => {
     }
   };
 
+  const onShowHomePage = () => {
+    setCurrentPage("/");
+    window.scrollTo(0, 0);
+  }
+
   useEffect(() => {
     window.addEventListener("scroll", onWindowScroll);
   }, []);
@@ -30,7 +35,7 @@ const Navbar = ({ isDisabled, currentPage }) => {
     <nav className={classNames(navClasses)}>
       <div
         className="logo uppercase"
-        onClick={() => setCurrentPage("/")} /*to="/"*/
+        onClick={onShowHomePage} /*to="/"*/
       >
         <BiHomeHeart role="img" />
         <span>
