@@ -1,21 +1,32 @@
+import React, { useContext } from "react";
 import Navbar from "components/Navbar";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+// import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Footer from "components/Footer";
 import Home from "pages/Home";
+import Products from "pages/Products";
 import "./App.scss";
+import PageContext from "context/PageContext";
 
-const App = () => (
-  <Router>
-    <div className="App">
-      <Navbar />
-      <div className="main-container">
-        <Switch>
-          <Route exact path="/" component={Home} />
-        </Switch>
+const App = () => {
+  const { currentPage } = useContext(PageContext);
+  return (
+    <>
+      {/* <Router> */}
+      <div className="App">
+        <Navbar currentPage={currentPage} />
+        <div className="main-container">
+          {/* <Switch>
+              <Route exact path="/" component={Home} />
+            </Switch> */}
+          {/* {console.log(PageC)} */}
+          {currentPage === "/" && <Home />}
+          {currentPage === "/products" && <Products />}
+        </div>
+        <Footer />
       </div>
-      <Footer />
-    </div>
-  </Router>
-);
+      {/* </Router> */}
+    </>
+  );
+};
 
 export default App;

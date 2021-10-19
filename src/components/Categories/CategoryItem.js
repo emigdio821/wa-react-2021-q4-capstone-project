@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
-import "./Grid.scss";
+import "./Categories.scss";
 
-const GridItem = ({ item }) => {
+const CategoryItem = ({ item }) => {
   const {
     name,
     main_image: { url },
@@ -10,7 +10,7 @@ const GridItem = ({ item }) => {
 
   return (
     <div
-      className="grid-item  zoom-in"
+      className="categories-item  zoom-in"
       style={{ backgroundImage: `url("${url}")` }}
     >
       <div className="item-content">
@@ -20,8 +20,8 @@ const GridItem = ({ item }) => {
   );
 };
 
-export default GridItem;
+export default CategoryItem;
 
-GridItem.propTypes = {
+CategoryItem.propTypes = {
   item: PropTypes.object.isRequired,
 };

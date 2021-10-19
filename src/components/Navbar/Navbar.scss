@@ -16,10 +16,14 @@ nav {
     background: darken($footer-background, 5%);
     box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.03);
   }
+  &.static__nav-bg {
+    background: $footer-background;
+  }
 }
 
 .logo {
   display: flex;
+  cursor: pointer;
   font-size: 1.5rem;
   color: $nav-color;
   align-items: center;

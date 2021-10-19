@@ -20,12 +20,16 @@
   scroll-behavior: smooth;
 }
 
-.scroll-btns {
+.featured__action-btns {
   padding: 20px 0;
   text-align: right;
-  .next-btn {
+  .m__left-btn {
     margin-left: 10px;
   }
+}
+
+.all-products {
+  text-align: right;
 }
 
 .featured-item {
@@ -37,6 +41,7 @@
   flex-direction: column;
   border-radius: $border-radius;
   transition: all 0.3s ease-in-out;
+  border: 1px solid $nav-border-color;
   &:hover {
     @include up-animation;
     @include main-box-shadow;
@@ -44,8 +49,14 @@
 }
 
 .featured-item-title {
+  margin: 0 auto;
+  font-weight: 500;
   margin-top: 20px;
+  max-width: 200px;
+  overflow: hidden;
   text-align: center;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 @media (max-width: 768px), (max-width: 1024px) {
@@ -63,7 +74,8 @@
     overflow: auto;
   }
 
-  .scroll-btns {
+  .prev-btn,
+  .next-btn {
     display: none;
   }
 

@@ -1,11 +1,18 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState, useContext } from "react";
+// import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+import classNames from "classnames";
 import { BiHomeHeart, BiSearchAlt, BiCartAlt, BiMenu } from "react-icons/bi";
+import PageContext from "context/PageContext";
 import "./Navbar.scss";
 
-const Navbar = ({ isDisabled }) => {
+const Navbar = ({ isDisabled, currentPage }) => {
   const [scrolledNav, setScrolledNav] = useState(false);
+  const { setCurrentPage } = useContext(PageContext);
+  const navClasses = {
+    "nav-scrolled": scrolledNav,
+    "static__nav-bg": currentPage !== "/" && !scrolledNav,
+  };
 
   const onWindowScroll = () => {
     if (window.scrollY >= 10) {
@@ -20,13 +27,16 @@ const Navbar = ({ isDisabled }) => {
   }, []);
 
   return (
-    <nav className={scrolledNav ? "nav-scrolled" : undefined}>
-      <Link className="logo uppercase" to="/">
+    <nav className={classNames(navClasses)}>
+      <div
+        className="logo uppercase"
+        onClick={() => setCurrentPage("/")} /*to="/"*/
+      >
         <BiHomeHeart role="img" />
         <span>
           ・The<span className="bold-font">cool</span>house
         </span>
-      </Link>
+      </div>
       <div className="hamb-container">
         <BiMenu className="hamb-icon" />
       </div>
@@ -39,17 +49,17 @@ const Navbar = ({ isDisabled }) => {
         />
         <BiSearchAlt className="search-icon" />
         {isDisabled ? (
-          <Link
-            to="/"
+          <div
+            // to="/"
             className="btn shopping-cart disabled"
             onClick={(event) => event.preventDefault()}
           >
             <BiCartAlt />
-          </Link>
+          </div>
         ) : (
-          <Link className="btn shopping-cart" to="/">
+          <div className="btn shopping-cart" to="/">
             <BiCartAlt />
-          </Link>
+          </div>
         )}
       </div>
     </nav>
@@ -60,8 +70,10 @@ export default Navbar;
 
 Navbar.propTypes = {
   isDisabled: PropTypes.bool,
+  currentPage: PropTypes.string.isRequired,
 };
 
 Navbar.defaultProps = {
   isDisabled: true,
+  currentPage: "/",
 };

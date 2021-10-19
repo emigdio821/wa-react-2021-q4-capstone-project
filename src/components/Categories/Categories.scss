@@ -7,7 +7,7 @@
   align-content: center;
 }
 
-.grid {
+.categories {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -15,7 +15,7 @@
   justify-content: space-between;
 }
 
-.grid-item {
+.categories-item {
   width: 19vw;
   height: 30vh;
   overflow: hidden;
@@ -72,11 +72,11 @@
 }
 
 @media (max-width: 768px), (max-width: 1024px) {
-  .grid {
+  .categories {
     height: 160vh;
     flex-direction: column;
   }
-  .grid-item {
+  .categories-item {
     width: 100%;
     min-height: 100px;
   }
