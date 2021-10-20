@@ -1,14 +1,16 @@
 import React from "react";
 import ProductItem from "./ProductItem";
 import ProductList from "mocks/en-us/products.json";
-import "./Products.scss"
+import Sidebar from "components/Sidebar";
+import "./Products.scss";
 
 const Products = () => {
   const { results } = ProductList;
 
   return (
     <div className="page-container">
-      <h1>Product list</h1>
+      <Sidebar />
+      <h1 className="product__main-title">Product list</h1>
       <div className="product-list">
         {results.map(({ id, data }) => (
           <ProductItem key={id} item={data} />

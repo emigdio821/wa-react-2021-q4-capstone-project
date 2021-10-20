@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { formatCurrency } from "helpers/currency";
 import "./Featured.scss";
 
 const FeaturedItem = ({ item }) => {
@@ -21,7 +22,7 @@ const FeaturedItem = ({ item }) => {
         {name}
       </h3>
       <div className="price-container">
-        <span className="price">${price}</span>
+        <span className="price">{formatCurrency(price)}</span>
       </div>
     </div>
   );

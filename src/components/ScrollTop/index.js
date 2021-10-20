@@ -3,7 +3,7 @@ import classNames from "classnames";
 import { BiUpArrowAlt } from "react-icons/bi";
 import "./ScrollTop.scss";
 
-function ScrollTop() {
+const ScrollTop = () => {
   const [scrolledHalfBody, setScrolleHalfdBody] = useState(false);
 
   const onScrollTop = () => {
@@ -40,6 +40,6 @@ function ScrollTop() {
       <BiUpArrowAlt />
     </button>
   );
-}
+};
 
 export default ScrollTop;

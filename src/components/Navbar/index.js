@@ -10,6 +10,7 @@ const Navbar = ({ isDisabled, currentPage }) => {
   const [scrolledNav, setScrolledNav] = useState(false);
   const { setCurrentPage } = useContext(PageContext);
   const navClasses = {
+    "main-navbar": true,
     "nav-scrolled": scrolledNav,
     "static__nav-bg": currentPage !== "/" && !scrolledNav,
   };
@@ -25,7 +26,7 @@ const Navbar = ({ isDisabled, currentPage }) => {
   const onShowHomePage = () => {
     setCurrentPage("/");
     window.scrollTo(0, 0);
-  }
+  };
 
   useEffect(() => {
     window.addEventListener("scroll", onWindowScroll);
@@ -33,10 +34,7 @@ const Navbar = ({ isDisabled, currentPage }) => {
 
   return (
     <nav className={classNames(navClasses)}>
-      <div
-        className="logo uppercase"
-        onClick={onShowHomePage} /*to="/"*/
-      >
+      <div className="logo uppercase" onClick={onShowHomePage} /*to="/"*/>
         <BiHomeHeart role="img" />
         <span>
           ・The<span className="bold-font">cool</span>house

@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { formatCurrency } from "helpers/currency";
 import "./Products.scss";
 
 const ProductItem = ({ item }) => {
@@ -30,7 +31,7 @@ const ProductItem = ({ item }) => {
         ))}
       </div>
       <div className="price-container">
-        <span className="price">${price}</span>
+        <span className="price">{formatCurrency(price)}</span>
       </div>
     </div>
   );

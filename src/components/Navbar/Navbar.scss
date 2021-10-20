@@ -1,6 +1,6 @@
 @import "styles/global";
 
-nav {
+.main-navbar {
   width: 100%;
   height: 80px;
   display: flex;
@@ -13,11 +13,11 @@ nav {
   background: transparent;
   justify-content: space-between;
   &.nav-scrolled {
-    background: darken($footer-background, 5%);
+    background: darken($footer-bg, 5%);
     box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.03);
   }
   &.static__nav-bg {
-    background: $footer-background;
+    background: $footer-bg;
   }
 }
 

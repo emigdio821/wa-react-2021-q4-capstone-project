@@ -1,13 +1,15 @@
 @import "styles/global";
 
 footer {
+  z-index: 1;
   color: white;
   height: 120px;
   display: flex;
   padding: 0 20px;
+  position: relative;
   align-items: center;
+  background: $footer-bg;
   justify-content: center;
-  background: $footer-background;
   border-top: 1px solid $nav-border-color;
   & .footer-item {
     padding: 10px;
@@ -22,9 +24,9 @@ footer {
     border-radius: 4px;
     transition: all 0.3s;
     text-decoration: none;
-    background: lighten($footer-background, 3%);
+    background: lighten($footer-bg, 3%);
     &:hover {
-      background: lighten($footer-background, 5%);
+      background: lighten($footer-bg, 5%);
     }
   }
   & .github-link svg {
