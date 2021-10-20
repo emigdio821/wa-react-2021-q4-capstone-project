@@ -5,11 +5,11 @@ import Footer from "components/Footer";
 import Home from "pages/Home";
 import Products from "pages/Products";
 import "./App.scss";
-import PageContext from "context/PageContext";
+import GlobalContext from "context/GlobalContext";
 import ScrollTop from "components/ScrollTop";
 
 const App = () => {
-  const { currentPage } = useContext(PageContext);
+  const { currentPage } = useContext(GlobalContext);
   return (
     <>
       {/* <Router> */}

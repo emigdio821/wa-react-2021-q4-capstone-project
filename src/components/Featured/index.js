@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect, useContext } from "react";
 import FeaturedItem from "./FeaturedItem";
 import { BiBookmarkHeart } from "react-icons/bi";
 import FeaturedProducts from "mocks/en-us/featured-products.json";
-import PageContext from "context/PageContext";
+import GlobalContext from "context/GlobalContext";
 import "./Featured.scss";
 
 const Featured = () => {
@@ -10,7 +10,7 @@ const Featured = () => {
   const featuredRef = useRef(null);
   const [scrollX, setScrollX] = useState(0);
   const [scrollEnd, setScrollEnd] = useState(false);
-  const { setCurrentPage } = useContext(PageContext);
+  const { setCurrentPage } = useContext(GlobalContext);
 
   const onHandleScrollEnd = () => {
     const featureDiv = featuredRef.current;

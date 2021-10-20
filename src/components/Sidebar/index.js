@@ -18,9 +18,10 @@ const Sidebar = () => {
           <li className="sidebar__item-title-mobile bold-font uppercase">
             <BiFilter />
           </li>
-          {results.map(({ id, data }) => (
-            <SidebarItem key={id} item={data} />
-          ))}
+          {results.map((item) => {
+            const { id } = item;
+            return <SidebarItem key={id} item={item} />;
+          })}
         </ul>
       </nav>
     </>

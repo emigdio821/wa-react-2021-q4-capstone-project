@@ -37,24 +37,17 @@ const ProductItem = ({ item }) => {
       <div className="category-container">
         <span className="category-name">{categorySlug}</span>
       </div>
-      <div className="description-container">
-        {description.map(({ text }) => (
-          <>
-            <button
-              className={classNames(descriptionClasses)}
-              onClick={onShowDescription}
-            >
-              Description <BiChevronDown className="description-icon" />
-            </button>
-            {showDescription && (
-              <p key={text} className="product-description">
-                {text}
-                {/* Im the description */}
-              </p>
-            )}
-          </>
-        ))}
-      </div>
+      {description.map(({ text }) => (
+        <div key={`${text}-description`} className="description-container">
+          <button
+            className={classNames(descriptionClasses)}
+            onClick={onShowDescription}
+          >
+            Description <BiChevronDown className="description-icon" />
+          </button>
+          {showDescription && <p className="product-description">{text}</p>}
+        </div>
+      ))}
       <div className="price-container">
         <span className="price">{formatCurrency(price)}</span>
       </div>

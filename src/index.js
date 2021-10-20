@@ -2,13 +2,13 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { CurrentPageProvider } from "context/PageContext";
+import { GlobalProvider } from "context/GlobalContext";
 
 ReactDOM.render(
   <React.StrictMode>
-    <CurrentPageProvider>
+    <GlobalProvider>
       <App />
-    </CurrentPageProvider>
+    </GlobalProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );

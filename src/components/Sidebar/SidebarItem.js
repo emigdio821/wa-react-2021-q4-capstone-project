@@ -1,14 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import { BiCheck } from "react-icons/bi";
+import GlobalContext from "context/GlobalContext";
 
 const SidebarItem = ({ item }) => {
-  const { name } = item;
+  const {
+    slugs,
+    data: { name },
+  } = item;
   const [activeFilter, setActiveFilter] = useState(false);
+  const { setProductFiltered } = useContext(GlobalContext);
 
   const onFilterClick = () => {
     setActiveFilter(!activeFilter);
+    setProductFiltered(slugs[0], !activeFilter);
   };
 
   const filterClasses = {

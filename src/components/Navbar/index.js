@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 // import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import classNames from "classnames";
-import PageContext from "context/PageContext";
+import GlobalContext from "context/GlobalContext";
 import useScrollListener from "hooks/useScrollListener";
 import { BiHomeHeart, BiSearchAlt, BiCartAlt, BiMenu } from "react-icons/bi";
 import "./Navbar.scss";
@@ -11,7 +11,7 @@ const Navbar = ({ isDisabled, currentPage }) => {
   const scroll = useScrollListener();
   const [scrolledNav, setScrolledNav] = useState(false);
   const [fixedNavBg, setFixedNavBg] = useState(false);
-  const { setCurrentPage } = useContext(PageContext);
+  const { setCurrentPage } = useContext(GlobalContext);
   const navClasses = {
     "main-navbar": true,
     "fixed__nav-bg": fixedNavBg,
