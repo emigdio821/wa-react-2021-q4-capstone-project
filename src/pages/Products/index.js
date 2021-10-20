@@ -10,7 +10,7 @@ const Products = () => {
   return (
     <div className="page-container">
       <Sidebar />
-      <h1 className="product__main-title">Product list</h1>
+      <h1 className="product__main-title">Products</h1>
       <div className="product-list">
         {results.map(({ id, data }) => (
           <ProductItem key={id} item={data} />

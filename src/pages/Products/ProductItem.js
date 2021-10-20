@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
+import { BiChevronDown } from "react-icons/bi";
 import { formatCurrency } from "helpers/currency";
+import classNames from "classnames";
 import "./Products.scss";
 
 const ProductItem = ({ item }) => {
@@ -12,8 +14,20 @@ const ProductItem = ({ item }) => {
     mainimage: { url, alt },
   } = item;
 
+  const [showDescription, setShowDescription] = useState(false);
+  const onShowDescription = () => setShowDescription(!showDescription);
+
+  const productItemClasses = {
+    "product-item": true,
+    "product__item-height": showDescription,
+  };
+  const descriptionClasses = {
+    "description-btn": true,
+    "description-shown": showDescription,
+  };
+
   return (
-    <div className="product-item">
+    <div className={classNames(productItemClasses)}>
       <div className="product__img-container">
         <img src={url} alt={alt} className="product-img" />
       </div>
@@ -25,9 +39,20 @@ const ProductItem = ({ item }) => {
       </div>
       <div className="description-container">
         {description.map(({ text }) => (
-          <p key={text} className="product-description">
-            {text}
-          </p>
+          <>
+            <button
+              className={classNames(descriptionClasses)}
+              onClick={onShowDescription}
+            >
+              Description <BiChevronDown className="description-icon" />
+            </button>
+            {showDescription && (
+              <p key={text} className="product-description">
+                {text}
+                {/* Im the description */}
+              </p>
+            )}
+          </>
         ))}
       </div>
       <div className="price-container">

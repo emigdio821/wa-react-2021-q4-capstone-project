@@ -12,12 +12,11 @@ const Sidebar = () => {
       <nav className="sidebar">
         <h3 className="sidebar-title uppercase">
           <BiFilter />
-          <span className="sidebar__item-title">Filters</span>
+          <span className="sidebar__item-title">Filter by</span>
         </h3>
         <ul className="sidebar-nav">
           <li className="sidebar__item-title-mobile bold-font uppercase">
             <BiFilter />
-            Filters:{" "}
           </li>
           {results.map(({ id, data }) => (
             <SidebarItem key={id} item={data} />
