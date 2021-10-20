@@ -31,12 +31,23 @@
   transition: all 0.3s ease-in-out;
   border: 1px solid $nav-border-color;
   &.product__item-height {
-    transition: none;
     height: 100%;
   }
   &:hover {
     @include up-animation;
     @include main-box-shadow;
+  }
+}
+
+@keyframes onShowDescription {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(2px);
+  }
+  100% {
+    transform: translateY(0);
   }
 }
 
@@ -77,6 +88,7 @@
   max-height: 200px;
   font-size: 0.875rem;
   scroll-behavior: smooth;
+  animation: onShowDescription 0.3s;
   background: lighten(#fafafa, 10%);
   border: 1px solid $nav-border-color;
 }
@@ -90,7 +102,9 @@
 }
 
 .description-btn {
+  color: black;
   border: none;
+  font-size: 1rem;
   padding: 0 20px;
   cursor: pointer;
   background: none;
