@@ -12,12 +12,19 @@
   align-content: center;
   background: transparent;
   justify-content: space-between;
-  &.nav-scrolled {
+  &.fixed__nav-bg {
     background: darken($footer-bg, 5%);
-    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.03);
   }
   &.static__nav-bg {
     background: $footer-bg;
+  }
+}
+
+.app-scrolled {
+  .main-navbar:not(.fixed-nav) {
+    transform: translateY(-80px);
+    background: darken($footer-bg, 5%);
+    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.03);
   }
 }
 

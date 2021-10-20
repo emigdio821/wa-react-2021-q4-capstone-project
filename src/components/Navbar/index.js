@@ -2,25 +2,21 @@ import React, { useEffect, useState, useContext } from "react";
 // import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import classNames from "classnames";
-import { BiHomeHeart, BiSearchAlt, BiCartAlt, BiMenu } from "react-icons/bi";
 import PageContext from "context/PageContext";
+import useScrollListener from "hooks/useScrollListener";
+import { BiHomeHeart, BiSearchAlt, BiCartAlt, BiMenu } from "react-icons/bi";
 import "./Navbar.scss";
 
 const Navbar = ({ isDisabled, currentPage }) => {
+  const scroll = useScrollListener();
   const [scrolledNav, setScrolledNav] = useState(false);
+  const [fixedNavBg, setFixedNavBg] = useState(false);
   const { setCurrentPage } = useContext(PageContext);
   const navClasses = {
     "main-navbar": true,
-    "nav-scrolled": scrolledNav,
-    "static__nav-bg": currentPage !== "/" && !scrolledNav,
-  };
-
-  const onWindowScroll = () => {
-    if (window.scrollY >= 10) {
-      setScrolledNav(true);
-    } else {
-      setScrolledNav(false);
-    }
+    "fixed__nav-bg": fixedNavBg,
+    "fixed-nav": currentPage === "/",
+    "static__nav-bg": currentPage !== "/" && !scrolledNav && !fixedNavBg,
   };
 
   const onShowHomePage = () => {
@@ -29,8 +25,15 @@ const Navbar = ({ isDisabled, currentPage }) => {
   };
 
   useEffect(() => {
-    window.addEventListener("scroll", onWindowScroll);
-  }, []);
+    scroll.y > 80 ? setFixedNavBg(true) : setFixedNavBg(false);
+    if (scroll.y > 80 && scroll.y - scroll.lastY > 0) {
+      setScrolledNav(true);
+      document.getElementById("App").classList.add("app-scrolled");
+    } else {
+      setScrolledNav(false);
+      document.getElementById("App").classList.remove("app-scrolled");
+    }
+  }, [scroll.lastY, scroll.y]);
 
   return (
     <nav className={classNames(navClasses)}>

@@ -1,11 +1,18 @@
 @import "styles/global";
+.app-scrolled {
+  .sidebar {
+    transform: translateY(-80px);
+  }
+}
 
 .sidebar {
   z-index: 1;
+  width: 240px;
   padding: 20px;
   position: fixed;
-  width: 240px;
-  background: aliceblue;
+  background: $nav-color;
+  transition: all 0.3s;
+  border: 1px solid $nav-border-color;
 }
 
 .sidebar-title {
@@ -30,22 +37,17 @@
   padding: 10px;
   cursor: pointer;
   align-items: center;
-  transition: transform 0.2s;
   align-content: center;
-  border-radius: $border-radius;
+  color: $footer-bg;
+  background: beige;
+  border-radius: 20px;
+  transition: all 0.2s;
   &:hover {
-    color: white;
-    background: lighten($footer-bg, 10%);
+    @include up-animation;
   }
   &.active-filter {
-    color: white;
-    background: $footer-bg;
-    .sidebar__item-name {
-      margin-left: 10px;
-    }
-  }
-  &:active {
-    transform: scale(1.1);
+    font-weight: 500;
+    background: darken(beige, 8%);
   }
 }
 
@@ -55,6 +57,7 @@
 
 .sidebar__item-name {
   width: 100%;
+  text-align: center;
 }
 
 .sidebar__item-title-mobile {
