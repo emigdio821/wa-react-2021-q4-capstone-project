@@ -65,6 +65,7 @@
   .sidebar {
     left: 0;
     top: 80px;
+    padding: 0;
     width: 100%;
   }
 
@@ -79,6 +80,7 @@
   }
 
   .sidebar-nav {
+    padding: 20px;
     gap: 10px 10px;
     overflow: auto;
     flex-direction: row;
