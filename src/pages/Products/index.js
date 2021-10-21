@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import ProductItem from "./ProductItem";
 import ProductList from "mocks/en-us/products.json";
-import Sidebar from "components/Sidebar";
+import FilterSidebar from "components/FilterSidebar";
 import GlobalContext from "context/GlobalContext";
 import { BiGhost } from "react-icons/bi";
 import styles from "./Products.module.scss";
@@ -28,7 +28,7 @@ const Products = () => {
 
   return (
     <div className={styles["products-container"]}>
-      <Sidebar />
+      <FilterSidebar />
       <h1 className={styles["product__main-title"]}>Products</h1>
       <div className={styles["product-list"]}>
         {!!data.length ? (

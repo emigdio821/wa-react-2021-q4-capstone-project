@@ -1,10 +1,10 @@
 import React from "react";
 import ProductCategories from "mocks/en-us/product-categories.json";
-import SidebarItem from "./SidebarItem";
+import FilterSidebarItem from "./FilterSidebarItem";
 import { BiFilter } from "react-icons/bi";
-import "./Sidebar.scss";
+import "./FilterSidebar.scss";
 
-const Sidebar = () => {
+const FilterSidebar = () => {
   const { results } = ProductCategories;
 
   return (
@@ -20,7 +20,7 @@ const Sidebar = () => {
           </li>
           {results.map((item) => {
             const { id } = item;
-            return <SidebarItem key={id} item={item} />;
+            return <FilterSidebarItem key={id} item={item} />;
           })}
         </ul>
       </nav>
@@ -28,4 +28,4 @@ const Sidebar = () => {
   );
 };
 
-export default Sidebar;
+export default FilterSidebar;

@@ -4,7 +4,7 @@ import classNames from "classnames";
 import { BiCheck } from "react-icons/bi";
 import GlobalContext from "context/GlobalContext";
 
-const SidebarItem = ({ item }) => {
+const FilterSidebarItem = ({ item }) => {
   const {
     slugs,
     data: { name },
@@ -30,8 +30,8 @@ const SidebarItem = ({ item }) => {
   );
 };
 
-export default SidebarItem;
+export default FilterSidebarItem;
 
-SidebarItem.propTypes = {
+FilterSidebarItem.propTypes = {
   item: PropTypes.object.isRequired,
 };
