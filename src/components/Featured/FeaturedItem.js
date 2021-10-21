@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { formatCurrency } from "helpers/currency";
-import "./Featured.scss";
+import styles from "./Featured.module.scss";
 
 const FeaturedItem = ({ item }) => {
   const {
@@ -13,16 +13,16 @@ const FeaturedItem = ({ item }) => {
   } = item;
 
   return (
-    <div className="featured-item">
-      <img src={url} alt={alt} className="featured-img" />
-      <div className="category-container">
-        <span className="category-name">{categorySlug}</span>
-      </div>
-      <h3 className="featured-item-title" title={name}>
+    <div className={styles["featured-item"]}>
+      <img src={url} alt={alt} className={styles["featured-img"]} />
+      <h3 className={styles["featured-item-title"]} title={name}>
         {name}
       </h3>
-      <div className="price-container">
-        <span className="price">{formatCurrency(price)}</span>
+      <div className={styles["category-container"]}>
+        <span className={styles["category-name"]}>{categorySlug}</span>
+      </div>
+      <div className={styles["price-container"]}>
+        <span className={styles["price"]}>{formatCurrency(price)}</span>
       </div>
     </div>
   );

@@ -3,7 +3,7 @@ import FeaturedItem from "./FeaturedItem";
 import { BiBookmarkHeart } from "react-icons/bi";
 import FeaturedProducts from "mocks/en-us/featured-products.json";
 import GlobalContext from "context/GlobalContext";
-import "./Featured.scss";
+import styles from "./Featured.module.scss";
 
 const Featured = () => {
   const { results } = FeaturedProducts;
@@ -55,32 +55,39 @@ const Featured = () => {
   };
 
   return (
-    <div className="container">
-      <h1 className="featured-title">
+    <div className={styles["featured-container"]}>
+      <h1 className={styles["featured-title"]}>
         <BiBookmarkHeart />
         ・Featured
       </h1>
-      <div className="featured" ref={featuredRef} onScroll={onScrollCheck}>
+      <div
+        className={styles.featured}
+        ref={featuredRef}
+        onScroll={onScrollCheck}
+      >
         {results.map(({ id, data }) => (
           <FeaturedItem key={id} item={data} />
         ))}
       </div>
-      <div className="featured__action-btns">
+      <div className={styles["featured__action-btns"]}>
         <button
-          className="btn prev-btn"
+          className={`btn ${styles["prev-btn"]}`}
           onClick={() => onSlideX(false)}
           disabled={scrollX === 0}
         >
           &larr; Prev
         </button>
         <button
-          className="btn next-btn m__left-btn"
+          className={`btn ${styles["next-btn"]} ${styles["m__left-btn"]}`}
           onClick={() => onSlideX(true)}
           disabled={scrollEnd}
         >
           Next &#8594;
         </button>
-        <button className="btn m__left-btn" onClick={onShowBrowseAllPage}>
+        <button
+          className={`btn ${styles["m__left-btn"]}`}
+          onClick={onShowBrowseAllPage}
+        >
           Browse all
         </button>
       </div>

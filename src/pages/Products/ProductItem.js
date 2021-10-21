@@ -35,7 +35,9 @@ const ProductItem = ({ item }) => {
         {name}
       </h2>
       <div className={styles["category-container"]}>
-        <span className={styles["category-name"]}>{categorySlug}</span>
+        <span className={styles["category-name"]}>
+          {categorySlug.replaceAll("--", " & ")}
+        </span>
       </div>
       {description.map(({ text }) => (
         <div

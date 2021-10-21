@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import "./Categories.scss";
+import styles from "./Categories.module.scss";
 
 const CategoryItem = ({ item }) => {
   const {
@@ -10,10 +10,10 @@ const CategoryItem = ({ item }) => {
 
   return (
     <div
-      className="categories-item  zoom-in"
+      className={`${styles["categories-item"]} ${styles["zoom-in"]}`}
       style={{ backgroundImage: `url("${url}")` }}
     >
-      <div className="item-content">
+      <div className={styles["item-content"]}>
         <h2>{name}</h2>
       </div>
     </div>
