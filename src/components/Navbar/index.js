@@ -43,6 +43,7 @@ const Navbar = ({ isDisabled, currentPage }) => {
   return (
     <nav className={classNames(navClasses)}>
       <div
+        href="/"
         className={`${styles["logo"]} ${styles["uppercase"]}`}
         onClick={onShowHomePage} /*to="/"*/
       >
