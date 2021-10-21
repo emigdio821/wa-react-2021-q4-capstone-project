@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import classNames from "classnames";
 import { BiCheck } from "react-icons/bi";
 import GlobalContext from "context/GlobalContext";
+import styles from "./FilterSidebar.module.scss";
 
 const FilterSidebarItem = ({ item }) => {
   const {
@@ -18,14 +19,14 @@ const FilterSidebarItem = ({ item }) => {
   };
 
   const filterClasses = {
-    "sidebar-item": true,
-    "active-filter": activeFilter,
+    [styles["sidebar-item"]]: true,
+    [styles["active-filter"]]: activeFilter,
   };
 
   return (
     <li className={classNames(filterClasses)} onClick={onFilterClick}>
       {activeFilter && <BiCheck />}
-      <span className="sidebar__item-name">{name}</span>
+      <span className={styles["sidebar__item-name"]}>{name}</span>
     </li>
   );
 };

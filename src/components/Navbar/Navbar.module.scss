@@ -20,12 +20,10 @@
   }
 }
 
-.app-scrolled {
-  .main-navbar:not(.fixed-nav) {
-    transform: translateY(-80px);
-    background: darken($footer-bg, 5%);
-    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.03);
-  }
+.dynamic-nav {
+  transform: translateY(-80px);
+  background: darken($footer-bg, 5%);
+  box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.03);
 }
 
 .logo {

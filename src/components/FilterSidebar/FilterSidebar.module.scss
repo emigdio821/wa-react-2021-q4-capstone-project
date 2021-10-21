@@ -1,8 +1,7 @@
 @import "styles/global";
-.app-scrolled {
-  .sidebar {
-    transform: translateY(-80px);
-  }
+
+.dynamic-sidebar {
+  transform: translateY(-80px);
 }
 
 .sidebar {

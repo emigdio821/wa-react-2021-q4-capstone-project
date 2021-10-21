@@ -10,10 +10,10 @@ const useScrollListener = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setData((last) => {
+      setData((old) => {
         return {
-          lastX: last.x,
-          lastY: last.y,
+          lastX: old.x,
+          lastY: old.y,
           x: window.scrollX,
           y: window.scrollY,
         };

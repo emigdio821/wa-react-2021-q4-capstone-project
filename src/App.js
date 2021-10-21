@@ -13,7 +13,7 @@ const App = () => {
   return (
     <>
       {/* <Router> */}
-      <div id="App" className="App">
+      <div className="App">
         <Navbar currentPage={currentPage} />
         <div className="main-container">
           {/* <Switch>
