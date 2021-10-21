@@ -1,18 +1,18 @@
-import React, { useContext, useState, useEffect, useCallback } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import ProductItem from "./ProductItem";
 import ProductList from "mocks/en-us/products.json";
 import Sidebar from "components/Sidebar";
 import GlobalContext from "context/GlobalContext";
 import { BiGhost } from "react-icons/bi";
-import "./Products.scss";
+import styles from "./Products.module.scss";
 
 const Products = () => {
   const { results } = ProductList;
   const [data, setData] = useState(results);
   const { productFilteredBy } = useContext(GlobalContext);
 
-  const onFilterData = useCallback(() => {
-    if (productFilteredBy.length > 0) {
+  useEffect(() => {
+    if (!!productFilteredBy.length) {
       const filteredProductData = results.filter(
         ({
           data: {
@@ -26,19 +26,15 @@ const Products = () => {
     }
   }, [productFilteredBy, results]);
 
-  useEffect(() => {
-    onFilterData();
-  }, [onFilterData]);
-
   return (
-    <div className="page-container">
+    <div className={styles["products-container"]}>
       <Sidebar />
-      <h1 className="product__main-title">Products</h1>
-      <div className="product-list">
-        {data.length > 0 ? (
+      <h1 className={styles["product__main-title"]}>Products</h1>
+      <div className={styles["product-list"]}>
+        {!!data.length ? (
           data.map(({ id, data }) => <ProductItem key={id} item={data} />)
         ) : (
-          <div className="product__not-found">
+          <div className={styles["product__not-found"]}>
             No products found... <BiGhost />
           </div>
         )}

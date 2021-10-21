@@ -8,6 +8,10 @@
   grid-template-columns: repeat(8, 1fr);
 }
 
+.products-container {
+  padding: 100px 20px;
+}
+
 .product__main-title,
 .product-list {
   padding-left: 16rem;

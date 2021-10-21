@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { BiChevronDown } from "react-icons/bi";
 import { formatCurrency } from "helpers/currency";
 import classNames from "classnames";
-import "./Products.scss";
+import styles from "./Products.module.scss";
 
 const ProductItem = ({ item }) => {
   const {
@@ -18,38 +18,43 @@ const ProductItem = ({ item }) => {
   const onShowDescription = () => setShowDescription(!showDescription);
 
   const productItemClasses = {
-    "product-item": true,
-    "product__item-height": showDescription,
+    [styles["product-item"]]: true,
+    [styles["product__item-height"]]: showDescription,
   };
   const descriptionClasses = {
-    "description-btn": true,
-    "description-shown": showDescription,
+    [styles["description-btn"]]: true,
+    [styles["description-shown"]]: showDescription,
   };
 
   return (
     <div className={classNames(productItemClasses)}>
-      <div className="product__img-container">
-        <img src={url} alt={alt} className="product-img" />
+      <div className={styles["product__img-container"]}>
+        <img src={url} alt={alt} className={styles["product-img"]} />
       </div>
-      <h2 className="product-title" title={name}>
+      <h2 className={styles["product-title"]} title={name}>
         {name}
       </h2>
-      <div className="category-container">
-        <span className="category-name">{categorySlug}</span>
+      <div className={styles["category-container"]}>
+        <span className={styles["category-name"]}>{categorySlug}</span>
       </div>
       {description.map(({ text }) => (
-        <div key={`${text}-description`} className="description-container">
+        <div
+          key={`${text}-description`}
+          className={styles["description-container"]}
+        >
           <button
             className={classNames(descriptionClasses)}
             onClick={onShowDescription}
           >
-            Description <BiChevronDown className="description-icon" />
+            Description <BiChevronDown className={styles["description-icon"]} />
           </button>
-          {showDescription && <p className="product-description">{text}</p>}
+          {showDescription && (
+            <p className={styles["product-description"]}>{text}</p>
+          )}
         </div>
       ))}
-      <div className="price-container">
-        <span className="price">{formatCurrency(price)}</span>
+      <div className={styles["price-container"]}>
+        <span className={styles.price}>{formatCurrency(price)}</span>
       </div>
     </div>
   );
