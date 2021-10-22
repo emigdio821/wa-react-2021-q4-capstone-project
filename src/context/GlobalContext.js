@@ -18,12 +18,17 @@ const GlobalProvider = ({ children }) => {
     }
   };
 
+  const clearProductFilter = () => {
+    setPFilteredBy([]);
+  }
+
   return (
     <GlobalContext.Provider
       value={{
         setCurrentPage,
         currentPage: page,
         setProductFiltered,
+        clearProductFilter,
         productFilteredBy: pFilteredBy,
       }}
     >

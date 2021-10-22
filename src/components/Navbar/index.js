@@ -13,7 +13,7 @@ const Navbar = ({ isDisabled, currentPage }) => {
   const [scrolledNav, setScrolledNav] = useState(false);
   const [fixedNavBg, setFixedNavBg] = useState(false);
   const [showHambMenu, setShowHambMenu] = useState(false);
-  const { setCurrentPage } = useContext(GlobalContext);
+  const { setCurrentPage, clearProductFilter } = useContext(GlobalContext);
   const navClasses = {
     [styles["main-navbar"]]: true,
     [styles["fixed__nav-bg"]]: fixedNavBg,
@@ -31,6 +31,7 @@ const Navbar = ({ isDisabled, currentPage }) => {
 
   const onShowHomePage = () => {
     setCurrentPage("/");
+    clearProductFilter();
     window.scrollTo(0, 0);
   };
 
