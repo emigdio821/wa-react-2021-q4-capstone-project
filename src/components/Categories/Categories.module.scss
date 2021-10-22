@@ -1,4 +1,4 @@
-@import "styles/global";
+@import 'styles/global';
 
 .categories-container {
   padding: 40px 20px;
@@ -60,7 +60,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    content: "";
+    content: '';
     position: absolute;
     background: inherit;
     background-size: cover;

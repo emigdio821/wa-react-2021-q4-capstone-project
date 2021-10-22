@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { BiTransfer } from "react-icons/bi";
-import FeaturedBanners from "mocks/en-us/featured-banners.json";
-import "./Slider.scss";
+import React, { useState, useEffect } from 'react';
+import { BiTransfer } from 'react-icons/bi';
+import FeaturedBanners from 'mocks/en-us/featured-banners.json';
+import './Slider.scss';
 
 const Slider = () => {
   const { results } = FeaturedBanners;
@@ -15,20 +15,19 @@ const Slider = () => {
   } = banners;
 
   useEffect(() => {
-    if (transitionActive) {
-      let idx = 1;
-      const interval = setInterval(() => {
+    let idx = 1;
+    const interval = setInterval(() => {
+      if (transitionActive) {
         const result = results[idx];
-        const { data } = result;
-        setBanners(data);
-        idx++;
+        const { data: slideData } = result;
+        setBanners(slideData);
+        idx += 1;
         if (idx === results.length) {
           idx = 0;
         }
-      }, 4000);
-
-      return () => clearInterval(interval);
-    }
+      }
+    }, 4000);
+    return () => clearInterval(interval);
   }, [results, transitionActive]);
 
   return (
@@ -40,8 +39,8 @@ const Slider = () => {
             {d.text}
           </p>
         ))}
-        <div
-          href="#"
+        <button
+          type="button"
           className="btn primary transition-btn"
           onClick={() => setTransitionActive(!transitionActive)}
         >
@@ -56,7 +55,7 @@ const Slider = () => {
               <BiTransfer style={{ marginLeft: 4 }} />
             </>
           )}
-        </div>
+        </button>
       </div>
     </div>
   );
