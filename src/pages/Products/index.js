@@ -15,7 +15,7 @@ const Products = () => {
   const { productFilteredBy } = useContext(GlobalContext);
 
   useEffect(() => {
-    if (!!productFilteredBy.length) {
+    if (productFilteredBy.length) {
       const filteredProductData = results.filter(
         ({
           data: {
@@ -28,9 +28,11 @@ const Products = () => {
       setData(results);
     }
 
-    setTimeout(() => {
+    const timeOut = setTimeout(() => {
       setLoadedData(true);
     }, 2000);
+
+    return () => clearTimeout(timeOut);
   }, [productFilteredBy, results]);
 
   return (
@@ -40,7 +42,7 @@ const Products = () => {
         <FilterSidebar />
         <h1 className={styles["product__main-title"]}>Products</h1>
         <div className={styles["product-list"]}>
-          {!!data.length ? (
+          {data.length ? (
             data.map(({ id, data }) => <ProductItem key={id} item={data} />)
           ) : (
             <div className={styles["product__not-found"]}>
