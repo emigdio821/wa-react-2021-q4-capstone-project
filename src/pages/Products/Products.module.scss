@@ -130,6 +130,10 @@
   align-items: center;
 }
 
+.pagination {
+  text-align: right;
+}
+
 @media (max-width: 900px) {
   .product-title {
     margin: 0 auto;

@@ -1,4 +1,5 @@
 import React, { useState, createContext } from "react";
+import PropTypes from "prop-types";
 
 const GlobalContext = createContext();
 
@@ -20,7 +21,7 @@ const GlobalProvider = ({ children }) => {
 
   const clearProductFilter = () => {
     setPFilteredBy([]);
-  }
+  };
 
   return (
     <GlobalContext.Provider
@@ -39,3 +40,7 @@ const GlobalProvider = ({ children }) => {
 
 export { GlobalProvider };
 export default GlobalContext;
+
+GlobalProvider.propTypes = {
+  children: PropTypes.element.isRequired,
+};
