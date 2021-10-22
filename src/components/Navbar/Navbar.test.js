@@ -19,17 +19,17 @@ test("navbar should be rendered", () => {
 
 test("navbar link should have a / href", () => {
   renderNavbar();
-  const linkElement = screen.getByText(/・The/i);
-  const logoLink = linkElement.closest("div");
+  const navigation = screen.getByRole("navigation");
+  const logoLink = navigation.firstChild;
   expect(logoLink).toHaveAttribute("href", "/");
 });
 
 test("navbar link should contain icon, logo class, ・Thecoolhouse text", () => {
   renderNavbar();
-  const linkElement = screen.getByText(/・The/i);
-  const icon = screen.getByRole(/img/i);
-  const logoLink = linkElement.closest("div");
+  const navigation = screen.getByRole("navigation");
+  const logoLink = navigation.firstChild;
+  const icon = logoLink.firstChild;
   expect(logoLink.contains(icon)).toBe(true);
   expect(logoLink.classList.contains("logo")).toBe(true);
-  expect(linkElement.textContent).toBe("・Thecoolhouse");
+  expect(logoLink.textContent).toBe("・Thecoolhouse");
 });

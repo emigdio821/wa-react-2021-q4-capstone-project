@@ -12,37 +12,60 @@
   transform: translateY(0);
 }
 
+@mixin btn-hover-focus($color) {
+  color: black;
+  @include up-animation;
+  background: darken($color, 5%);
+}
+
+@mixin btn-active {
+  transition: all 0.1s;
+  @include up-animation-off;
+}
+
+@mixin btn-disabled {
+  cursor: default;
+  color: $disabled-color;
+  background: $disabled-bg-color;
+}
+
 .btn {
   border: none;
-  outline: none;
   cursor: pointer;
   padding: 10px 20px;
   color: $nav-bg-color;
   transition: all 0.3s;
   text-decoration: none;
-  background: $accent-color;
   border-radius: $border-radius;
-  &.disabled,
-  &.disabled:hover,
-  &.disabled:focus,
-  &:disabled,
-  &:disabled:hover,
-  &:disabled:focus {
-    cursor: default;
-    color: $disabled-color;
-    background: $disabled-bg-color;
+  &.primary {
+    background: $accent-color;
+    &:hover {
+      @include btn-hover-focus($darken-accent-color);
+    }
+    &:focus {
+      @include btn-hover-focus($darken-accent-color);
+    }
+    &:active {
+      @include btn-active;
+    }
+    &:disabled {
+      @include btn-disabled;
+    }
   }
-  &:hover {
-    color: black;
-    @include up-animation;
-    background: $darken-accent-color;
-  }
-  &:active {
-    transition: all 0.1s;
-    @include up-animation-off;
-  }
-  &:focus {
-    background: $darken-accent-color;
+  &.yellow {
+    background: $yellow-btn-bg;
+    &:hover {
+      @include btn-hover-focus($yellow-btn-bg);
+    }
+    &:focus {
+      @include btn-hover-focus($yellow-btn-bg);
+    }
+    &:active {
+      @include btn-active;
+    }
+    &:disabled {
+      @include btn-disabled;
+    }
   }
 }
 

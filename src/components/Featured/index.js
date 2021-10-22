@@ -71,21 +71,21 @@ const Featured = () => {
       </div>
       <div className={styles["featured__action-btns"]}>
         <button
-          className={`btn ${styles["prev-btn"]}`}
+          className={`${styles.btn} ${styles.primary} ${styles["prev-btn"]}`}
           onClick={() => onSlideX(false)}
           disabled={scrollX === 0}
         >
           &larr; Prev
         </button>
         <button
-          className={`btn ${styles["next-btn"]} ${styles["m__left-btn"]}`}
+          className={`${styles.btn} ${styles.primary} ${styles["next-btn"]} ${styles["m__left-btn"]}`}
           onClick={() => onSlideX(true)}
           disabled={scrollEnd}
         >
           Next &#8594;
         </button>
         <button
-          className={`btn ${styles["m__left-btn"]}`}
+          className={`${styles.btn} ${styles.primary} ${styles["m__left-btn"]}`}
           onClick={onShowBrowseAllPage}
         >
           Browse all

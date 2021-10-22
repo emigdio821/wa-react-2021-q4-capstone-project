@@ -53,10 +53,10 @@
 }
 
 .category-name {
-  background: beige;
   font-weight: 500;
   padding: 10px 20px;
   border-radius: 20px;
+  background: $category-bg;
   text-transform: capitalize;
 }
 
@@ -74,10 +74,10 @@
 .category-container {
   padding: 20px;
   .category-name {
-    background: beige;
     font-weight: 500;
     padding: 10px 20px;
     border-radius: 20px;
+    background: $category-bg;
     text-transform: capitalize;
   }
 }
