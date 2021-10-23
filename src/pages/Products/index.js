@@ -40,7 +40,7 @@ const Products = () => {
       {!loadedData && <Loader />}
       <div className={styles["products-container"]}>
         <FilterSidebar />
-        <h1 className={styles["product__main-title"]}>Products</h1>
+        <h1 className={styles["product__main-title"]}>This is the Product List Page</h1>
         <div className={styles["product-list"]}>
           {data.length ? (
             data.map(({ id, data }) => <ProductItem key={id} item={data} />)

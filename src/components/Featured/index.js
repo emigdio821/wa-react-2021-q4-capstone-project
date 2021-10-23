@@ -88,7 +88,7 @@ const Featured = () => {
           className={`${styles.btn} ${styles.primary} ${styles["m__left-btn"]}`}
           onClick={onShowBrowseAllPage}
         >
-          Browse all
+          View all products
         </button>
       </div>
     </div>
