@@ -11,13 +11,13 @@ footer {
   background: $footer-bg;
   justify-content: center;
   border-top: 1px solid $nav-border-color;
-  & .footer-item {
+  .footer-item {
     padding: 10px;
   }
-  & .footer-container {
+  .footer-container {
     text-align: center;
   }
-  & .footer-link {
+  .footer-link {
     color: white;
     padding: 2px 6px;
     font-weight: 500;
@@ -29,7 +29,7 @@ footer {
       background: lighten($footer-bg, 5%);
     }
   }
-  & .github-link svg {
+  .github-link svg {
     vertical-align: middle;
   }
 }

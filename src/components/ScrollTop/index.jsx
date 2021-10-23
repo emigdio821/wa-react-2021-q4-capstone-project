@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import classNames from 'classnames';
 import { BiUpArrowAlt } from 'react-icons/bi';
-import './ScrollTop.scss';
+import styles from './ScrollTop.module.scss';
 
 const ScrollTop = () => {
   const [scrolledHalfBody, setScrolleHalfdBody] = useState(false);
@@ -27,8 +27,8 @@ const ScrollTop = () => {
   }, []);
 
   const scrollBtn = {
-    'scroll-btn': true,
-    'body__half-scrolled': scrolledHalfBody,
+    [styles['scroll-btn']]: true,
+    [styles['body__half-scrolled']]: scrolledHalfBody,
   };
 
   return (

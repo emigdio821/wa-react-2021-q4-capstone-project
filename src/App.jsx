@@ -13,19 +13,16 @@ const App = () => {
   return (
     <>
       {/* <Router> */}
-      <div className="App">
-        <Navbar currentPage={currentPage} />
-        <div className="main-container">
-          {/* <Switch>
+      <Navbar currentPage={currentPage} />
+      <div className="main-container">
+        {/* <Switch>
               <Route exact path="/" component={Home} />
             </Switch> */}
-          {/* {console.log(PageC)} */}
-          {currentPage === '/' && <Home />}
-          {currentPage === '/products' && <Products />}
-        </div>
-        <Footer />
-        <ScrollTop />
+        {currentPage === '/' && <Home />}
+        {currentPage === '/products' && <Products />}
       </div>
+      <Footer />
+      <ScrollTop />
       {/* </Router> */}
     </>
   );
