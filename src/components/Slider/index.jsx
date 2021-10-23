@@ -1,63 +1,52 @@
 import React, { useState, useEffect } from 'react';
-import { BiTransfer } from 'react-icons/bi';
 import FeaturedBanners from 'mocks/en-us/featured-banners.json';
-import './Slider.scss';
+import SliderButtons from './SliderButtons';
+import SliderItem from './SliderItem';
+import styles from './Slider.module.scss';
 
 const Slider = () => {
   const { results } = FeaturedBanners;
-  const { data } = results[0];
-  const [banners, setBanners] = useState(data);
+  const { length } = results;
+  const [currentSlide, setCurrentSlide] = useState(0);
   const [transitionActive, setTransitionActive] = useState(true);
-  const {
-    description,
-    main_image: { url },
-    title,
-  } = banners;
+
+  const onSetTransitionActive = () => {
+    setTransitionActive(!transitionActive);
+  };
+  const nextSlide = () => {
+    setCurrentSlide(currentSlide === length - 1 ? 0 : currentSlide + 1);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide(currentSlide === 0 ? length - 1 : currentSlide - 1);
+  };
 
   useEffect(() => {
-    let idx = 1;
     const interval = setInterval(() => {
       if (transitionActive) {
-        const result = results[idx];
-        const { data: slideData } = result;
-        setBanners(slideData);
-        idx += 1;
-        if (idx === results.length) {
-          idx = 0;
-        }
+        nextSlide();
       }
     }, 4000);
     return () => clearInterval(interval);
-  }, [results, transitionActive]);
+  }, [currentSlide, transitionActive]);
 
   return (
-    <div className="slider" style={{ backgroundImage: `url("${url}")` }}>
-      <div className="slider-content">
-        <h1 className="slider-title">{title}</h1>
-        {description.map((d) => (
-          <p key={d} className="description">
-            {d.text}
-          </p>
-        ))}
-        <button
-          type="button"
-          className="btn primary transition-btn"
-          onClick={() => setTransitionActive(!transitionActive)}
-        >
-          {transitionActive ? (
-            <>
-              Stop transition
-              <BiTransfer style={{ marginLeft: 4 }} />
-            </>
-          ) : (
-            <>
-              Continue transition
-              <BiTransfer style={{ marginLeft: 4 }} />
-            </>
-          )}
-        </button>
-      </div>
-    </div>
+    <section className={styles.slider}>
+      <SliderButtons
+        prev={prevSlide}
+        isActive={transitionActive}
+        onSetTransitionActive={onSetTransitionActive}
+        next={nextSlide}
+      />
+      {results.map(({ data }, index) => (
+        <SliderItem
+          data={data}
+          idx={index}
+          currentSlide={currentSlide}
+          key={`slider-item-${data.title}`}
+        />
+      ))}
+    </section>
   );
 };
 
