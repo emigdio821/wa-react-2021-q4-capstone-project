@@ -7,8 +7,11 @@ import Products from 'pages/Products';
 import './App.scss';
 import GlobalContext from 'context/GlobalContext';
 import ScrollTop from 'components/ScrollTop';
+import { useFeaturedBanners } from './utils/hooks/useFeaturedBanners';
 
 const App = () => {
+  const { data, isLoading } = useFeaturedBanners();
+  console.log(data, isLoading);
   const { currentPage } = useContext(GlobalContext);
   return (
     <>
