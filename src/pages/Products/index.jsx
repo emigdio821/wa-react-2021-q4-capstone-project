@@ -5,6 +5,7 @@ import GlobalContext from 'context/GlobalContext';
 import { BiGhost } from 'react-icons/bi';
 import Pagination from 'components/Pagination';
 import Loader from 'components/Loader';
+import classNames from 'classnames';
 import ProductItem from './ProductItem';
 import styles from './Products.module.scss';
 
@@ -13,6 +14,11 @@ const Products = () => {
   const [data, setData] = useState([]);
   const [loadedData, setLoadedData] = useState(false);
   const { productFilteredBy } = useContext(GlobalContext);
+
+  const containerStyles = {
+    [styles['products-container']]: true,
+    [styles['container-loading']]: !loadedData,
+  };
 
   useEffect(() => {
     if (productFilteredBy.length) {
@@ -37,24 +43,31 @@ const Products = () => {
 
   return (
     <>
-      {!loadedData && <Loader />}
-      <div className={styles['products-container']}>
-        <FilterSidebar />
-        <h1 className={styles['product__main-title']}>Products</h1>
-        <div className={styles['product-list']}>
-          {data.length ? (
-            data.map(({ id, data: pItem }) => <ProductItem key={id} item={pItem} />)
-          ) : (
-            <div className={styles['product__not-found']}>
-              No products found...
-              {' '}
-              <BiGhost />
+      <div className={classNames(containerStyles)}>
+        {loadedData ? (
+          <>
+            <FilterSidebar />
+            <h1 className={styles['product__main-title']}>Products</h1>
+            <div className={styles['product-list']}>
+              {data.length ? (
+                data.map(({ id, data: pItem }) => (
+                  <ProductItem key={id} item={pItem} />
+                ))
+              ) : (
+                <div className={styles['product__not-found']}>
+                  No products found...
+                  {' '}
+                  <BiGhost />
+                </div>
+              )}
             </div>
-          )}
-        </div>
-        <div className={styles.pagination}>
-          <Pagination />
-        </div>
+            <div className={styles.pagination}>
+              <Pagination />
+            </div>
+          </>
+        ) : (
+          <Loader />
+        )}
       </div>
     </>
   );

@@ -33,7 +33,7 @@ const SliderButtons = ({
           </>
         ) : (
           <>
-            Continue transition
+            Play transition
             <BiTransfer style={{ marginLeft: 4 }} />
           </>
         )}
