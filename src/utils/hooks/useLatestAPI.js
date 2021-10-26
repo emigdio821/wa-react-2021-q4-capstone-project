@@ -3,6 +3,7 @@ import { API_BASE_URL } from '../constants';
 
 const INITIAL_API_METADATA = { ref: null, isLoading: true };
 
+// eslint-disable-next-line import/prefer-default-export
 export function useLatestAPI() {
   const [apiMetadata, setApiMetadata] = useState(() => INITIAL_API_METADATA);
 
@@ -21,6 +22,7 @@ export function useLatestAPI() {
         setApiMetadata({ ref, isLoading: false });
       } catch (err) {
         setApiMetadata({ ref: null, isLoading: false });
+        // eslint-disable-next-line no-console
         console.error(err);
       }
     }

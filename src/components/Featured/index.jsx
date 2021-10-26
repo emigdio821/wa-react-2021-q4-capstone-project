@@ -1,9 +1,7 @@
-import React, {
-  useState, useRef, useEffect, useContext,
-} from 'react';
+import React, { useState, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { BiBookmarkHeart } from 'react-icons/bi';
 import FeaturedProducts from 'mocks/en-us/featured-products.json';
-import GlobalContext from 'context/GlobalContext';
 import FeaturedItem from './FeaturedItem';
 import styles from './Featured.module.scss';
 
@@ -12,7 +10,6 @@ const Featured = () => {
   const featuredRef = useRef(null);
   const [scrollX, setScrollX] = useState(0);
   const [scrollEnd, setScrollEnd] = useState(false);
-  const { setCurrentPage } = useContext(GlobalContext);
 
   const onHandleScrollEnd = () => {
     const featureDiv = featuredRef.current;
@@ -25,13 +22,6 @@ const Featured = () => {
       setScrollEnd(false);
     }
   };
-
-  useEffect(() => {
-    featuredRef.current.addEventListener('wheel', (e) => {
-      e.preventDefault();
-      featuredRef.current.scrollLeft += e.deltaY * 6;
-    });
-  }, []);
 
   const onScrollCheck = () => {
     const featureDiv = featuredRef.current;
@@ -49,11 +39,6 @@ const Featured = () => {
       setScrollX(scrollX + featureDiv.offsetWidth);
     }
     onHandleScrollEnd();
-  };
-
-  const onShowBrowseAllPage = () => {
-    setCurrentPage('/products');
-    window.scrollTo(0, 0);
   };
 
   return (
@@ -88,13 +73,13 @@ const Featured = () => {
         >
           Next &#8594;
         </button>
-        <button
+        <Link
+          to="/products"
           type="button"
           className={`${styles.btn} ${styles.primary} ${styles['m__left-btn']}`}
-          onClick={onShowBrowseAllPage}
         >
           Browse all
-        </button>
+        </Link>
       </div>
     </div>
   );

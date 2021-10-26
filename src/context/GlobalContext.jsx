@@ -4,12 +4,7 @@ import PropTypes from 'prop-types';
 const GlobalContext = createContext();
 
 const GlobalProvider = ({ children }) => {
-  const [page, setPage] = useState('/');
   const [pFilteredBy, setPFilteredBy] = useState([]);
-
-  const setCurrentPage = (pageStr) => {
-    setPage(pageStr);
-  };
 
   const setProductFiltered = (filter, isActiveFilter) => {
     if (isActiveFilter) {
@@ -26,8 +21,6 @@ const GlobalProvider = ({ children }) => {
   return (
     <GlobalContext.Provider
       value={{
-        setCurrentPage,
-        currentPage: page,
         setProductFiltered,
         clearProductFilter,
         productFilteredBy: pFilteredBy,

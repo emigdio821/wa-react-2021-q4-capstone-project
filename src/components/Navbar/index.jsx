@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react';
-// import { Link } from "react-router-dom";
+import { Link, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import GlobalContext from 'context/GlobalContext';
@@ -10,18 +10,18 @@ import {
 import HambContent from './HambContent';
 import styles from './Navbar.module.scss';
 
-const Navbar = ({ isDisabled, currentPage }) => {
+const Navbar = ({ isDisabled }) => {
   const scroll = useScrollListener();
   const [scrolledNav, setScrolledNav] = useState(false);
   const [fixedNavBg, setFixedNavBg] = useState(false);
   const [showHambMenu, setShowHambMenu] = useState(false);
-  const { setCurrentPage, clearProductFilter } = useContext(GlobalContext);
+  const { clearProductFilter } = useContext(GlobalContext);
+  const { pathname } = useLocation();
   const navClasses = {
     [styles['main-navbar']]: true,
     [styles['fixed__nav-bg']]: fixedNavBg,
-    [styles['static__nav-bg']]:
-      currentPage !== '/' && !scrolledNav && !fixedNavBg,
-    [styles['dynamic-nav']]: scrolledNav && currentPage !== '/',
+    [styles['static__nav-bg']]: pathname !== '/' && !scrolledNav && !fixedNavBg,
+    [styles['dynamic-nav']]: scrolledNav && pathname !== '/',
   };
 
   const cartBtnStyles = {
@@ -32,9 +32,7 @@ const Navbar = ({ isDisabled, currentPage }) => {
   };
 
   const onShowHomePage = () => {
-    setCurrentPage('/');
     clearProductFilter();
-    window.scrollTo(0, 0);
   };
 
   const handleCartBtnClick = () => {
@@ -91,11 +89,11 @@ const Navbar = ({ isDisabled, currentPage }) => {
   return (
     <>
       <nav className={classNames(navClasses)}>
-        <button
-          href="/"
+        <Link
+          to="/"
           type="button"
           className={`${styles.logo} ${styles.uppercase}`}
-          onClick={onShowHomePage} /* to="/" */
+          onClick={onShowHomePage}
         >
           <BiHomeHeart role="img" />
           <span>
@@ -103,7 +101,7 @@ const Navbar = ({ isDisabled, currentPage }) => {
             <span className={styles['bold-font']}>cool</span>
             house
           </span>
-        </button>
+        </Link>
         <div className={styles['hamb__icon-container']}>
           <BiMenu className={styles['hamb-icon']} onClick={onshowHambMenu} />
         </div>
@@ -120,10 +118,8 @@ export default Navbar;
 
 Navbar.propTypes = {
   isDisabled: PropTypes.bool,
-  currentPage: PropTypes.string,
 };
 
 Navbar.defaultProps = {
   isDisabled: true,
-  currentPage: '/',
 };

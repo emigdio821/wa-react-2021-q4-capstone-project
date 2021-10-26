@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { API_BASE_URL } from '../constants';
 import { useLatestAPI } from './useLatestAPI';
 
+// eslint-disable-next-line import/prefer-default-export
 export function useFeaturedBanners() {
   const { ref: apiRef, isLoading: isApiMetadataLoading } = useLatestAPI();
   const [featuredBanners, setFeaturedBanners] = useState(() => ({
@@ -22,17 +23,18 @@ export function useFeaturedBanners() {
 
         const response = await fetch(
           `${API_BASE_URL}/documents/search?ref=${apiRef}&q=${encodeURIComponent(
-            '[[at(document.type, "banner")]]'
+            '[[at(document.type, "banner")]]',
           )}&lang=en-us&pageSize=5`,
           {
             signal: controller.signal,
-          }
+          },
         );
         const data = await response.json();
 
         setFeaturedBanners({ data, isLoading: false });
       } catch (err) {
         setFeaturedBanners({ data: {}, isLoading: false });
+        // eslint-disable-next-line no-console
         console.error(err);
       }
     }
