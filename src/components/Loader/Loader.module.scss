@@ -1,0 +1,44 @@
+@import "styles/global";
+
+.loading {
+  width: 100%;
+  z-index: 999;
+  height: 100%;
+  color: white;
+  display: flex;
+  position: fixed;
+  background: $semi-transparent-bg;
+  .loading-container {
+    top: 50%;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    position: absolute;
+    align-items: center;
+    align-content: center;
+    flex-direction: column;
+    .loading-text {
+      padding: 10px 20px;
+      border-radius: 20px;
+      align-items: center;
+      display: inline-flex;
+      background: $footer-bg;
+      svg {
+        font-size: 2rem;
+        animation: right-left 0.8s linear infinite;
+      }
+    }
+  }
+}
+
+@keyframes right-left {
+  0% {
+    transform: translateX(-6px);
+  }
+  50% {
+    transform: translateX(6px);
+  }
+  100% {
+    transform: translateX(-6px);
+  }
+}

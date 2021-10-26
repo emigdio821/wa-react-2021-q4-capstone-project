@@ -1,12 +1,12 @@
 import React from "react";
 import Slider from "components/Slider";
-import Grid from "components/Grid";
+import Categories from "components/Categories";
 import Featured from "components/Featured";
 
 const Home = () => (
   <>
     <Slider />
-    <Grid />
+    <Categories />
     <Featured />
   </>
 );

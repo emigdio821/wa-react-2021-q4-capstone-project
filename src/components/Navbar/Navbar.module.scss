@@ -1,6 +1,6 @@
 @import "styles/global";
 
-nav {
+.main-navbar {
   width: 100%;
   height: 80px;
   display: flex;
@@ -12,14 +12,23 @@ nav {
   align-content: center;
   background: transparent;
   justify-content: space-between;
-  &.nav-scrolled {
-    background: darken($footer-background, 5%);
-    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.03);
+  &.fixed__nav-bg {
+    background: darken($footer-bg, 5%);
   }
+  &.static__nav-bg {
+    background: $footer-bg;
+  }
+}
+
+.dynamic-nav {
+  transform: translateY(-80px);
+  background: darken($footer-bg, 5%);
+  box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.03);
 }
 
 .logo {
   display: flex;
+  cursor: pointer;
   font-size: 1.5rem;
   color: $nav-color;
   align-items: center;
@@ -38,12 +47,10 @@ nav {
 
 .search-input {
   border: none;
-  outline: none;
-  width: 140px;
+  width: 120px;
   padding: 10px;
   overflow: hidden;
   background: #fff;
-  padding-right: 30px;
   white-space: nowrap;
   transition: all 0.3s;
   text-overflow: ellipsis;
@@ -52,31 +59,26 @@ nav {
   &:hover {
     @include up-animation;
   }
-  &:hover + .search-icon {
-    @include up-animation;
-  }
-  &:active,
-  &:active + .search-icon {
+  &:active {
     @include up-animation-off;
   }
   &:focus {
-    width: 160px;
+    width: 140px;
+    @include up-animation;
   }
-  &:disabled,
-  &:disabled + .search-icon {
+  &:disabled {
     color: $disabled-color;
     background: $disabled-bg-color;
   }
+  &:disabled:active {
+    @include up-animation;
+  }
 }
 
-.search-icon {
-  border: 0;
-  padding: 0;
-  z-index: 1;
-  border: none;
-  margin-left: -26px;
-  margin-right: 26px;
-  transition: all 0.3s;
+.search-btn {
+  margin-left: 6px;
+  margin-right: 20px;
+  @include main-box-shadow;
 }
 
 .nav-link {
@@ -98,18 +100,61 @@ nav {
 
 .shopping-cart {
   display: flex;
+  align-items: center;
+  align-content: center;
   @include main-box-shadow;
+  border-radius: 20px !important;
+  span {
+    display: flex;
+    margin-left: 4px;
+    align-items: center;
+    align-content: center;
+  }
 }
 
-.hamb-icon {
+.hamb-icon,
+.hamb__icon-container {
+  color: $nav-color;
   @include main-box-shadow;
   border-radius: $border-radius;
 }
 
-.hamb-icon,
-.hamb-container {
+.hamb-icon {
   display: none;
-  color: $nav-color;
+}
+
+.hamb__menu-container {
+  top: 0;
+  width: 100%;
+  z-index: 999;
+  height: 100%;
+  padding-top: 0;
+  position: fixed;
+  background: $footer-bg;
+  transition: transform 0.3s;
+  transform: translateX(100%);
+  .nav-btn-container {
+    display: flex;
+    flex-direction: column;
+  }
+  .children {
+    padding: 0 20px;
+    padding-top: 80px;
+  }
+  .cart__margin-top {
+    margin-top: 20px;
+  }
+}
+
+.show__hamb-menu {
+  transform: translateX(0);
+}
+
+.hamb__icon-align {
+  height: 80px;
+  display: flex;
+  margin-left: auto;
+  align-items: center;
 }
 
 @media screen and (max-width: 768px) {
@@ -117,12 +162,13 @@ nav {
     display: none;
   }
 
-  .hamb-container {
+  .hamb__icon-container {
     display: flex;
     align-items: center;
   }
 
-  .hamb-icon {
+  .hamb-icon,
+  .hamb__close-icon {
     display: block;
     cursor: pointer;
     font-size: 1.875rem;

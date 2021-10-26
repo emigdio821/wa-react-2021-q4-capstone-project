@@ -42,7 +42,7 @@ const Slider = () => {
         ))}
         <div
           href="#"
-          className="btn transition-btn"
+          className="btn primary transition-btn"
           onClick={() => setTransitionActive(!transitionActive)}
         >
           {transitionActive ? (

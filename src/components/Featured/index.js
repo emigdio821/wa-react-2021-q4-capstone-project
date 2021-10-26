@@ -1,18 +1,16 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useContext } from "react";
 import FeaturedItem from "./FeaturedItem";
-import {
-  BiLeftArrowAlt,
-  BiRightArrowAlt,
-  BiBookmarkHeart,
-} from "react-icons/bi";
+import { BiBookmarkHeart } from "react-icons/bi";
 import FeaturedProducts from "mocks/en-us/featured-products.json";
-import "./Featured.scss";
+import GlobalContext from "context/GlobalContext";
+import styles from "./Featured.module.scss";
 
 const Featured = () => {
   const { results } = FeaturedProducts;
   const featuredRef = useRef(null);
   const [scrollX, setScrollX] = useState(0);
   const [scrollEnd, setScrollEnd] = useState(false);
+  const { setCurrentPage } = useContext(GlobalContext);
 
   const onHandleScrollEnd = () => {
     const featureDiv = featuredRef.current;
@@ -29,7 +27,7 @@ const Featured = () => {
   useEffect(() => {
     featuredRef.current.addEventListener("wheel", (e) => {
       e.preventDefault();
-      featuredRef.current.scrollLeft += e.deltaY * 5;
+      featuredRef.current.scrollLeft += e.deltaY * 6;
     });
   }, []);
 
@@ -51,31 +49,46 @@ const Featured = () => {
     onHandleScrollEnd();
   };
 
+  const onShowBrowseAllPage = () => {
+    setCurrentPage("/products");
+    window.scrollTo(0, 0);
+  };
+
   return (
-    <div className="container">
-      <h1 className="featured-title">
+    <div className={styles["featured-container"]}>
+      <h1 className={styles["featured-title"]}>
         <BiBookmarkHeart />
         ・Featured
       </h1>
-      <div className="featured" ref={featuredRef} onScroll={onScrollCheck}>
+      <div
+        className={styles.featured}
+        ref={featuredRef}
+        onScroll={onScrollCheck}
+      >
         {results.map(({ id, data }) => (
           <FeaturedItem key={id} item={data} />
         ))}
       </div>
-      <div className="scroll-btns">
+      <div className={styles["featured__action-btns"]}>
         <button
-          className="btn prev-btn"
+          className={`${styles.btn} ${styles.primary} ${styles["prev-btn"]}`}
           onClick={() => onSlideX(false)}
           disabled={scrollX === 0}
         >
-          <BiLeftArrowAlt /> Prev
+          &larr; Prev
         </button>
         <button
-          className="btn next-btn"
+          className={`${styles.btn} ${styles.primary} ${styles["next-btn"]} ${styles["m__left-btn"]}`}
           onClick={() => onSlideX(true)}
           disabled={scrollEnd}
         >
-          Next <BiRightArrowAlt />
+          Next &#8594;
+        </button>
+        <button
+          className={`${styles.btn} ${styles.primary} ${styles["m__left-btn"]}`}
+          onClick={onShowBrowseAllPage}
+        >
+          View all products
         </button>
       </div>
     </div>
