@@ -1,12 +1,12 @@
-import React, { useContext, useState, useEffect } from "react";
-import ProductItem from "./ProductItem";
-import ProductList from "mocks/en-us/products.json";
-import FilterSidebar from "components/FilterSidebar";
-import GlobalContext from "context/GlobalContext";
-import { BiGhost } from "react-icons/bi";
-import Pagination from "components/Pagination";
-import Loader from "components/Loader";
-import styles from "./Products.module.scss";
+import React, { useContext, useState, useEffect } from 'react';
+import ProductList from 'mocks/en-us/products.json';
+import FilterSidebar from 'components/FilterSidebar';
+import GlobalContext from 'context/GlobalContext';
+import { BiGhost } from 'react-icons/bi';
+import Pagination from 'components/Pagination';
+import Loader from 'components/Loader';
+import ProductItem from './ProductItem';
+import styles from './Products.module.scss';
 
 const Products = () => {
   const { results } = ProductList;
@@ -21,7 +21,7 @@ const Products = () => {
           data: {
             category: { slug },
           },
-        }) => productFilteredBy.includes(slug)
+        }) => productFilteredBy.includes(slug),
       );
       setData(filteredProductData);
     } else {
@@ -38,15 +38,17 @@ const Products = () => {
   return (
     <>
       {!loadedData && <Loader />}
-      <div className={styles["products-container"]}>
+      <div className={styles['products-container']}>
         <FilterSidebar />
-        <h1 className={styles["product__main-title"]}>This is the Product List Page</h1>
-        <div className={styles["product-list"]}>
+        <h1 className={styles['product__main-title']}>Products</h1>
+        <div className={styles['product-list']}>
           {data.length ? (
-            data.map(({ id, data }) => <ProductItem key={id} item={data} />)
+            data.map(({ id, data: pItem }) => <ProductItem key={id} item={pItem} />)
           ) : (
-            <div className={styles["product__not-found"]}>
-              No products found... <BiGhost />
+            <div className={styles['product__not-found']}>
+              No products found...
+              {' '}
+              <BiGhost />
             </div>
           )}
         </div>

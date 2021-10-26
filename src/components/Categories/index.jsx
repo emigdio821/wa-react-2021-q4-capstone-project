@@ -1,15 +1,15 @@
-import React from "react";
-import GridItem from "./CategoryItem";
-import { BiCategory } from "react-icons/bi";
-import ProductCategories from "mocks/en-us/product-categories.json";
-import styles from "./Categories.module.scss";
+import React from 'react';
+import { BiCategory } from 'react-icons/bi';
+import ProductCategories from 'mocks/en-us/product-categories.json';
+import GridItem from './CategoryItem';
+import styles from './Categories.module.scss';
 
 const Categories = () => {
   const { results } = ProductCategories;
 
   return (
-    <div className={styles["categories-container"]}>
-      <h1 className={styles["category-title"]}>
+    <div className={styles['categories-container']}>
+      <h1 className={styles['category-title']}>
         <BiCategory />
         ・Categories
       </h1>

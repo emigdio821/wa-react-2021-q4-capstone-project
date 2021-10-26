@@ -1,14 +1,14 @@
-import React, { useState, createContext } from "react";
-import PropTypes from "prop-types";
+import React, { useState, createContext } from 'react';
+import PropTypes from 'prop-types';
 
 const GlobalContext = createContext();
 
 const GlobalProvider = ({ children }) => {
-  const [page, setPage] = useState("/");
+  const [page, setPage] = useState('/');
   const [pFilteredBy, setPFilteredBy] = useState([]);
 
-  const setCurrentPage = (page) => {
-    setPage(page);
+  const setCurrentPage = (pageStr) => {
+    setPage(pageStr);
   };
 
   const setProductFiltered = (filter, isActiveFilter) => {
