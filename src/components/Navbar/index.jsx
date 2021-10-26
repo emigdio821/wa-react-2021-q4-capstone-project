@@ -91,7 +91,6 @@ const Navbar = ({ isDisabled }) => {
       <nav className={classNames(navClasses)}>
         <Link
           to="/"
-          type="button"
           className={`${styles.logo} ${styles.uppercase}`}
           onClick={onShowHomePage}
         >

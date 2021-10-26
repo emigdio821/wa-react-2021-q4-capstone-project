@@ -73,12 +73,10 @@ const Featured = () => {
         >
           Next &#8594;
         </button>
-        <Link
-          to="/products"
-          type="button"
-          className={`${styles.btn} ${styles.primary} ${styles['m__left-btn']}`}
-        >
-          Browse all
+        <Link to="/products" className={styles['m__left-btn']}>
+          <button type="button" className={`${styles.btn} ${styles.primary}`}>
+            Browse all
+          </button>
         </Link>
       </div>
     </div>
