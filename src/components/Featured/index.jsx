@@ -37,7 +37,7 @@ const Featured = () => {
             ))}
           </div>
           <div className={styles['featured__action-btns']}>
-            <Link to="/products">
+            <Link to="/products" className={styles['no-decoration']}>
               <button
                 type="button"
                 className={`${styles.btn} ${styles.primary}`}

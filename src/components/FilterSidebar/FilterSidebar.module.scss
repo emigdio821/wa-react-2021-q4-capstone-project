@@ -74,6 +74,9 @@
     top: 80px;
     padding: 0;
     width: 100%;
+    &.navbar-loading {
+      height: 70px;
+    }
   }
 
   .sidebar-title {

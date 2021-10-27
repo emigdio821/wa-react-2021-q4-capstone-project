@@ -1,5 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
+import { BiChevronLeft, BiChevronRight } from 'react-icons/bi';
 import styles from './Pagination.module.scss';
 
 const Pagination = () => {
@@ -14,7 +15,9 @@ const Pagination = () => {
     <ul className={styles['page-numbers']}>
       <li>
         <button type="button" className={classNames(btnStyles)} disabled>
-          &larr; Prev
+          <BiChevronLeft />
+          {' '}
+          Prev
         </button>
       </li>
       {pages.map((page) => (
@@ -26,7 +29,9 @@ const Pagination = () => {
       ))}
       <li>
         <button type="button" className={classNames(btnStyles)} disabled>
-          Next &#8594;
+          Next
+          {' '}
+          <BiChevronRight />
         </button>
       </li>
     </ul>
