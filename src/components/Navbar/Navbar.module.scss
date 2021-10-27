@@ -134,7 +134,6 @@
   position: fixed;
   background: $footer-bg;
   transition: transform 0.3s;
-  transform: translateX(100%);
   .nav-btn-container {
     display: flex;
     flex-direction: column;
@@ -142,6 +141,24 @@
   .children {
     padding: 0 20px;
     padding-top: 80px;
+  }
+  &.hamb__menu-in-animation {
+    animation: menu-in 0.3s;
+  }
+  &.hamb__menu-out-animation {
+    animation: menu-out 0.3s;
+  }
+}
+
+@keyframes menu-in {
+  from {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes menu-out {
+  to {
+    transform: translateX(100%);
   }
 }
 

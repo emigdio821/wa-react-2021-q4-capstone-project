@@ -3,17 +3,17 @@ import { Link, useLocation } from 'react-router-dom';
 import classNames from 'classnames';
 import GlobalContext from 'context/GlobalContext';
 import useScrollListener from 'utils/hooks/useScrollListener';
-import {
-  BiHomeHeart, BiSearchAlt, BiCartAlt, BiMenu,
-} from 'react-icons/bi';
+import { BiHomeHeart, BiMenu } from 'react-icons/bi';
 import HambContent from './HambContent';
 import styles from './Navbar.module.scss';
+import NavItems from './NavItems';
 
 const Navbar = () => {
   const scroll = useScrollListener();
   const [scrolledNav, setScrolledNav] = useState(false);
   const [fixedNavBg, setFixedNavBg] = useState(false);
   const [showHambMenu, setShowHambMenu] = useState(false);
+  const [renderHambMenu, setRenderHambMenu] = useState(showHambMenu);
   const { clearProductFilter } = useContext(GlobalContext);
   const { pathname } = useLocation();
   const navClasses = {
@@ -23,61 +23,20 @@ const Navbar = () => {
     [styles['dynamic-nav']]: scrolledNav && pathname !== '/',
   };
 
-  const cartBtnStyles = {
-    [styles.btn]: true,
-    [styles.yellow]: true,
-    [styles['shopping-cart']]: true,
-  };
-
   const onShowHomePage = () => {
     clearProductFilter();
-  };
-
-  const handleCartBtnClick = () => {
-    // eslint-disable-next-line no-alert
-    alert('The shopping cart is WIP 🤠');
-  };
-
-  const handleSearchBtnClick = () => {
-    // eslint-disable-next-line no-alert
-    alert('The search functionality is WIP 🤠');
   };
 
   const onshowHambMenu = () => {
     setShowHambMenu(!showHambMenu);
   };
 
-  const navItems = (
-    <div className={styles['nav-btn-container']}>
-      <div>
-        <input
-          type="text"
-          placeholder="Search..."
-          className={styles['search-input']}
-        />
-        <button
-          type="button"
-          className={`${styles.btn} ${styles.primary} ${styles['search-btn']}`}
-          onClick={handleSearchBtnClick}
-        >
-          <BiSearchAlt />
-        </button>
-      </div>
-      <button
-        // to="/"
-        type="button"
-        className={classNames(cartBtnStyles)}
-        onClick={handleCartBtnClick}
-      >
-        Cart
-        <span>
-          <BiCartAlt />
-        </span>
-      </button>
-    </div>
-  );
+  const onAnimationEnd = () => {
+    if (!showHambMenu) setRenderHambMenu(false);
+  };
 
   useEffect(() => {
+    if (showHambMenu) setRenderHambMenu(true);
     /* eslint no-unused-expressions: ["error", { "allowTernary": true }] */
     scroll.y > 80 ? setFixedNavBg(true) : setFixedNavBg(false);
     if (scroll.y > 80 && scroll.y - scroll.lastY > 0) {
@@ -85,7 +44,7 @@ const Navbar = () => {
     } else {
       setScrolledNav(false);
     }
-  }, [scroll.lastY, scroll.y]);
+  }, [scroll.lastY, scroll.y, showHambMenu]);
 
   return (
     <>
@@ -105,11 +64,17 @@ const Navbar = () => {
         <div className={styles['hamb__icon-container']}>
           <BiMenu className={styles['hamb-icon']} onClick={onshowHambMenu} />
         </div>
-        {navItems}
+        <NavItems />
       </nav>
-      <HambContent show={showHambMenu} callback={onshowHambMenu}>
-        {navItems}
-      </HambContent>
+      {renderHambMenu && (
+        <HambContent
+          show={showHambMenu}
+          callback={onshowHambMenu}
+          animationEnd={onAnimationEnd}
+        >
+          <NavItems />
+        </HambContent>
+      )}
     </>
   );
 };
