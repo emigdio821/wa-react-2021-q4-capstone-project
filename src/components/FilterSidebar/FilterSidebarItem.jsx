@@ -7,7 +7,7 @@ import { BiCheck } from 'react-icons/bi';
 import GlobalContext from 'context/GlobalContext';
 import styles from './FilterSidebar.module.scss';
 
-const FilterSidebarItem = ({ item }) => {
+const FilterSidebarItem = ({ isCleared, item }) => {
   const {
     slugs: { 0: categorySlug },
     data: { name },
@@ -31,12 +31,21 @@ const FilterSidebarItem = ({ item }) => {
     setProductFiltered(categorySlug, !activeFilter);
   };
 
+  const handleKeyPress = (e) => {
+    e.preventDefault();
+    if (e.key === 'Enter') {
+      onFilterClick();
+    }
+  };
+
   useEffect(() => {
     if (categoryParam === categorySlug) {
       setActiveFilter(true);
       setProductFiltered(categorySlug, true);
     }
-  }, []);
+
+    if (isCleared) setActiveFilter(false);
+  }, [isCleared]);
 
   const filterClasses = {
     [styles['sidebar-item']]: true,
@@ -44,10 +53,17 @@ const FilterSidebarItem = ({ item }) => {
   };
 
   return (
-    // eslint-disable-next-line jsx-a11y/click-events-have-key-events
-    <li className={classNames(filterClasses)} onClick={onFilterClick}>
-      {activeFilter && <BiCheck />}
-      <span className={styles['sidebar__item-name']}>{name}</span>
+    <li style={{ width: '100%' }}>
+      <span
+        role="button"
+        tabIndex="0"
+        onKeyPress={handleKeyPress}
+        onClick={onFilterClick}
+        className={classNames(filterClasses)}
+      >
+        {activeFilter && <BiCheck />}
+        <span>{name}</span>
+      </span>
     </li>
   );
 };
@@ -55,6 +71,7 @@ const FilterSidebarItem = ({ item }) => {
 export default FilterSidebarItem;
 
 FilterSidebarItem.propTypes = {
+  isCleared: PropTypes.bool.isRequired,
   item: PropTypes.shape({
     slugs: PropTypes.arrayOf(PropTypes.string).isRequired,
     data: PropTypes.shape({ name: PropTypes.string.isRequired }),
