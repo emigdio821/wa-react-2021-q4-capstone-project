@@ -1,16 +1,15 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import GlobalContext from 'context/GlobalContext';
-import useScrollListener from 'hooks/useScrollListener';
+import useScrollListener from 'utils/hooks/useScrollListener';
 import {
   BiHomeHeart, BiSearchAlt, BiCartAlt, BiMenu,
 } from 'react-icons/bi';
 import HambContent from './HambContent';
 import styles from './Navbar.module.scss';
 
-const Navbar = ({ isDisabled }) => {
+const Navbar = () => {
   const scroll = useScrollListener();
   const [scrolledNav, setScrolledNav] = useState(false);
   const [fixedNavBg, setFixedNavBg] = useState(false);
@@ -28,7 +27,6 @@ const Navbar = ({ isDisabled }) => {
     [styles.btn]: true,
     [styles.yellow]: true,
     [styles['shopping-cart']]: true,
-    [styles['cart__margin-top']]: showHambMenu,
   };
 
   const onShowHomePage = () => {
@@ -37,7 +35,12 @@ const Navbar = ({ isDisabled }) => {
 
   const handleCartBtnClick = () => {
     // eslint-disable-next-line no-alert
-    alert('The shopping cart is WIP :P');
+    alert('The shopping cart is WIP 🤠');
+  };
+
+  const handleSearchBtnClick = () => {
+    // eslint-disable-next-line no-alert
+    alert('The search functionality is WIP 🤠');
   };
 
   const onshowHambMenu = () => {
@@ -49,14 +52,13 @@ const Navbar = ({ isDisabled }) => {
       <div>
         <input
           type="text"
-          placeholder={!isDisabled ? 'Search...' : ''}
+          placeholder="Search..."
           className={styles['search-input']}
-          disabled={isDisabled}
         />
         <button
           type="button"
           className={`${styles.btn} ${styles.primary} ${styles['search-btn']}`}
-          disabled={isDisabled}
+          onClick={handleSearchBtnClick}
         >
           <BiSearchAlt />
         </button>
@@ -66,7 +68,6 @@ const Navbar = ({ isDisabled }) => {
         type="button"
         className={classNames(cartBtnStyles)}
         onClick={handleCartBtnClick}
-        disabled={isDisabled}
       >
         Cart
         <span>
@@ -114,11 +115,3 @@ const Navbar = ({ isDisabled }) => {
 };
 
 export default Navbar;
-
-Navbar.propTypes = {
-  isDisabled: PropTypes.bool,
-};
-
-Navbar.defaultProps = {
-  isDisabled: true,
-};

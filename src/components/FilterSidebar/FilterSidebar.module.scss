@@ -9,9 +9,13 @@
   width: 240px;
   padding: 20px;
   position: fixed;
-  background: $nav-color;
   transition: all 0.3s;
+  background: $nav-color;
+  border-radius: $border-radius;
   border: 1px solid $nav-border-color;
+  &.navbar-loading {
+    height: 200px;
+  }
 }
 
 .sidebar-title {
@@ -64,7 +68,7 @@
   display: none;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 768px) {
   .sidebar {
     left: 0;
     top: 80px;

@@ -1,23 +1,43 @@
 import React from 'react';
 import { BiCategory } from 'react-icons/bi';
-import ProductCategories from 'mocks/en-us/product-categories.json';
-import GridItem from './CategoryItem';
+import useAxiosRequest from 'utils/hooks/useAxiosRequest';
+import Loader from 'components/Loader';
+import classNames from 'classnames';
+import { CATEGORIES_URL } from 'utils/constants';
+import CategoryItem from './CategoryItem';
 import styles from './Categories.module.scss';
 
 const Categories = () => {
-  const { results } = ProductCategories;
+  const { data: categories, isLoading } = useAxiosRequest({
+    url: CATEGORIES_URL,
+  });
+  const { results } = Object.keys(categories).length
+    ? categories
+    : { results: [] };
+
+  const containerStyles = {
+    [styles['categories-container']]: true,
+    [styles['container-loading']]: isLoading,
+  };
 
   return (
-    <div className={styles['categories-container']}>
-      <h1 className={styles['category-title']}>
-        <BiCategory />
-        ・Categories
-      </h1>
-      <div className={styles.categories}>
-        {results.map(({ id, data }) => (
-          <GridItem key={id} item={data} />
-        ))}
-      </div>
+    <div className={classNames(containerStyles)}>
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <>
+          <h1 className={styles['category-title']}>
+            <BiCategory />
+            ・Categories
+          </h1>
+          <div className={styles.categories}>
+            {results.map((item) => {
+              const { id } = item;
+              return <CategoryItem key={id} item={item} />;
+            })}
+          </div>
+        </>
+      )}
     </div>
   );
 };

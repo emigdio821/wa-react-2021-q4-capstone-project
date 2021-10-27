@@ -64,7 +64,7 @@ $slider-min-height: 600px;
   .slide {
     opacity: 0.8;
     transition: all 0.3s ease;
-    transform: translateY(-20px);
+    transform: translateY(-10px);
     &.active {
       opacity: 1;
       width: 100%;

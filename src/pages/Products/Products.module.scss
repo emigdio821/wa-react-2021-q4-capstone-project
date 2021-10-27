@@ -1,11 +1,10 @@
 @import 'styles/global';
 
 .product-list {
-  width: 100%;
   display: grid;
   grid-gap: 10px;
   padding: 20px 0;
-  grid-template-columns: repeat(8, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
 }
 
 .products-container {
@@ -24,6 +23,8 @@
 }
 
 .product-title {
+  margin: auto;
+  max-width: 260px;
   margin-top: 20px;
   overflow: hidden;
   font-weight: 500;
@@ -33,16 +34,10 @@
 }
 
 .product-item {
-  width: 10vw;
   padding: 20px;
-  height: 520px;
-  margin: 10px auto;
   border-radius: $border-radius;
   transition: all 0.3s ease-in-out;
   border: 1px solid $nav-border-color;
-  &.product__item-height {
-    height: 100%;
-  }
   &:hover {
     @include up-animation;
     @include main-box-shadow;
@@ -140,19 +135,10 @@
   text-align: right;
 }
 
-@media (max-width: 900px) {
-  .product-title {
-    margin: 0 auto;
-    max-width: 260px;
-  }
-  .product-list {
-    grid-template-columns: repeat(1, 1fr);
-  }
-
+@media (max-width: 768px) {
   .product-item {
     margin: 0;
     padding: 0;
-    width: 100%;
   }
 
   .product__main-title,
@@ -167,56 +153,5 @@
   .product__not-found {
     padding: 40px;
     margin: 0 auto;
-  }
-}
-
-@media (min-width: 900px) and (max-width: 1200px) {
-  .product-title {
-    margin: 0 auto;
-    max-width: 260px;
-  }
-  .product-list {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .product-item {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 480px;
-  }
-}
-
-@media (min-width: 1200px) and (max-width: 2200px) {
-  .product-title {
-    margin: 0 auto;
-    max-width: 280px;
-  }
-  .product-list {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .product-item {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 480px;
-  }
-}
-
-@media (min-width: 2200px) and (max-width: 3420px) {
-  .product-title {
-    margin: 0 auto;
-    max-width: 280px;
-  }
-  .product-list {
-    grid-template-columns: repeat(6, 1fr);
-  }
-
-  .product-item {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 480px;
   }
 }

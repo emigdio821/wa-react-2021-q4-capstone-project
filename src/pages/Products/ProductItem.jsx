@@ -19,9 +19,9 @@ const ProductItem = ({ item }) => {
 
   const productItemClasses = {
     [styles['product-item']]: true,
-    [styles['product__item-height']]: showDescription,
   };
-  const descriptionClasses = {
+
+  const descriptionBtnClasses = {
     [styles['description-btn']]: true,
     [styles['description-shown']]: showDescription,
   };
@@ -46,7 +46,7 @@ const ProductItem = ({ item }) => {
         >
           <button
             type="button"
-            className={classNames(descriptionClasses)}
+            className={classNames(descriptionBtnClasses)}
             onClick={onShowDescription}
           >
             Description
