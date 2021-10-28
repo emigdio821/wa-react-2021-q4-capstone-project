@@ -15,6 +15,7 @@
 @mixin btn-hover-focus($color) {
   color: black;
   @include up-animation;
+  @include main-box-shadow;
   background: darken($color, 5%);
 }
 

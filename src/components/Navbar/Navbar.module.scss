@@ -80,7 +80,6 @@
 .search-btn {
   margin-left: 6px;
   margin-right: 20px;
-  @include main-box-shadow;
 }
 
 .nav-link {
@@ -102,10 +101,9 @@
 
 .shopping-cart {
   display: flex;
+  border-radius: 20px;
   align-items: center;
   align-content: center;
-  @include main-box-shadow;
-  border-radius: 20px !important;
   span {
     display: flex;
     margin-left: 4px;

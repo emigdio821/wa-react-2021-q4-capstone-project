@@ -34,17 +34,9 @@ const GridItem = ({ item }) => {
       <h2 className={styles['grid-item-title']} title={name}>
         {name}
       </h2>
-      <div className={styles['category-container']}>
-        <span className={styles['category-name']}>
-          {categorySlug.replaceAll('--', ' & ')}
-        </span>
-      </div>
-      <div className={styles['cart-container']}>
-        <span className={classNames(cartStyles)}>
-          Add to cart
-          <BiCartAlt />
-        </span>
-      </div>
+      <span className={styles['category-name']}>
+        {categorySlug.replaceAll('--', ' & ')}
+      </span>
       {description.map(({ text }) => (
         <div
           key={`${text}-description`}
@@ -64,6 +56,12 @@ const GridItem = ({ item }) => {
           )}
         </div>
       ))}
+      <div className={styles['cart-container']}>
+        <span className={classNames(cartStyles)}>
+          Add to cart
+          <BiCartAlt />
+        </span>
+      </div>
       <div className={styles['price-container']}>
         <span className={styles.price}>{formatCurrency(price)}</span>
       </div>
