@@ -1,0 +1,141 @@
+@import 'styles/global';
+
+.grid-img {
+  width: 200px;
+  height: 260px;
+  background: white;
+  animation: img-loading 0.3s;
+}
+
+@keyframes img-loading {
+  from {
+    transform: translateY(-10px);
+  }
+}
+
+.grid-item {
+  display: flex;
+  padding: 20px;
+  position: relative;
+  align-items: center;
+  align-content: center;
+  flex-direction: column;
+  border-radius: $border-radius;
+  transition: all 0.3s ease-in-out;
+  border: 1px solid $nav-border-color;
+  &:hover {
+    @include up-animation;
+    @include main-box-shadow;
+  }
+}
+
+.category-name {
+  font-weight: 500;
+  padding: 10px 20px;
+  border-radius: 20px;
+  background: $category-bg;
+  text-transform: capitalize;
+}
+
+.grid-item-title {
+  // margin: auto;
+  max-width: 220px;
+  margin-top: 20px;
+  overflow: hidden;
+  font-weight: 500;
+  text-align: center;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.category-container {
+  padding: 20px;
+  .category-name {
+    font-weight: 500;
+    padding: 10px 20px;
+    border-radius: 20px;
+    background: $category-bg;
+    text-transform: capitalize;
+  }
+}
+
+.cart-container {
+  .cart {
+    width: 100%;
+    display: flex;
+    border-radius: 20px;
+    align-items: center;
+    align-content: center;
+    svg {
+      margin-left: 4px;
+    }
+  }
+}
+
+.price-container {
+  width: 100%;
+  padding: 20px;
+  text-align: right;
+  .price {
+    font-weight: 900;
+    font-size: 1.25rem;
+  }
+}
+
+.description-container {
+  display: flex;
+  padding: 20px 0;
+  max-height: 240px;
+  align-items: center;
+  align-content: center;
+  flex-direction: column;
+}
+
+.product-description {
+  padding: 10px;
+  overflow: auto;
+  margin: 10px 0;
+  max-height: 200px;
+  font-size: 0.875rem;
+  scroll-behavior: smooth;
+  animation: onShowDescription 0.3s;
+  background: lighten(#fafafa, 10%);
+  border: 1px solid $nav-border-color;
+}
+
+.description-btn {
+  color: black;
+  border: none;
+  font-size: 1rem;
+  padding: 0 20px;
+  cursor: pointer;
+  background: none;
+}
+
+.description-icon {
+  transition: transform 0.3s;
+}
+
+.description-shown {
+  .description-icon {
+    transform: rotate(-180deg);
+  }
+}
+
+@keyframes onShowDescription {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(2px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .featured-item {
+    width: 100%;
+  }
+}

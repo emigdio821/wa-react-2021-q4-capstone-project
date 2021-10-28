@@ -1,5 +1,19 @@
 @import 'styles/global';
 
+.grid {
+  display: grid;
+  gap: 10px 10px;
+  overflow: auto;
+  padding: 20px 0;
+  overflow: hidden;
+  scroll-behavior: smooth;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+}
+
+.pagination-container {
+  text-align: right;
+}
+
 .page-numbers {
   gap: 2px;
   list-style: none;

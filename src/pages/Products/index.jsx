@@ -7,7 +7,6 @@ import Loader from 'components/Loader';
 import classNames from 'classnames';
 import useAxiosRequest from 'utils/hooks/useAxiosRequest';
 import { PRODUCTS_URL } from 'utils/constants';
-import ProductItem from './ProductItem';
 import styles from './Products.module.scss';
 
 const Products = () => {
@@ -50,9 +49,7 @@ const Products = () => {
           <h1 className={styles['product__main-title']}>Products</h1>
           <div className={styles['product-list']}>
             {filteredData.length ? (
-              filteredData.map(({ id, data: pItem }) => (
-                <ProductItem key={id} item={pItem} />
-              ))
+              <Pagination items={filteredData} />
             ) : (
               <div className={styles['product__not-found']}>
                 No products found...
@@ -60,9 +57,6 @@ const Products = () => {
                 <BiGhost />
               </div>
             )}
-          </div>
-          <div className={styles.pagination}>
-            <Pagination />
           </div>
         </>
       )}

@@ -1,24 +1,26 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { BiChevronDown } from 'react-icons/bi';
 import formatCurrency from 'helpers/currency';
+import { BiCartAlt, BiChevronDown } from 'react-icons/bi';
 import classNames from 'classnames';
-import styles from './Products.module.scss';
+import styles from './GridItem.module.scss';
 
-const ProductItem = ({ item }) => {
+const GridItem = ({ item }) => {
   const {
     name,
-    description,
-    category: { slug: categorySlug },
     price,
+    description,
     mainimage: { url, alt },
+    category: { slug: categorySlug },
   } = item;
 
   const [showDescription, setShowDescription] = useState(false);
   const onShowDescription = () => setShowDescription(!showDescription);
 
-  const productItemClasses = {
-    [styles['product-item']]: true,
+  const cartStyles = {
+    [styles.btn]: true,
+    [styles.yellow]: true,
+    [styles.cart]: true,
   };
 
   const descriptionBtnClasses = {
@@ -27,16 +29,20 @@ const ProductItem = ({ item }) => {
   };
 
   return (
-    <div className={classNames(productItemClasses)}>
-      <div className={styles['product__img-container']}>
-        <img src={url} alt={alt} className={styles['product-img']} />
-      </div>
-      <h2 className={styles['product-title']} title={name}>
+    <div className={styles['grid-item']}>
+      <img src={url} alt={alt} className={styles['grid-img']} />
+      <h2 className={styles['grid-item-title']} title={name}>
         {name}
       </h2>
       <div className={styles['category-container']}>
         <span className={styles['category-name']}>
           {categorySlug.replaceAll('--', ' & ')}
+        </span>
+      </div>
+      <div className={styles['cart-container']}>
+        <span className={classNames(cartStyles)}>
+          Add to cart
+          <BiCartAlt />
         </span>
       </div>
       {description.map(({ text }) => (
@@ -65,19 +71,19 @@ const ProductItem = ({ item }) => {
   );
 };
 
-export default ProductItem;
+export default GridItem;
 
-ProductItem.propTypes = {
+GridItem.propTypes = {
   item: PropTypes.shape({
     name: PropTypes.string.isRequired,
     description: PropTypes.arrayOf(
       PropTypes.shape({ text: PropTypes.string.isRequired }),
     ).isRequired,
-    category: PropTypes.shape({ slug: PropTypes.string }).isRequired,
+    category: PropTypes.shape({ slug: PropTypes.string.isRequired }).isRequired,
     price: PropTypes.number.isRequired,
     mainimage: PropTypes.shape({
       url: PropTypes.string.isRequired,
-      alt: PropTypes.string.isRequired,
-    }).isRequired,
+      alt: PropTypes.string,
+    }),
   }).isRequired,
 };

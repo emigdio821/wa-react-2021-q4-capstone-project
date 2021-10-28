@@ -5,7 +5,7 @@ import useAxiosRequest from 'utils/hooks/useAxiosRequest';
 import Loader from 'components/Loader';
 import { FEATURED_URL } from 'utils/constants';
 import classNames from 'classnames';
-import FeaturedItem from './FeaturedItem';
+import Pagination from 'components/Pagination';
 import styles from './Featured.module.scss';
 
 const Featured = () => {
@@ -31,11 +31,7 @@ const Featured = () => {
             <BiBookmarkHeart />
             ・Featured
           </h1>
-          <div className={styles.featured}>
-            {results.map(({ id, data }) => (
-              <FeaturedItem key={id} item={data} />
-            ))}
-          </div>
+          <Pagination items={results} />
           <div className={styles['featured__action-btns']}>
             <Link to="/products" className={styles['no-decoration']}>
               <button

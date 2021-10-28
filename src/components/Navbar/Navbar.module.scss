@@ -143,12 +143,12 @@
     padding-top: 80px;
   }
   &.hamb__menu-in-animation {
-    animation: menu-in 0.2s linear;
     -webkit-animation: menu-in 0.2s linear;
+    animation: menu-in 0.2s linear;
   }
   &.hamb__menu-out-animation {
-    animation: menu-out 0.2s linear;
     -webkit-animation: menu-out 0.2s linear;
+    animation: menu-out 0.2s linear;
   }
 }
 
