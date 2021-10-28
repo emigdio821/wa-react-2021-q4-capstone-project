@@ -84,6 +84,11 @@
     }
   }
 
+  .sidebar-item {
+    display: flex;
+    align-items: center;
+  }
+
   .sidebar-title {
     display: none;
   }

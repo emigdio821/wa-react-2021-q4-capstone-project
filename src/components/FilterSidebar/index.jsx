@@ -21,22 +21,21 @@ const FilterSidebar = () => {
     ? categories
     : { results: [] };
 
-  const clearFilters = () => {
-    clearProductFilter();
+  const handleClearFilters = () => {
+    setClearedFilter(true);
   };
 
   const handleKeyPress = (e) => {
     e.preventDefault();
     if (e.key === 'Enter') {
-      clearFilters();
+      handleClearFilters();
     }
   };
 
   useEffect(() => {
-    if (productFilteredBy.length) {
+    if (clearedFilter) {
       setClearedFilter(false);
-    } else {
-      setClearedFilter(true);
+      clearProductFilter();
     }
 
     if (scroll.y > 80 && scroll.y - scroll.lastY > 0) {
@@ -44,7 +43,7 @@ const FilterSidebar = () => {
     } else {
       setScrolledWindow(false);
     }
-  }, [scroll.lastY, scroll.y, clearFilters]);
+  }, [scroll.lastY, scroll.y, clearedFilter]);
 
   const sidebarClasses = {
     [styles.sidebar]: true,
@@ -77,7 +76,7 @@ const FilterSidebar = () => {
                   role="button"
                   tabIndex="0"
                   onKeyPress={handleKeyPress}
-                  onClick={clearFilters}
+                  onClick={handleClearFilters}
                   className={classNames(clearBtnClasses)}
                 >
                   <BiXCircle />

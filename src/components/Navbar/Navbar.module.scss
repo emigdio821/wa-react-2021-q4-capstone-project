@@ -133,7 +133,7 @@
   padding-top: 0;
   position: fixed;
   background: $footer-bg;
-  transition: transform 0.3s;
+  transition: all 0.3s ease-in-out;
   .nav-btn-container {
     display: flex;
     flex-direction: column;
@@ -143,10 +143,12 @@
     padding-top: 80px;
   }
   &.hamb__menu-in-animation {
-    animation: menu-in 0.3s;
+    animation: menu-in 0.2s linear;
+    -webkit-animation: menu-in 0.2s linear;
   }
   &.hamb__menu-out-animation {
-    animation: menu-out 0.3s;
+    animation: menu-out 0.2s linear;
+    -webkit-animation: menu-out 0.2s linear;
   }
 }
 

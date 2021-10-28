@@ -1,8 +1,7 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
-import GlobalContext from 'context/GlobalContext';
 import styles from './Categories.module.scss';
 
 const CategoryItem = ({ item }) => {
@@ -13,7 +12,6 @@ const CategoryItem = ({ item }) => {
       main_image: { url },
     },
   } = item;
-  const { setProductFiltered } = useContext(GlobalContext);
 
   const categoriesStyles = {
     [styles['no-decoration']]: true,
@@ -24,7 +22,6 @@ const CategoryItem = ({ item }) => {
     <Link
       to={`/products?category=${categorySlug}`}
       className={classNames(categoriesStyles)}
-      onClick={() => setProductFiltered(categorySlug, true)}
     >
       <div
         className={`${styles['categories-item']} ${styles['zoom-in']}`}

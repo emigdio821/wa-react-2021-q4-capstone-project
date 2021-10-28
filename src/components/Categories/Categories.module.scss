@@ -1,14 +1,16 @@
 @import 'styles/global';
 
+$category-min-height: 250px;
+
 .categories-container {
   padding: 40px 20px;
 }
 
 .categories-container {
   height: 100%;
-  min-height: 200px;
   padding: 40px 20px;
   padding-bottom: 20px;
+  min-height: $category-min-height;
   &.container-loading {
     height: 30vh;
   }
@@ -34,13 +36,13 @@
   height: 100%;
   cursor: pointer;
   overflow: hidden;
-  min-height: 200px;
   position: relative;
   background: $nav-color;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   border-radius: $border-radius;
+  min-height: $category-min-height;
   @include main-box-shadow;
   transition: all 0.3s ease-in-out;
   .item-content {

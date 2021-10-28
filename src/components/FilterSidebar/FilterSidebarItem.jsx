@@ -18,7 +18,7 @@ const FilterSidebarItem = ({ isCleared, item }) => {
   const categoryParam = queryParams.get('category');
   const history = useHistory();
 
-  const onFilterClick = () => {
+  const deleteCategoryParam = () => {
     if (categoryParam) {
       // if there's a category param, remove it
       // since the filter is now manipulated by the user
@@ -27,6 +27,10 @@ const FilterSidebarItem = ({ isCleared, item }) => {
         search: queryParams.toString(),
       });
     }
+  };
+
+  const onFilterClick = () => {
+    deleteCategoryParam();
     setActiveFilter(!activeFilter);
     setProductFiltered(categorySlug, !activeFilter);
   };
@@ -44,7 +48,10 @@ const FilterSidebarItem = ({ isCleared, item }) => {
       setProductFiltered(categorySlug, true);
     }
 
-    if (isCleared) setActiveFilter(false);
+    if (isCleared) {
+      deleteCategoryParam();
+      setActiveFilter(false);
+    }
   }, [isCleared]);
 
   const filterClasses = {

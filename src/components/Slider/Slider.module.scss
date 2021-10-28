@@ -1,7 +1,7 @@
 @import 'styles/global';
 
-$slider-height: 70vh;
-$slider-min-height: 600px;
+$slider-height: 60vh;
+$slider-min-height: 400px;
 
 .slider {
   display: flex;
@@ -39,7 +39,7 @@ $slider-min-height: 600px;
     }
   }
   .btn-container {
-    top: 90%;
+    top: 85%;
     gap: 10px;
     z-index: 1;
     display: flex;
