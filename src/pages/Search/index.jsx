@@ -11,9 +11,8 @@ import styles from './Search.module.scss';
 const Search = () => {
   const queryParams = new URLSearchParams(useLocation().search);
   const searchQuery = queryParams.get('q');
-  const { data: categories, isLoading } = useAxiosRequest({
-    url: `${SEARCH_URL}${searchQuery}%22)%5D%5D&lang=en-us&pageSize=20`,
-  });
+  const url = `${SEARCH_URL}${searchQuery}%22)%5D%5D&lang=en-us&pageSize=20`;
+  const { data: categories, isLoading } = useAxiosRequest(url);
   const { results } = Object.keys(categories).length
     ? categories
     : { results: [] };

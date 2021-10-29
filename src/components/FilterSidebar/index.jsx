@@ -14,9 +14,7 @@ const FilterSidebar = () => {
   const [scrolledWindow, setScrolledWindow] = useState(false);
   const [clearedFilter, setClearedFilter] = useState(false);
   const { clearProductFilter, productFilteredBy } = useContext(GlobalContext);
-  const { data: categories, isLoading } = useAxiosRequest({
-    url: CATEGORIES_URL,
-  });
+  const { data: categories, isLoading } = useAxiosRequest(CATEGORIES_URL);
   const { results } = Object.keys(categories).length
     ? categories
     : { results: [] };

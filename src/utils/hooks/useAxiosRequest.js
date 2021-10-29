@@ -3,16 +3,15 @@ import { API_BASE_URL } from 'utils/constants';
 import axios from 'axios';
 import { useLatestAPI } from './useLatestAPI';
 
-const useAxiosRequest = (axParams) => {
+const useAxiosRequest = (paramUrl) => {
   const [data, setData] = useState({});
   const [isLoading, setisLoading] = useState(true);
   const { ref: apiRef, isLoading: isApiLoading } = useLatestAPI();
 
-  const fetchData = async (params) => {
-    const { url: paramUrl } = params;
+  const fetchData = async () => {
     const url = `${API_BASE_URL}/documents/search?ref=${apiRef}&q=${paramUrl}`;
     try {
-      const result = await axios.get(url, params);
+      const result = await axios.get(url);
       setData(result.data);
     } catch (error) {
       // eslint-disable-next-line no-console
@@ -25,12 +24,12 @@ const useAxiosRequest = (axParams) => {
   useEffect(() => {
     if (!apiRef || isApiLoading) return () => {};
     const source = axios.CancelToken.source();
-    fetchData(axParams);
+    fetchData();
 
     return () => {
       source.cancel('axios request cancelled');
     };
-  }, [apiRef, isApiLoading]);
+  }, [apiRef, isApiLoading, paramUrl]);
 
   return { data, isLoading };
 };

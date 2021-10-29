@@ -10,9 +10,8 @@ import styles from './Product.module.scss';
 
 const Product = () => {
   const { id: paramId } = useParams();
-  const { data: categories, isLoading } = useAxiosRequest({
-    url: `${PRODUCT_URL}${paramId}%22%29+%5D%5D`,
-  });
+  const url = `${PRODUCT_URL}${paramId}%22%29+%5D%5D`;
+  const { data: categories, isLoading } = useAxiosRequest(url);
   const { results } = Object.keys(categories).length
     ? categories
     : { results: [] };

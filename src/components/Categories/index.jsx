@@ -8,9 +8,7 @@ import CategoryItem from './CategoryItem';
 import styles from './Categories.module.scss';
 
 const Categories = () => {
-  const { data: categories, isLoading } = useAxiosRequest({
-    url: CATEGORIES_URL,
-  });
+  const { data: categories, isLoading } = useAxiosRequest(CATEGORIES_URL);
   const { results } = Object.keys(categories).length
     ? categories
     : { results: [] };

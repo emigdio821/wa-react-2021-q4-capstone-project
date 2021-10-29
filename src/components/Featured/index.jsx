@@ -9,9 +9,7 @@ import Pagination from 'components/Pagination';
 import styles from './Featured.module.scss';
 
 const Featured = () => {
-  const { data: categories, isLoading } = useAxiosRequest({
-    url: FEATURED_URL,
-  });
+  const { data: categories, isLoading } = useAxiosRequest(FEATURED_URL);
   const { results } = Object.keys(categories).length
     ? categories
     : { results: [] };

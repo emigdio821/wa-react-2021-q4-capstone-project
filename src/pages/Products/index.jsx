@@ -12,9 +12,7 @@ import styles from './Products.module.scss';
 const Products = () => {
   const [filteredData, setFilteredData] = useState([]);
   const { productFilteredBy } = useContext(GlobalContext);
-  const { data: categories, isLoading } = useAxiosRequest({
-    url: PRODUCTS_URL,
-  });
+  const { data: categories, isLoading } = useAxiosRequest(PRODUCTS_URL);
   const { results } = Object.keys(categories).length
     ? categories
     : { results: [] };
