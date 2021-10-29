@@ -5,7 +5,7 @@ import GridItem from 'components/GridItem';
 import PropTypes from 'prop-types';
 import styles from './Pagination.module.scss';
 
-const Pagination = ({ items, itemsPerPage }) => {
+const Pagination = ({ items, itemsPerPage, showDescription }) => {
   const [currPage, setCurrPage] = useState(1);
 
   const handlePageNumber = (e) => {
@@ -40,7 +40,7 @@ const Pagination = ({ items, itemsPerPage }) => {
     <>
       <div className={styles.grid}>
         {currItems.map((item) => (
-          <GridItem key={item.id} item={item} />
+          <GridItem key={item.id} item={item} showDesc={showDescription} />
         ))}
       </div>
       <div className={styles['pagination-container']}>
@@ -91,10 +91,12 @@ const Pagination = ({ items, itemsPerPage }) => {
 export default Pagination;
 
 Pagination.defaultProps = {
+  showDescription: false,
   itemsPerPage: 12,
 };
 
 Pagination.propTypes = {
   items: PropTypes.arrayOf(PropTypes.object).isRequired,
   itemsPerPage: PropTypes.number,
+  showDescription: PropTypes.bool,
 };

@@ -11,6 +11,7 @@ import Home from 'pages/Home';
 import Products from 'pages/Products';
 import Product from 'pages/Product';
 import NotFound from 'pages/NotFound';
+import Search from 'pages/Search';
 import './App.scss';
 import ScrollTop from 'components/ScrollTop';
 
@@ -26,6 +27,7 @@ const App = () => (
           <Route exact path="/" component={Home} />
           <Route exact path="/products" component={Products} />
           <Route exact path="/product/:id" component={Product} />
+          <Route exact path="/search" component={Search} />
           <Route path="*" component={NotFound} />
         </Switch>
       </div>

@@ -20,6 +20,7 @@ const ProductItem = ({ item }) => {
     name,
     specs,
     price,
+    stock,
     images,
     short_description: shortDescription,
     category: { slug: categorySlug },
@@ -28,6 +29,9 @@ const ProductItem = ({ item }) => {
   const handleChangeQty = (e) => {
     const { id } = e.target;
     if (id === 'addBtn') {
+      if (qty + 1 > stock) {
+        return;
+      }
       setQty(qty + 1);
     } else if (id === 'subtractBtn') {
       if (qty - 1 === 0) {
@@ -91,6 +95,11 @@ const ProductItem = ({ item }) => {
         <div className={styles['description-container']}>
           <p className={styles['product-description']}>{shortDescription}</p>
         </div>
+        <span>
+          Stock:
+          {' '}
+          <span className={styles['semibold-font']}>{stock}</span>
+        </span>
         <div className={styles['product__qty-container']}>
           <button
             type="button"
@@ -114,6 +123,7 @@ const ProductItem = ({ item }) => {
             id="addBtn"
             className={classNames(styles.btn, styles['input-number-increment'])}
             onClick={handleChangeQty}
+            disabled={qty === stock}
           >
             +
           </button>
@@ -156,6 +166,7 @@ ProductItem.propTypes = {
       name: PropTypes.string.isRequired,
       specs: PropTypes.arrayOf(PropTypes.object).isRequired,
       price: PropTypes.number.isRequired,
+      stock: PropTypes.number.isRequired,
       images: PropTypes.arrayOf(
         PropTypes.shape({
           image: PropTypes.shape({

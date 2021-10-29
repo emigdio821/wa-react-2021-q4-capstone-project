@@ -35,7 +35,7 @@ const FilterSidebarItem = ({ isCleared, item }) => {
     setProductFiltered(categorySlug, !activeFilter);
   };
 
-  const handleKeyPress = (e) => {
+  const handleKeyDown = (e) => {
     e.preventDefault();
     if (e.key === 'Enter') {
       onFilterClick();
@@ -64,7 +64,7 @@ const FilterSidebarItem = ({ isCleared, item }) => {
       <span
         role="button"
         tabIndex="0"
-        onKeyPress={handleKeyPress}
+        onKeyDown={handleKeyDown}
         onClick={onFilterClick}
         className={classNames(filterClasses)}
       >

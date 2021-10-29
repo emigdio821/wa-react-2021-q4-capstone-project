@@ -64,7 +64,7 @@ const Navbar = () => {
         <div className={styles['hamb__icon-container']}>
           <BiMenu className={styles['hamb-icon']} onClick={onshowHambMenu} />
         </div>
-        <NavItems />
+        <NavItems setHambMenu={setShowHambMenu} />
       </nav>
       {renderHambMenu && (
         <HambContent
@@ -72,7 +72,7 @@ const Navbar = () => {
           callback={onshowHambMenu}
           animationEnd={onAnimationEnd}
         >
-          <NavItems />
+          <NavItems setHambMenu={setShowHambMenu} />
         </HambContent>
       )}
     </>

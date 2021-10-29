@@ -1,23 +1,43 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { BiSearchAlt, BiCartAlt } from 'react-icons/bi';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
 import styles from './Navbar.module.scss';
 
-function NavItems() {
-  const handleSearchBtnClick = () => {
-    // eslint-disable-next-line no-alert
-    alert('The search functionality is WIP 🤠');
-  };
+const NavItems = ({ setHambMenu }) => {
+  const [inputVal, setInputVal] = useState('');
+  const searchBtn = useRef(null);
 
   const handleCartBtnClick = () => {
     // eslint-disable-next-line no-alert
     alert('The shopping cart is WIP 🤠');
   };
 
+  const handleSearchInputChange = (e) => {
+    setInputVal(e.target.value);
+  };
+
+  const handleSearchBtnClick = (e) => {
+    if (!inputVal) {
+      e.preventDefault();
+    } else {
+      setInputVal('');
+    }
+
+    setHambMenu(false);
+  };
+
+  const handleInputKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      searchBtn.current.click();
+    }
+  };
+
   const searchBtnStyles = {
     [styles.btn]: true,
     [styles.primary]: true,
-    [styles['search-btn']]: true,
   };
 
   const cartBtnStyles = {
@@ -32,15 +52,25 @@ function NavItems() {
         <input
           type="text"
           placeholder="Search..."
+          value={inputVal}
+          onKeyDown={handleInputKeyDown}
+          onChange={handleSearchInputChange}
           className={styles['search-input']}
         />
-        <button
-          type="button"
-          className={classNames(searchBtnStyles)}
+        <Link
+          ref={searchBtn}
+          to={`/search?q=${inputVal}`}
           onClick={handleSearchBtnClick}
+          className={classNames(styles['no-decoration'], styles['search-btn'])}
         >
-          <BiSearchAlt />
-        </button>
+          <button
+            type="button"
+            className={classNames(searchBtnStyles)}
+            disabled={!inputVal}
+          >
+            <BiSearchAlt />
+          </button>
+        </Link>
       </div>
       <button
         type="button"
@@ -54,6 +84,10 @@ function NavItems() {
       </button>
     </div>
   );
-}
+};
 
 export default NavItems;
+
+NavItems.propTypes = {
+  setHambMenu: PropTypes.func.isRequired,
+};

@@ -25,7 +25,7 @@ const FilterSidebar = () => {
     setClearedFilter(true);
   };
 
-  const handleKeyPress = (e) => {
+  const handleKeyDown = (e) => {
     e.preventDefault();
     if (e.key === 'Enter') {
       handleClearFilters();
@@ -75,7 +75,7 @@ const FilterSidebar = () => {
                 <span
                   role="button"
                   tabIndex="0"
-                  onKeyPress={handleKeyPress}
+                  onKeyDown={handleKeyDown}
                   onClick={handleClearFilters}
                   className={classNames(clearBtnClasses)}
                 >

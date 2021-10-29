@@ -6,11 +6,12 @@ import { BiCartAlt } from 'react-icons/bi';
 import classNames from 'classnames';
 import styles from './GridItem.module.scss';
 
-const GridItem = ({ item }) => {
+const GridItem = ({ item, showDesc }) => {
   const { id, data } = item;
   const {
     name,
     price,
+    short_description: shortDescription,
     mainimage: { url, alt },
     category: { slug: categorySlug },
   } = data;
@@ -32,6 +33,11 @@ const GridItem = ({ item }) => {
       <span className={styles['category-name']}>
         {categorySlug.replaceAll('--', ' & ')}
       </span>
+      {showDesc && (
+        <div className={styles['description-container']}>
+          <p className={styles['product-description']}>{shortDescription}</p>
+        </div>
+      )}
       <div className={styles['cart-container']}>
         <span className={classNames(cartStyles)}>
           Add to cart
@@ -47,12 +53,17 @@ const GridItem = ({ item }) => {
 
 export default GridItem;
 
+GridItem.defaultProps = {
+  showDesc: false,
+};
+
 GridItem.propTypes = {
   item: PropTypes.shape({
     id: PropTypes.string.isRequired,
     data: PropTypes.shape({
       name: PropTypes.string.isRequired,
       price: PropTypes.number.isRequired,
+      short_description: PropTypes.string,
       mainimage: PropTypes.shape({
         url: PropTypes.string.isRequired,
         alt: PropTypes.string.isRequired,
@@ -61,4 +72,5 @@ GridItem.propTypes = {
         .isRequired,
     }),
   }).isRequired,
+  showDesc: PropTypes.bool,
 };
