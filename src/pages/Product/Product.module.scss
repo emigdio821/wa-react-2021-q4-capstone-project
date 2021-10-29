@@ -6,6 +6,9 @@
   &.container-loading {
     height: calc(100vh - 120px);
   }
+  &.container-not-found {
+    padding: 0;
+  }
   .item-container {
     width: 50%;
     margin: 0 auto;

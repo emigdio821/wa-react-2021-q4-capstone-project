@@ -5,6 +5,7 @@ import { PRODUCT_URL } from 'utils/constants';
 import useAxiosRequest from 'utils/hooks/useAxiosRequest';
 import ProductItem from 'components/ProductItem';
 import classNames from 'classnames';
+import NotFound from 'pages/NotFound';
 import styles from './Product.module.scss';
 
 const Product = () => {
@@ -19,6 +20,7 @@ const Product = () => {
   const containerStyles = {
     [styles['product-container']]: true,
     [styles['container-loading']]: isLoading,
+    [styles['container-not-found']]: !results.length,
   };
 
   return (
@@ -27,12 +29,16 @@ const Product = () => {
         <Loader />
       ) : (
         <>
-          <h1>Product details</h1>
-          <div className={styles['item-container']}>
-            {results.map((item) => (
-              <ProductItem key={item.id} item={item} productDesc />
-            ))}
-          </div>
+          {!results.length ? (
+            <NotFound />
+          ) : (
+            <div className={styles['item-container']}>
+              <h1>Product details</h1>
+              {results.map((item) => (
+                <ProductItem key={item.id} item={item} productDesc />
+              ))}
+            </div>
+          )}
         </>
       )}
     </div>

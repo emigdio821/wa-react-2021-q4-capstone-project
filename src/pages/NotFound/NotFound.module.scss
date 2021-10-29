@@ -6,6 +6,9 @@
   display: table;
   width: 100%;
   text-align: center;
+  &.no-height {
+    height: 100%;
+  }
   .error {
     display: table-cell;
     vertical-align: middle;
