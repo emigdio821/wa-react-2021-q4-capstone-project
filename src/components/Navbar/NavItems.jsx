@@ -1,13 +1,15 @@
-import React, { useState, useRef } from 'react';
-import { Link } from 'react-router-dom';
-import { BiSearchAlt, BiCartAlt } from 'react-icons/bi';
+import React, { useState, useRef, useEffect } from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
+import { SEARCH_PATH } from 'utils/constants';
+import { Link, useLocation } from 'react-router-dom';
+import { BiSearchAlt, BiCartAlt } from 'react-icons/bi';
 import styles from './Navbar.module.scss';
 
 const NavItems = ({ setHambMenu }) => {
   const [inputVal, setInputVal] = useState('');
   const searchBtn = useRef(null);
+  const { pathname } = useLocation();
 
   const handleCartBtnClick = () => {
     // eslint-disable-next-line no-alert
@@ -21,8 +23,6 @@ const NavItems = ({ setHambMenu }) => {
   const handleSearchBtnClick = (e) => {
     if (!inputVal) {
       e.preventDefault();
-    } else {
-      setInputVal('');
     }
 
     setHambMenu(false);
@@ -45,6 +45,10 @@ const NavItems = ({ setHambMenu }) => {
     [styles.yellow]: true,
     [styles['shopping-cart']]: true,
   };
+
+  useEffect(() => {
+    if (pathname !== SEARCH_PATH) setInputVal('');
+  }, [pathname]);
 
   return (
     <div className={styles['nav-btn-container']}>

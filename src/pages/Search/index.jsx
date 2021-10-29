@@ -29,7 +29,7 @@ const Search = () => {
       ) : (
         <>
           {!results.length ? (
-            <NotFound msg="no products found" noHeight />
+            <NotFound msg={`nothing found for "${searchQuery}"`} noHeight />
           ) : (
             <>
               <h1>Products found</h1>

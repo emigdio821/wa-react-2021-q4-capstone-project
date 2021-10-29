@@ -1,7 +1,8 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { Link, useLocation } from 'react-router-dom';
 import classNames from 'classnames';
+import { HOME_PATH } from 'utils/constants';
 import GlobalContext from 'context/GlobalContext';
+import { Link, useLocation } from 'react-router-dom';
 import useScrollListener from 'utils/hooks/useScrollListener';
 import { BiHomeHeart, BiMenu } from 'react-icons/bi';
 import HambContent from './HambContent';
@@ -19,8 +20,9 @@ const Navbar = () => {
   const navClasses = {
     [styles['main-navbar']]: true,
     [styles['fixed__nav-bg']]: fixedNavBg,
-    [styles['static__nav-bg']]: pathname !== '/' && !scrolledNav && !fixedNavBg,
-    [styles['dynamic-nav']]: scrolledNav && pathname !== '/',
+    [styles['static__nav-bg']]:
+      pathname !== HOME_PATH && !scrolledNav && !fixedNavBg,
+    [styles['dynamic-nav']]: scrolledNav && pathname !== HOME_PATH,
   };
 
   const onShowHomePage = () => {

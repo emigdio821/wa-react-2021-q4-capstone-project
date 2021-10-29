@@ -15,7 +15,7 @@ const NotFound = ({ msg, noHeight }) => {
       <div className={styles.error}>
         <BiGhost />
         <br />
-        <h1>
+        <h1 className={styles['err-title']}>
           {msg}
           {' '}
           <span>|</span>
