@@ -9,6 +9,8 @@ import {
 import Footer from 'components/Footer';
 import Home from 'pages/Home';
 import Products from 'pages/Products';
+import Product from 'pages/Product';
+import NotFound from 'pages/NotFound';
 import './App.scss';
 import ScrollTop from 'components/ScrollTop';
 
@@ -23,6 +25,8 @@ const App = () => (
           </Route>
           <Route exact path="/" component={Home} />
           <Route exact path="/products" component={Products} />
+          <Route exact path="/product/:id" component={Product} />
+          <Route component={NotFound} />
         </Switch>
       </div>
       <Footer />

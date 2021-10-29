@@ -39,8 +39,8 @@ const Pagination = ({ items, itemsPerPage }) => {
   return (
     <>
       <div className={styles.grid}>
-        {currItems.map(({ id, data: pItem }) => (
-          <GridItem key={id} item={pItem} />
+        {currItems.map((item) => (
+          <GridItem key={item.id} item={item} />
         ))}
       </div>
       <div className={styles['pagination-container']}>

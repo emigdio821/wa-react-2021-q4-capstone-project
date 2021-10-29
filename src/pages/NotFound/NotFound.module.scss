@@ -1,0 +1,33 @@
+.error-container {
+  min-height: 400px;
+  padding: 100px 20px;
+  padding-bottom: 20px;
+  height: calc(100vh - 120px);
+  display: table;
+  width: 100%;
+  text-align: center;
+  .error {
+    display: table-cell;
+    vertical-align: middle;
+    svg {
+      font-size: 60px;
+    }
+    h1 {
+      align-items: center;
+      display: inline-flex;
+      span {
+        margin-left: 2px;
+        animation: blinking 0.5s alternate infinite;
+      }
+    }
+  }
+}
+
+@keyframes blinking {
+  from {
+    color: transparent;
+  }
+  to {
+    color: black;
+  }
+}
