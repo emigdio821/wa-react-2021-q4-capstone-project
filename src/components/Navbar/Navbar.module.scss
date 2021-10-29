@@ -141,24 +141,28 @@
     padding-top: 80px;
   }
   &.hamb__menu-in-animation {
-    -webkit-animation: menu-in 0.2s linear;
-    animation: menu-in 0.2s linear;
+    animation: menu-in 0.3s;
   }
   &.hamb__menu-out-animation {
-    -webkit-animation: menu-out 0.2s linear;
-    animation: menu-out 0.2s linear;
+    animation: menu-out 0.3s;
   }
 }
 
 @keyframes menu-in {
   from {
-    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
 
 @keyframes menu-out {
+  from {
+    opacity: 1;
+  }
   to {
-    transform: translateX(100%);
+    opacity: 0;
   }
 }
 

@@ -8,6 +8,7 @@ import SwiperCore, { Zoom, Navigation, Pagination } from 'swiper';
 import styles from './ProductItem.module.scss';
 import 'swiper/swiper-bundle.min.css';
 import 'swiper/swiper.min.css';
+import './Swiper.scss';
 
 SwiperCore.use([Zoom, Navigation, Pagination]);
 
@@ -17,6 +18,7 @@ const ProductItem = ({ item }) => {
   const {
     sku,
     name,
+    specs,
     price,
     images,
     short_description: shortDescription,
@@ -50,26 +52,25 @@ const ProductItem = ({ item }) => {
 
   return (
     <>
-      <div className={styles['grid-item']}>
-        <div className={styles['swiper-container']}>
-          <Swiper
-            zoom
-            navigation
-            pagination={{
-              clickable: true,
-            }}
-            className={styles['product-swipper']}
-          >
-            {images.map(({ image: { url: sUrl, alt: sAlt } }) => (
-              <SwiperSlide key={`${sUrl}-slide`}>
-                <div className="swiper-zoom-container">
-                  <img src={sUrl} alt={sAlt} className={styles['grid-img']} />
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        </div>
-        <h2 className={styles['grid-item-title']} title={name}>
+      <div className={styles['pitem-item']}>
+        <Swiper
+          zoom
+          navigation
+          style={{ marginBottom: 20 }}
+          pagination={{
+            clickable: true,
+          }}
+          className="product-swipper"
+        >
+          {images.map(({ image: { url: sUrl, alt: sAlt } }) => (
+            <SwiperSlide key={`${sUrl}-slide`}>
+              <div className="swiper-zoom-container">
+                <img src={sUrl} alt={sAlt} className={styles['pitem-img']} />
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+        <h2 className={styles['pitem-item-title']} title={name}>
           {name}
         </h2>
         <span className={styles['category-name']}>
@@ -94,11 +95,7 @@ const ProductItem = ({ item }) => {
           <button
             type="button"
             id="subtractBtn"
-            // className={styles['input-number-decrement']}
-            className={classNames(
-              styles.btn,
-              styles['input-number-decrement'],
-            )}
+            className={classNames(styles.btn, styles['input-number-decrement'])}
             onClick={handleChangeQty}
             disabled={qty === 1}
           >
@@ -115,10 +112,7 @@ const ProductItem = ({ item }) => {
           <button
             type="button"
             id="addBtn"
-            className={classNames(
-              styles.btn,
-              styles['input-number-increment'],
-            )}
+            className={classNames(styles.btn, styles['input-number-increment'])}
             onClick={handleChangeQty}
           >
             +
@@ -134,6 +128,19 @@ const ProductItem = ({ item }) => {
           <span className={styles.price}>{formatCurrency(price)}</span>
         </div>
       </div>
+      <div className={styles['specs-table']}>
+        <h4>Product specs</h4>
+        <table>
+          <tbody>
+            {specs.map(({ spec_name: sName, spec_value: sValue }) => (
+              <tr key={`${sName}-spec`}>
+                <td style={{ fontWeight: 500 }}>{sName}</td>
+                <td>{sValue}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </>
   );
 };
@@ -147,6 +154,7 @@ ProductItem.propTypes = {
     data: PropTypes.shape({
       sku: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
+      specs: PropTypes.arrayOf(PropTypes.object).isRequired,
       price: PropTypes.number.isRequired,
       images: PropTypes.arrayOf(
         PropTypes.shape({
