@@ -1,10 +1,10 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-import React, { useState, useContext, useEffect } from 'react';
-import { useLocation, useHistory } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { BiCheck } from 'react-icons/bi';
-import GlobalContext from 'context/GlobalContext';
+import { useGlobalContext } from 'context/GlobalContext';
+import { useLocation, useHistory } from 'react-router-dom';
 import styles from './FilterSidebar.module.scss';
 
 const FilterSidebarItem = ({ isCleared, item }) => {
@@ -13,7 +13,7 @@ const FilterSidebarItem = ({ isCleared, item }) => {
     data: { name },
   } = item;
   const [activeFilter, setActiveFilter] = useState(false);
-  const { setProductFiltered } = useContext(GlobalContext);
+  const { dispatch } = useGlobalContext();
   const queryParams = new URLSearchParams(useLocation().search);
   const categoryParam = queryParams.get('category');
   const history = useHistory();
@@ -32,7 +32,11 @@ const FilterSidebarItem = ({ isCleared, item }) => {
   const onFilterClick = () => {
     deleteCategoryParam();
     setActiveFilter(!activeFilter);
-    setProductFiltered(categorySlug, !activeFilter);
+    if (!activeFilter) {
+      dispatch({ type: 'ADD_PRODUCT_FILTER', payload: categorySlug });
+    } else {
+      dispatch({ type: 'REMOVE_PRODUCT_FILTER', payload: categorySlug });
+    }
   };
 
   const handleKeyDown = (e) => {
@@ -45,7 +49,7 @@ const FilterSidebarItem = ({ isCleared, item }) => {
   useEffect(() => {
     if (categoryParam === categorySlug) {
       setActiveFilter(true);
-      setProductFiltered(categorySlug, true);
+      dispatch({ type: 'ADD_PRODUCT_FILTER', payload: categorySlug });
     }
 
     if (isCleared) {

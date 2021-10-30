@@ -1,17 +1,17 @@
-import React, { useContext, useState, useEffect } from 'react';
-import FilterSidebar from 'components/FilterSidebar';
-import GlobalContext from 'context/GlobalContext';
-import Pagination from 'components/Pagination';
-import Loader from 'components/Loader';
+import React, { useState, useEffect } from 'react';
 import classNames from 'classnames';
-import useAxiosRequest from 'utils/hooks/useAxiosRequest';
-import { PRODUCTS_URL } from 'utils/constants';
 import NotFound from 'pages/NotFound';
+import Loader from 'components/Loader';
+import Pagination from 'components/Pagination';
+import { PRODUCTS_URL } from 'utils/constants';
+import FilterSidebar from 'components/FilterSidebar';
+import { useGlobalContext } from 'context/GlobalContext';
+import useAxiosRequest from 'utils/hooks/useAxiosRequest';
 import styles from './Products.module.scss';
 
 const Products = () => {
+  const { productFilteredBy } = useGlobalContext();
   const [filteredData, setFilteredData] = useState([]);
-  const { productFilteredBy } = useContext(GlobalContext);
   const { data: categories, isLoading } = useAxiosRequest(PRODUCTS_URL);
   const { results } = Object.keys(categories).length
     ? categories

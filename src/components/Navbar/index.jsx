@@ -1,7 +1,7 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
 import { HOME_PATH } from 'utils/constants';
-import GlobalContext from 'context/GlobalContext';
+import { useGlobalContext } from 'context/GlobalContext';
 import { Link, useLocation } from 'react-router-dom';
 import useScrollListener from 'utils/hooks/useScrollListener';
 import { BiHomeHeart, BiMenu } from 'react-icons/bi';
@@ -15,7 +15,7 @@ const Navbar = () => {
   const [fixedNavBg, setFixedNavBg] = useState(false);
   const [showHambMenu, setShowHambMenu] = useState(false);
   const [renderHambMenu, setRenderHambMenu] = useState(showHambMenu);
-  const { clearProductFilter } = useContext(GlobalContext);
+  const { dispatch } = useGlobalContext();
   const { pathname } = useLocation();
   const navClasses = {
     [styles['main-navbar']]: true,
@@ -26,7 +26,7 @@ const Navbar = () => {
   };
 
   const onShowHomePage = () => {
-    clearProductFilter();
+    dispatch({ type: 'CLEAR_ALL_FILTERS' });
   };
 
   const onshowHambMenu = () => {

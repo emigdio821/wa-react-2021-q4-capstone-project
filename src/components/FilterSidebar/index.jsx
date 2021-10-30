@@ -1,11 +1,11 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { BiFilter, BiXCircle } from 'react-icons/bi';
-import useScrollListener from 'utils/hooks/useScrollListener';
+import React, { useState, useEffect } from 'react';
 import classNames from 'classnames';
-import { CATEGORIES_URL } from 'utils/constants';
-import useAxiosRequest from 'utils/hooks/useAxiosRequest';
 import Loader from 'components/Loader';
-import GlobalContext from 'context/GlobalContext';
+import { CATEGORIES_URL } from 'utils/constants';
+import { BiFilter, BiXCircle } from 'react-icons/bi';
+import { useGlobalContext } from 'context/GlobalContext';
+import useAxiosRequest from 'utils/hooks/useAxiosRequest';
+import useScrollListener from 'utils/hooks/useScrollListener';
 import FilterSidebarItem from './FilterSidebarItem';
 import styles from './FilterSidebar.module.scss';
 
@@ -13,7 +13,7 @@ const FilterSidebar = () => {
   const scroll = useScrollListener();
   const [scrolledWindow, setScrolledWindow] = useState(false);
   const [clearedFilter, setClearedFilter] = useState(false);
-  const { clearProductFilter, productFilteredBy } = useContext(GlobalContext);
+  const { dispatch, productFilteredBy } = useGlobalContext();
   const { data: categories, isLoading } = useAxiosRequest(CATEGORIES_URL);
   const { results } = Object.keys(categories).length
     ? categories
@@ -33,7 +33,7 @@ const FilterSidebar = () => {
   useEffect(() => {
     if (clearedFilter) {
       setClearedFilter(false);
-      clearProductFilter();
+      dispatch({ type: 'CLEAR_PRODUCT_FILTERS' });
     }
 
     if (scroll.y > 80 && scroll.y - scroll.lastY > 0) {
