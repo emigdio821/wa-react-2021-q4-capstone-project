@@ -1,16 +1,17 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-// import { BrowserRouter as Router } from "react-router-dom";
+import { BrowserRouter as Router } from 'react-router-dom';
 import Navbar from 'components/Navbar';
 import { GlobalProvider } from 'context/GlobalContext';
 
-const renderNavbar = () => render(
-  // <Router>
-  <GlobalProvider>
-    <Navbar />
-  </GlobalProvider>,
-  // </Router>
-);
+const renderNavbar = () =>
+  render(
+    <GlobalProvider>
+      <Router>
+        <Navbar />
+      </Router>
+    </GlobalProvider>,
+  );
 
 test('navbar should be rendered', () => {
   renderNavbar();

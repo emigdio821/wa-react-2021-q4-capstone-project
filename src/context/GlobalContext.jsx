@@ -1,36 +1,18 @@
-import React, { useState, createContext } from 'react';
+import React, { createContext, useReducer, useContext } from 'react';
 import PropTypes from 'prop-types';
+import { reducer, initialState } from './GlobalReducer';
 
 const GlobalContext = createContext();
+const useGlobalContext = () => useContext(GlobalContext);
 
 const GlobalProvider = ({ children }) => {
-  const [page, setPage] = useState('/');
-  const [pFilteredBy, setPFilteredBy] = useState([]);
-
-  const setCurrentPage = (pageStr) => {
-    setPage(pageStr);
-  };
-
-  const setProductFiltered = (filter, isActiveFilter) => {
-    if (isActiveFilter) {
-      setPFilteredBy((old) => old.concat(filter));
-    } else {
-      setPFilteredBy((old) => old.filter((f) => f !== filter));
-    }
-  };
-
-  const clearProductFilter = () => {
-    setPFilteredBy([]);
-  };
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   return (
     <GlobalContext.Provider
       value={{
-        setCurrentPage,
-        currentPage: page,
-        setProductFiltered,
-        clearProductFilter,
-        productFilteredBy: pFilteredBy,
+        dispatch,
+        productFilteredBy: state.productFilteredBy,
       }}
     >
       {children}
@@ -38,8 +20,7 @@ const GlobalProvider = ({ children }) => {
   );
 };
 
-export { GlobalProvider };
-export default GlobalContext;
+export { GlobalProvider, useGlobalContext };
 
 GlobalProvider.propTypes = {
   children: PropTypes.element.isRequired,

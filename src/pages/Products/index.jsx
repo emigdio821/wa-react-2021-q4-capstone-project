@@ -1,18 +1,26 @@
-import React, { useContext, useState, useEffect } from 'react';
-import ProductList from 'mocks/en-us/products.json';
-import FilterSidebar from 'components/FilterSidebar';
-import GlobalContext from 'context/GlobalContext';
-import { BiGhost } from 'react-icons/bi';
-import Pagination from 'components/Pagination';
+import React, { useState, useEffect } from 'react';
+import classNames from 'classnames';
+import NotFound from 'pages/NotFound';
 import Loader from 'components/Loader';
-import ProductItem from './ProductItem';
+import Pagination from 'components/Pagination';
+import { PRODUCTS_URL } from 'utils/constants';
+import FilterSidebar from 'components/FilterSidebar';
+import { useGlobalContext } from 'context/GlobalContext';
+import useAxiosRequest from 'utils/hooks/useAxiosRequest';
 import styles from './Products.module.scss';
 
 const Products = () => {
-  const { results } = ProductList;
-  const [data, setData] = useState([]);
-  const [loadedData, setLoadedData] = useState(false);
-  const { productFilteredBy } = useContext(GlobalContext);
+  const { productFilteredBy } = useGlobalContext();
+  const [filteredData, setFilteredData] = useState([]);
+  const { data: categories, isLoading } = useAxiosRequest(PRODUCTS_URL);
+  const { results } = Object.keys(categories).length
+    ? categories
+    : { results: [] };
+
+  const containerStyles = {
+    [styles['products-container']]: true,
+    [styles['container-loading']]: isLoading,
+  };
 
   useEffect(() => {
     if (productFilteredBy.length) {
@@ -23,40 +31,30 @@ const Products = () => {
           },
         }) => productFilteredBy.includes(slug),
       );
-      setData(filteredProductData);
+      setFilteredData(filteredProductData);
     } else {
-      setData(results);
+      setFilteredData(results);
     }
-
-    const timeOut = setTimeout(() => {
-      setLoadedData(true);
-    }, 2000);
-
-    return () => clearTimeout(timeOut);
-  }, [productFilteredBy, results]);
+  }, [productFilteredBy, !isLoading]);
 
   return (
-    <>
-      {!loadedData && <Loader />}
-      <div className={styles['products-container']}>
-        <FilterSidebar />
-        <h1 className={styles['product__main-title']}>Products</h1>
-        <div className={styles['product-list']}>
-          {data.length ? (
-            data.map(({ id, data: pItem }) => <ProductItem key={id} item={pItem} />)
-          ) : (
-            <div className={styles['product__not-found']}>
-              No products found...
-              {' '}
-              <BiGhost />
-            </div>
-          )}
-        </div>
-        <div className={styles.pagination}>
-          <Pagination />
-        </div>
-      </div>
-    </>
+    <div className={classNames(containerStyles)}>
+      <FilterSidebar />
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <>
+          <h1 className={styles['product__main-title']}>Products</h1>
+          <div className={styles['product-list']}>
+            {!filteredData.length ? (
+              <NotFound msg="no products found" noHeight />
+            ) : (
+              <Pagination items={filteredData} />
+            )}
+          </div>
+        </>
+      )}
+    </div>
   );
 };
 

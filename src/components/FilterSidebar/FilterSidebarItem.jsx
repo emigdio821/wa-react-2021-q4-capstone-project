@@ -1,23 +1,62 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-import React, { useState, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { BiCheck } from 'react-icons/bi';
-import GlobalContext from 'context/GlobalContext';
+import { useGlobalContext } from 'context/GlobalContext';
+import { useLocation, useHistory } from 'react-router-dom';
 import styles from './FilterSidebar.module.scss';
 
-const FilterSidebarItem = ({ item }) => {
+const FilterSidebarItem = ({ isCleared, item }) => {
   const {
-    slugs,
+    slugs: { 0: categorySlug },
     data: { name },
   } = item;
   const [activeFilter, setActiveFilter] = useState(false);
-  const { setProductFiltered } = useContext(GlobalContext);
+  const { dispatch } = useGlobalContext();
+  const queryParams = new URLSearchParams(useLocation().search);
+  const categoryParam = queryParams.get('category');
+  const history = useHistory();
+
+  const deleteCategoryParam = () => {
+    if (categoryParam) {
+      // if there's a category param, remove it
+      // since the filter is now manipulated by the user
+      queryParams.delete('category');
+      history.replace({
+        search: queryParams.toString(),
+      });
+    }
+  };
 
   const onFilterClick = () => {
+    deleteCategoryParam();
     setActiveFilter(!activeFilter);
-    setProductFiltered(slugs[0], !activeFilter);
+    if (!activeFilter) {
+      dispatch({ type: 'ADD_PRODUCT_FILTER', payload: categorySlug });
+    } else {
+      dispatch({ type: 'REMOVE_PRODUCT_FILTER', payload: categorySlug });
+    }
   };
+
+  const handleKeyDown = (e) => {
+    e.preventDefault();
+    if (e.key === 'Enter') {
+      onFilterClick();
+    }
+  };
+
+  useEffect(() => {
+    if (categoryParam === categorySlug) {
+      setActiveFilter(true);
+      dispatch({ type: 'ADD_PRODUCT_FILTER', payload: categorySlug });
+    }
+
+    if (isCleared) {
+      deleteCategoryParam();
+      setActiveFilter(false);
+    }
+  }, [isCleared]);
 
   const filterClasses = {
     [styles['sidebar-item']]: true,
@@ -25,10 +64,17 @@ const FilterSidebarItem = ({ item }) => {
   };
 
   return (
-    // eslint-disable-next-line jsx-a11y/click-events-have-key-events
-    <li className={classNames(filterClasses)} onClick={onFilterClick}>
-      {activeFilter && <BiCheck />}
-      <span className={styles['sidebar__item-name']}>{name}</span>
+    <li style={{ width: '100%' }}>
+      <span
+        role="button"
+        tabIndex="0"
+        onKeyDown={handleKeyDown}
+        onClick={onFilterClick}
+        className={classNames(filterClasses)}
+      >
+        {activeFilter && <BiCheck />}
+        <span>{name}</span>
+      </span>
     </li>
   );
 };
@@ -36,6 +82,7 @@ const FilterSidebarItem = ({ item }) => {
 export default FilterSidebarItem;
 
 FilterSidebarItem.propTypes = {
+  isCleared: PropTypes.bool.isRequired,
   item: PropTypes.shape({
     slugs: PropTypes.arrayOf(PropTypes.string).isRequired,
     data: PropTypes.shape({ name: PropTypes.string.isRequired }),

@@ -80,7 +80,6 @@
 .search-btn {
   margin-left: 6px;
   margin-right: 20px;
-  @include main-box-shadow;
 }
 
 .nav-link {
@@ -102,10 +101,9 @@
 
 .shopping-cart {
   display: flex;
+  border-radius: 20px;
   align-items: center;
   align-content: center;
-  @include main-box-shadow;
-  border-radius: 20px !important;
   span {
     display: flex;
     margin-left: 4px;
@@ -133,8 +131,7 @@
   padding-top: 0;
   position: fixed;
   background: $footer-bg;
-  transition: transform 0.3s;
-  transform: translateX(100%);
+  transition: all 0.3s ease-in-out;
   .nav-btn-container {
     display: flex;
     flex-direction: column;
@@ -143,8 +140,29 @@
     padding: 0 20px;
     padding-top: 80px;
   }
-  .cart__margin-top {
-    margin-top: 20px;
+  &.hamb__menu-in-animation {
+    animation: menu-in 0.3s;
+  }
+  &.hamb__menu-out-animation {
+    animation: menu-out 0.3s;
+  }
+}
+
+@keyframes menu-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes menu-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
   }
 }
 
@@ -174,5 +192,9 @@
     display: block;
     cursor: pointer;
     font-size: 1.875rem;
+  }
+
+  .shopping-cart {
+    margin-top: 20px;
   }
 }

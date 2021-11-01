@@ -1,7 +1,7 @@
 @import 'styles/global';
 
-$slider-height: 70vh;
-$slider-min-height: 600px;
+$slider-height: 60vh;
+$slider-min-height: 400px;
 
 .slider {
   display: flex;
@@ -39,7 +39,7 @@ $slider-min-height: 600px;
     }
   }
   .btn-container {
-    top: 90%;
+    top: 85%;
     gap: 10px;
     z-index: 1;
     display: flex;
@@ -51,6 +51,8 @@ $slider-min-height: 600px;
     .next-btn,
     .transition-btn {
       opacity: 0.6;
+      display: flex;
+      align-items: center;
       &:hover {
         opacity: 1;
       }
@@ -64,7 +66,7 @@ $slider-min-height: 600px;
   .slide {
     opacity: 0.8;
     transition: all 0.3s ease;
-    transform: translateY(-20px);
+    transform: translateY(-10px);
     &.active {
       opacity: 1;
       width: 100%;

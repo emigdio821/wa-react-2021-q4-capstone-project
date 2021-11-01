@@ -1,5 +1,7 @@
 import React from 'react';
-import { BiTransfer } from 'react-icons/bi';
+import {
+  BiPlay, BiStop, BiChevronLeft, BiChevronRight,
+} from 'react-icons/bi';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import styles from './Slider.module.scss';
@@ -19,7 +21,9 @@ const SliderButtons = ({
         className={`${classNames(buttonClases)} ${styles['left-btn']}`}
         onClick={prev}
       >
-        &larr; Prev
+        <BiChevronLeft />
+        {' '}
+        Prev
       </button>
       <button
         type="button"
@@ -29,12 +33,12 @@ const SliderButtons = ({
         {isActive ? (
           <>
             Stop transition
-            <BiTransfer style={{ marginLeft: 4 }} />
+            <BiStop />
           </>
         ) : (
           <>
-            Continue transition
-            <BiTransfer style={{ marginLeft: 4 }} />
+            Play transition
+            <BiPlay />
           </>
         )}
       </button>
@@ -43,7 +47,8 @@ const SliderButtons = ({
         className={`${classNames(buttonClases)} ${styles['next-btn']}`}
         onClick={next}
       >
-        Next &#8594;
+        Next
+        <BiChevronRight />
       </button>
     </div>
   );

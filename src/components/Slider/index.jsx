@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import FeaturedBanners from 'mocks/en-us/featured-banners.json';
+import { useFeaturedBanners } from 'utils/hooks/useFeaturedBanners';
+import Loader from 'components/Loader';
 import SliderButtons from './SliderButtons';
 import SliderItem from './SliderItem';
 import styles from './Slider.module.scss';
 
 const Slider = () => {
-  const { results } = FeaturedBanners;
-  const { length } = results;
   const [currentSlide, setCurrentSlide] = useState(0);
   const [transitionActive, setTransitionActive] = useState(true);
+  const { data, isLoading } = useFeaturedBanners();
+  const { results } = Object.keys(data).length ? data : { results: [] };
+  const { length } = results || [];
 
   const onSetTransitionActive = () => {
     setTransitionActive(!transitionActive);
@@ -32,20 +34,26 @@ const Slider = () => {
 
   return (
     <section className={styles.slider}>
-      <SliderButtons
-        prev={prevSlide}
-        isActive={transitionActive}
-        onSetTransitionActive={onSetTransitionActive}
-        next={nextSlide}
-      />
-      {results.map(({ data }, index) => (
-        <SliderItem
-          data={data}
-          idx={index}
-          currentSlide={currentSlide}
-          key={`slider-item-${data.title}`}
-        />
-      ))}
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <>
+          <SliderButtons
+            prev={prevSlide}
+            isActive={transitionActive}
+            onSetTransitionActive={onSetTransitionActive}
+            next={nextSlide}
+          />
+          {results.map(({ data: slideData }, index) => (
+            <SliderItem
+              data={slideData}
+              idx={index}
+              currentSlide={currentSlide}
+              key={`slider-item-${slideData.title}`}
+            />
+          ))}
+        </>
+      )}
     </section>
   );
 };

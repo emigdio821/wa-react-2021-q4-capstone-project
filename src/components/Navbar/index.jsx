@@ -1,84 +1,44 @@
-import React, { useEffect, useState, useContext } from 'react';
-// import { Link } from "react-router-dom";
-import PropTypes from 'prop-types';
+import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
-import GlobalContext from 'context/GlobalContext';
-import useScrollListener from 'hooks/useScrollListener';
-import {
-  BiHomeHeart, BiSearchAlt, BiCartAlt, BiMenu,
-} from 'react-icons/bi';
+import { HOME_PATH } from 'utils/constants';
+import { useGlobalContext } from 'context/GlobalContext';
+import { Link, useLocation } from 'react-router-dom';
+import useScrollListener from 'utils/hooks/useScrollListener';
+import { BiHomeHeart, BiMenu } from 'react-icons/bi';
 import HambContent from './HambContent';
 import styles from './Navbar.module.scss';
+import NavItems from './NavItems';
 
-const Navbar = ({ isDisabled, currentPage }) => {
+const Navbar = () => {
   const scroll = useScrollListener();
   const [scrolledNav, setScrolledNav] = useState(false);
   const [fixedNavBg, setFixedNavBg] = useState(false);
   const [showHambMenu, setShowHambMenu] = useState(false);
-  const { setCurrentPage, clearProductFilter } = useContext(GlobalContext);
+  const [renderHambMenu, setRenderHambMenu] = useState(showHambMenu);
+  const { dispatch } = useGlobalContext();
+  const { pathname } = useLocation();
   const navClasses = {
     [styles['main-navbar']]: true,
     [styles['fixed__nav-bg']]: fixedNavBg,
     [styles['static__nav-bg']]:
-      currentPage !== '/' && !scrolledNav && !fixedNavBg,
-    [styles['dynamic-nav']]: scrolledNav && currentPage !== '/',
-  };
-
-  const cartBtnStyles = {
-    [styles.btn]: true,
-    [styles.yellow]: true,
-    [styles['shopping-cart']]: true,
-    [styles['cart__margin-top']]: showHambMenu,
+      pathname !== HOME_PATH && !scrolledNav && !fixedNavBg,
+    [styles['dynamic-nav']]: scrolledNav && pathname !== HOME_PATH,
   };
 
   const onShowHomePage = () => {
-    setCurrentPage('/');
-    clearProductFilter();
-    window.scrollTo(0, 0);
-  };
-
-  const handleCartBtnClick = () => {
-    // eslint-disable-next-line no-alert
-    alert('The shopping cart is WIP :P');
+    dispatch({ type: 'CLEAR_ALL_FILTERS' });
   };
 
   const onshowHambMenu = () => {
     setShowHambMenu(!showHambMenu);
   };
 
-  const navItems = (
-    <div className={styles['nav-btn-container']}>
-      <div>
-        <input
-          type="text"
-          placeholder={!isDisabled ? 'Search...' : ''}
-          className={styles['search-input']}
-          disabled={isDisabled}
-        />
-        <button
-          type="button"
-          className={`${styles.btn} ${styles.primary} ${styles['search-btn']}`}
-          disabled={isDisabled}
-        >
-          <BiSearchAlt />
-        </button>
-      </div>
-      <button
-        // to="/"
-        type="button"
-        className={classNames(cartBtnStyles)}
-        onClick={handleCartBtnClick}
-        disabled={isDisabled}
-      >
-        Cart
-        <span>
-          <BiCartAlt />
-        </span>
-      </button>
-    </div>
-  );
+  const onAnimationEnd = () => {
+    if (!showHambMenu) setRenderHambMenu(false);
+  };
 
   useEffect(() => {
+    if (showHambMenu) setRenderHambMenu(true);
     /* eslint no-unused-expressions: ["error", { "allowTernary": true }] */
     scroll.y > 80 ? setFixedNavBg(true) : setFixedNavBg(false);
     if (scroll.y > 80 && scroll.y - scroll.lastY > 0) {
@@ -86,16 +46,15 @@ const Navbar = ({ isDisabled, currentPage }) => {
     } else {
       setScrolledNav(false);
     }
-  }, [scroll.lastY, scroll.y]);
+  }, [scroll.lastY, scroll.y, showHambMenu]);
 
   return (
     <>
       <nav className={classNames(navClasses)}>
-        <button
-          href="/"
-          type="button"
+        <Link
+          to="/"
           className={`${styles.logo} ${styles.uppercase}`}
-          onClick={onShowHomePage} /* to="/" */
+          onClick={onShowHomePage}
         >
           <BiHomeHeart role="img" />
           <span>
@@ -103,27 +62,23 @@ const Navbar = ({ isDisabled, currentPage }) => {
             <span className={styles['bold-font']}>cool</span>
             house
           </span>
-        </button>
+        </Link>
         <div className={styles['hamb__icon-container']}>
           <BiMenu className={styles['hamb-icon']} onClick={onshowHambMenu} />
         </div>
-        {navItems}
+        <NavItems setHambMenu={setShowHambMenu} />
       </nav>
-      <HambContent show={showHambMenu} callback={onshowHambMenu}>
-        {navItems}
-      </HambContent>
+      {renderHambMenu && (
+        <HambContent
+          show={showHambMenu}
+          callback={onshowHambMenu}
+          animationEnd={onAnimationEnd}
+        >
+          <NavItems setHambMenu={setShowHambMenu} />
+        </HambContent>
+      )}
     </>
   );
 };
 
 export default Navbar;
-
-Navbar.propTypes = {
-  isDisabled: PropTypes.bool,
-  currentPage: PropTypes.string,
-};
-
-Navbar.defaultProps = {
-  isDisabled: true,
-  currentPage: '/',
-};
