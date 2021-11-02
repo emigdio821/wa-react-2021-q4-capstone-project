@@ -5,6 +5,7 @@ import classNames from 'classnames';
 import { BiCheck } from 'react-icons/bi';
 import { useGlobalContext } from 'context/GlobalContext';
 import { useLocation, useHistory } from 'react-router-dom';
+import { product } from 'context/Types';
 import styles from './FilterSidebar.module.scss';
 
 const FilterSidebarItem = ({ isCleared, item }) => {
@@ -33,9 +34,9 @@ const FilterSidebarItem = ({ isCleared, item }) => {
     deleteCategoryParam();
     setActiveFilter(!activeFilter);
     if (!activeFilter) {
-      dispatch({ type: 'ADD_PRODUCT_FILTER', payload: categorySlug });
+      dispatch({ type: product.addFilter, payload: categorySlug });
     } else {
-      dispatch({ type: 'REMOVE_PRODUCT_FILTER', payload: categorySlug });
+      dispatch({ type: product.removeFilter, payload: categorySlug });
     }
   };
 
@@ -49,7 +50,7 @@ const FilterSidebarItem = ({ isCleared, item }) => {
   useEffect(() => {
     if (categoryParam === categorySlug) {
       setActiveFilter(true);
-      dispatch({ type: 'ADD_PRODUCT_FILTER', payload: categorySlug });
+      dispatch({ type: product.addFilter, payload: categorySlug });
     }
 
     if (isCleared) {
