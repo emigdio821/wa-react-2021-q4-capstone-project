@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
+import { product } from 'context/Types';
 import { HOME_PATH } from 'utils/constants';
 import { useGlobalContext } from 'context/GlobalContext';
 import { Link, useLocation } from 'react-router-dom';
@@ -26,7 +27,7 @@ const Navbar = () => {
   };
 
   const onShowHomePage = () => {
-    dispatch({ type: 'CLEAR_ALL_FILTERS' });
+    dispatch({ type: product.clearFilters });
   };
 
   const onshowHambMenu = () => {
