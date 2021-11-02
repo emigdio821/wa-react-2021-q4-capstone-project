@@ -6,6 +6,7 @@ import { BiFilter, BiXCircle } from 'react-icons/bi';
 import { useGlobalContext } from 'context/GlobalContext';
 import useAxiosRequest from 'utils/hooks/useAxiosRequest';
 import useScrollListener from 'utils/hooks/useScrollListener';
+import { product } from 'context/Types';
 import FilterSidebarItem from './FilterSidebarItem';
 import styles from './FilterSidebar.module.scss';
 
@@ -33,7 +34,7 @@ const FilterSidebar = () => {
   useEffect(() => {
     if (clearedFilter) {
       setClearedFilter(false);
-      dispatch({ type: 'CLEAR_PRODUCT_FILTERS' });
+      dispatch({ type: product.clearFilters });
     }
 
     if (scroll.y > 80 && scroll.y - scroll.lastY > 0) {

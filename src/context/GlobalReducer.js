@@ -1,22 +1,24 @@
+import { product } from './Types';
+
 const initialState = {
   productFilteredBy: [],
 };
 
 const reducer = (state, action) => {
   switch (action.type) {
-    case 'ADD_PRODUCT_FILTER':
+    case product.addFilter:
       return {
         ...state,
         productFilteredBy: [...state.productFilteredBy, action.payload],
       };
-    case 'REMOVE_PRODUCT_FILTER':
+    case product.removeFilter:
       return {
         ...state,
         productFilteredBy: state.productFilteredBy.filter(
           (filter) => filter !== action.payload,
         ),
       };
-    case 'CLEAR_PRODUCT_FILTERS':
+    case product.clearFilters:
       return {
         ...state,
         productFilteredBy: [],
