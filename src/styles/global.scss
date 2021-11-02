@@ -30,6 +30,10 @@
   background: $disabled-bg-color;
 }
 
+@mixin slideIn {
+  animation: slideIn 0.3s;
+}
+
 .btn {
   border: none;
   cursor: pointer;
@@ -89,4 +93,10 @@
 .no-decoration {
   color: $footer-bg;
   text-decoration: none;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-10px);
+  }
 }

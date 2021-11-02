@@ -2,14 +2,9 @@
 
 .pitem-img {
   width: 300px;
+  height: 400px;
+  @include slideIn;
   background: white;
-  animation: img-loading 0.3s;
-}
-
-@keyframes img-loading {
-  from {
-    transform: translateY(-10px);
-  }
 }
 
 .pitem-item {
@@ -95,7 +90,6 @@
   overflow: auto;
   max-height: 200px;
   text-align: center;
-  animation: onShowDescription 0.3s;
   background: lighten(#fafafa, 10%);
   border: 1px solid $nav-border-color;
 }
@@ -161,18 +155,6 @@
 
   tr:nth-child(even) {
     background: lighten($nav-border-color, 2%);
-  }
-}
-
-@keyframes onShowDescription {
-  0% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(2px);
-  }
-  100% {
-    transform: translateY(0);
   }
 }
 

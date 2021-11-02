@@ -29,6 +29,7 @@
   margin: 0;
   padding: 0;
   display: flex;
+  @include slideIn;
   list-style: none;
   align-items: center;
   align-content: center;
@@ -52,7 +53,7 @@
     font-weight: 500;
     background: $category-bg;
   }
-  &.clear-filer {
+  &.clear-filter {
     margin-top: 0;
     display: flex;
     font-weight: 500;
@@ -109,7 +110,8 @@
   .sidebar-item {
     margin: 0 auto;
     width: max-content;
-    &.clear-filer {
+    &.clear-filter {
+      padding: 10px;
       font-size: inherit;
     }
   }

@@ -3,15 +3,9 @@
 .grid-img {
   width: 200px;
   height: 260px;
+  @include slideIn;
   background: white;
   margin-bottom: 10px;
-  animation: img-loading 0.3s;
-}
-
-@keyframes img-loading {
-  from {
-    transform: translateY(-10px);
-  }
 }
 
 .grid-item {
@@ -86,24 +80,11 @@
   padding: 10px;
   overflow: auto;
   margin: 10px 0;
+  @include slideIn;
   max-height: 200px;
   font-size: 0.875rem;
-  scroll-behavior: smooth;
-  animation: onShowDescription 0.3s;
   background: lighten(#fafafa, 10%);
   border: 1px solid $nav-border-color;
-}
-
-@keyframes onShowDescription {
-  0% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(2px);
-  }
-  100% {
-    transform: translateY(0);
-  }
 }
 
 @media (max-width: 768px) {

@@ -52,7 +52,7 @@ const FilterSidebar = () => {
 
   const clearBtnClasses = {
     [styles['sidebar-item']]: true,
-    [styles['clear-filer']]: true,
+    [styles['clear-filter']]: true,
   };
 
   return (
