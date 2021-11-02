@@ -12,6 +12,7 @@ const GlobalProvider = ({ children }) => {
     <GlobalContext.Provider
       value={{
         dispatch,
+        cartItems: state.cartItems,
         productFilteredBy: state.productFilteredBy,
       }}
     >

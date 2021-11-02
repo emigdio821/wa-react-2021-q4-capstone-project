@@ -19,6 +19,13 @@ const Featured = () => {
     [styles['featured__container-loading']]: isLoading,
   };
 
+  const browseBtonClasses = {
+    [styles.btn]: true,
+    [styles.primary]: true,
+    [styles['action-btn']]: true,
+    [styles['no-decoration']]: true,
+  };
+
   return (
     <div className={classNames(containerClasses)}>
       {isLoading ? (
@@ -31,13 +38,8 @@ const Featured = () => {
           </h1>
           <Pagination items={results} />
           <div className={styles['featured__action-btns']}>
-            <Link to="/products" className={styles['no-decoration']}>
-              <button
-                type="button"
-                className={`${styles.btn} ${styles.primary}`}
-              >
-                Browse all
-              </button>
+            <Link to="/products" className={classNames(browseBtonClasses)}>
+              Browse all
             </Link>
           </div>
         </>

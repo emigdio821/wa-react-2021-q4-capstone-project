@@ -1,20 +1,16 @@
 import React, { useState, useRef, useEffect } from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
+import Cart from 'components/Cart';
+import { BiSearchAlt } from 'react-icons/bi';
 import { SEARCH_PATH } from 'utils/constants';
 import { Link, useLocation } from 'react-router-dom';
-import { BiSearchAlt, BiCartAlt } from 'react-icons/bi';
 import styles from './Navbar.module.scss';
 
 const NavItems = ({ setHambMenu }) => {
   const [inputVal, setInputVal] = useState('');
   const searchBtn = useRef(null);
   const { pathname } = useLocation();
-
-  const handleCartBtnClick = () => {
-    // eslint-disable-next-line no-alert
-    alert('The shopping cart is WIP 🤠');
-  };
 
   const handleSearchInputChange = (e) => {
     setInputVal(e.target.value);
@@ -38,12 +34,9 @@ const NavItems = ({ setHambMenu }) => {
   const searchBtnStyles = {
     [styles.btn]: true,
     [styles.primary]: true,
-  };
-
-  const cartBtnStyles = {
-    [styles.btn]: true,
-    [styles.yellow]: true,
-    [styles['shopping-cart']]: true,
+    [styles.disabled]: !inputVal,
+    [styles['search-btn']]: true,
+    [styles['no-decoration']]: true,
   };
 
   useEffect(() => {
@@ -52,7 +45,7 @@ const NavItems = ({ setHambMenu }) => {
 
   return (
     <div className={styles['nav-btn-container']}>
-      <div>
+      <div style={{ display: 'flex' }}>
         <input
           type="text"
           placeholder="Search..."
@@ -65,27 +58,12 @@ const NavItems = ({ setHambMenu }) => {
           ref={searchBtn}
           to={`/search?q=${inputVal}`}
           onClick={handleSearchBtnClick}
-          className={classNames(styles['no-decoration'], styles['search-btn'])}
+          className={classNames(searchBtnStyles, styles['search-btn'])}
         >
-          <button
-            type="button"
-            className={classNames(searchBtnStyles)}
-            disabled={!inputVal}
-          >
-            <BiSearchAlt />
-          </button>
+          <BiSearchAlt />
         </Link>
       </div>
-      <button
-        type="button"
-        className={classNames(cartBtnStyles)}
-        onClick={handleCartBtnClick}
-      >
-        Cart
-        <span>
-          <BiCartAlt />
-        </span>
-      </button>
+      <Cart />
     </div>
   );
 };

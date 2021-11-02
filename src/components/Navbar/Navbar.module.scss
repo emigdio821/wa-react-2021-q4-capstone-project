@@ -99,19 +99,6 @@
   align-items: center;
 }
 
-.shopping-cart {
-  display: flex;
-  border-radius: 20px;
-  align-items: center;
-  align-content: center;
-  span {
-    display: flex;
-    margin-left: 4px;
-    align-items: center;
-    align-content: center;
-  }
-}
-
 .hamb-icon,
 .hamb__icon-container {
   color: $nav-color;
