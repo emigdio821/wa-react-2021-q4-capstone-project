@@ -13,14 +13,12 @@ const Cart = () => {
     [styles['container-not-found']]: false,
   };
 
-  console.log(cartItems);
-
   return (
     <div className={classNames(containerStyles)}>
       {!cartItems.length ? (
         <NotFound msg="there's nothing in your cart" noHeight />
       ) : (
-        <div className={styles['item-container']}>
+        <>
           <h1>Shopping cart</h1>
           <div className={styles['cart-table']}>
             {/* <h2>Your products</h2> */}
@@ -43,7 +41,7 @@ const Cart = () => {
               </tbody>
             </table>
           </div>
-        </div>
+        </>
       )}
     </div>
   );
