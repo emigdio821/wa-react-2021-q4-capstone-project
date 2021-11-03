@@ -23,6 +23,11 @@ const Cart = () => {
     [styles['checkout-btn']]: true,
   };
 
+  const pNameStyles = {
+    [styles['td__p-name']]: true,
+    [styles['semibold-font']]: true,
+  };
+
   return (
     <div className={classNames(containerStyles)}>
       {!cartItems.length ? (
@@ -50,12 +55,12 @@ const Cart = () => {
                     <tr key={`${id}-cart-item`}>
                       <td className={styles['flex-td']}>
                         <img src={url} alt={alt} className={styles['td-img']} />
-                        <span className={styles['semibold-font']}>
+                        <span className={classNames(pNameStyles)}>
                           {data.name}
                         </span>
                       </td>
                       <td>{formatCurrency(data.price)}</td>
-                      <td>
+                      <td className={styles['qty-td']}>
                         <QtySelect id={id} qty={qty} opts={stock} />
                       </td>
                       <td>{formatCurrency(qty * data.price)}</td>
@@ -75,7 +80,7 @@ const Cart = () => {
           </div>
           <div className={styles['checkout-container']}>
             <button type="button" className={classNames(checkoutBtnStyles)}>
-              Checkout
+              Proceed to checkout
               <BiCreditCard />
             </button>
           </div>

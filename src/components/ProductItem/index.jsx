@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import formatCurrency from 'helpers/currency';
-import classNames from 'classnames';
 import AddToCartBtn from 'components/AddToCartBtn';
 import { Swiper, SwiperSlide } from 'swiper/react/swiper-react';
 import SwiperCore, { Zoom, Navigation, Pagination } from 'swiper';
@@ -13,40 +12,16 @@ import './Swiper.scss';
 SwiperCore.use([Zoom, Navigation, Pagination]);
 
 const ProductItem = ({ item }) => {
-  const [qty, setQty] = useState(1);
   const { data, tags } = item;
   const {
     sku,
     name,
     specs,
     price,
-    stock,
     images,
     short_description: shortDescription,
     category: { slug: categorySlug },
   } = data;
-
-  const handleChangeQty = (e) => {
-    const { id } = e.target;
-    if (id === 'addBtn') {
-      if (qty + 1 > stock) {
-        return;
-      }
-      setQty(qty + 1);
-    } else if (id === 'subtractBtn') {
-      if (qty - 1 === 0) {
-        return;
-      }
-      setQty(qty - 1);
-    }
-  };
-
-  const handleChangeQtyInput = (e) => {
-    const { value } = e.target;
-    if (value >= 1) {
-      setQty(value);
-    }
-  };
 
   return (
     <>
@@ -88,39 +63,6 @@ const ProductItem = ({ item }) => {
         </div>
         <div className={styles['description-container']}>
           <p className={styles['product-description']}>{shortDescription}</p>
-        </div>
-        <span>
-          Stock:
-          {' '}
-          <span className={styles['semibold-font']}>{stock}</span>
-        </span>
-        <div className={styles['product__qty-container']}>
-          <button
-            type="button"
-            id="subtractBtn"
-            className={classNames(styles.btn, styles['input-number-decrement'])}
-            onClick={handleChangeQty}
-            disabled={qty === 1}
-          >
-            –
-          </button>
-          <input
-            type="number"
-            value={qty}
-            id="productQty"
-            name="productQty"
-            className={styles['input-number']}
-            onChange={handleChangeQtyInput}
-          />
-          <button
-            type="button"
-            id="addBtn"
-            className={classNames(styles.btn, styles['input-number-increment'])}
-            onClick={handleChangeQty}
-            disabled={qty === stock}
-          >
-            +
-          </button>
         </div>
         <AddToCartBtn item={item} />
         <div className={styles['price-container']}>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { cart } from 'context/Types';
@@ -11,12 +11,23 @@ const AddToCartBtn = ({ item }) => {
     id: itemId,
     data: { stock },
   } = item;
+  const selectRef = useRef(null);
+  const [currStock, setCurrStock] = useState(0);
   const { dispatch, cartItems } = useGlobalContext();
-  const [itemQty, setItemQty] = useState(0);
-  const outOfStock = stock === 0 || itemQty === stock;
+  const outOfStock = stock === 0 || currStock === stock;
 
   const handleAddToCartClick = () => {
-    dispatch({ type: cart.addItem, payload: item });
+    const qty = Number(selectRef.current.value);
+    dispatch({ type: cart.addItem, payload: { item, qty } });
+  };
+
+  const selectOptions = (opts) => {
+    const options = [];
+    for (let i = 1; i <= opts; i += 1) {
+      options.push(i);
+    }
+
+    return options;
   };
 
   const cartStyles = {
@@ -26,18 +37,32 @@ const AddToCartBtn = ({ item }) => {
   };
 
   useEffect(() => {
-    const itemExists = cartItems.find(
+    const existingItem = cartItems.find(
       ({ id: carItemId }) => carItemId === itemId,
     );
 
-    if (itemExists) {
-      const { qty } = itemExists;
-      setItemQty(qty);
+    if (existingItem) {
+      const { qty } = existingItem;
+      setCurrStock(qty);
     }
   }, [cartItems]);
 
   return (
     <div className={styles['cart-container']}>
+      {!outOfStock && (
+        <select
+          ref={selectRef}
+          name="cartQtySelect"
+          defaultValue={1}
+          className={styles['cart__qty-select']}
+        >
+          {selectOptions(stock - currStock).map((opt) => (
+            <option key={`${opt}-qty-option`} value={opt}>
+              {opt}
+            </option>
+          ))}
+        </select>
+      )}
       <button
         type="button"
         disabled={outOfStock}

@@ -1,11 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 import { BiCartAlt } from 'react-icons/bi';
 import { useGlobalContext } from 'context/GlobalContext';
 import styles from './NavCart.module.scss';
 
-const NavCart = () => {
+const NavCart = ({ setHambMenu }) => {
   const { cartItems } = useGlobalContext();
   const emptyCart = cartItems.length === 0;
   const itemsLength = cartItems.reduce((acc, { qty }) => acc + qty, 0);
@@ -13,6 +14,8 @@ const NavCart = () => {
   const handleCartClick = (e) => {
     if (emptyCart) {
       e.preventDefault();
+    } else {
+      setHambMenu(false);
     }
   };
 
@@ -40,3 +43,7 @@ const NavCart = () => {
 };
 
 export default NavCart;
+
+NavCart.propTypes = {
+  setHambMenu: PropTypes.func.isRequired,
+};

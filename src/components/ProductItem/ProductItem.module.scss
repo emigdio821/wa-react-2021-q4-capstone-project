@@ -67,7 +67,6 @@
   max-height: 240px;
   align-items: center;
   align-content: center;
-  margin: 10px 0 20px 0;
   flex-direction: column;
 }
 
@@ -78,48 +77,6 @@
   text-align: center;
   background: lighten(#fafafa, 10%);
   border: 1px solid $nav-border-color;
-}
-
-.product__qty-container {
-  display: flex;
-  margin-top: 10px;
-  input[type='number']::-webkit-inner-spin-button,
-  input[type='number']::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    margin: 0;
-  }
-  input[type='number'] {
-    -moz-appearance: textfield;
-  }
-  .input-number {
-    width: 60px;
-    padding: 10px;
-    outline: none;
-    border-left: 0;
-    border-right: 0;
-    border-radius: 0;
-    text-align: center;
-    border: 1px solid $nav-border-color;
-  }
-
-  .input-number-decrement,
-  .input-number-increment {
-    &:active {
-      background: darken($nav-border-color, 10%);
-    }
-  }
-
-  .input-number-decrement {
-    border-right: none;
-    border-radius: 4px 0 0 4px;
-  }
-
-  .input-number-increment {
-    border-left: none;
-    border-radius: 0 4px 4px 0;
-  }
 }
 
 .specs-table {

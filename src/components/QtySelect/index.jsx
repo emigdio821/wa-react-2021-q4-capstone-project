@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import { cart } from 'context/Types';
 import { BiTrash } from 'react-icons/bi';
 import { useGlobalContext } from 'context/GlobalContext';
@@ -28,11 +27,6 @@ const QtySelect = ({ id, qty, opts }) => {
     });
   };
 
-  const deleteBtnClasses = {
-    [styles.btn]: true,
-    [styles['delete__item-btn']]: true,
-  };
-
   return (
     <>
       <select
@@ -48,15 +42,11 @@ const QtySelect = ({ id, qty, opts }) => {
           </option>
         ))}
       </select>
-      <button
-        itemID={id}
-        type="button"
-        title="Remove item"
-        className={classNames(deleteBtnClasses)}
+      <BiTrash
+        title="Delete item"
+        className={styles['delete__item-btn']}
         onClick={() => dispatch({ type: cart.removeItem, payload: id })}
-      >
-        <BiTrash />
-      </button>
+      />
     </>
   );
 };

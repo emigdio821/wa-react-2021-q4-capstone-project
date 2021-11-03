@@ -26,18 +26,19 @@ const reducer = (state, action) => {
       };
     case cart.addItem: {
       const { payload } = action;
-      const itemId = payload.id;
+      const itemId = payload.item.id;
       const exists = state.cartItems.some(({ id }) => id === itemId);
 
       if (exists) {
         const items = state.cartItems.map((item) => (item.id === itemId
-          ? { ...item, qty: item.qty + 1 } : { ...item }));
+          ? { ...payload.item, qty: item.qty + payload.qty }
+          : { ...item }));
         return { ...state, cartItems: items };
       }
 
       return {
         ...state,
-        cartItems: [...state.cartItems, { ...payload, qty: 1 }],
+        cartItems: [...state.cartItems, { ...payload.item, qty: payload.qty }],
       };
     }
     case cart.removeItem:
