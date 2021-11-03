@@ -1,0 +1,33 @@
+@import 'styles/global';
+
+$delete-btn-bg: #ffccc7;
+
+.qty-select {
+  padding: 10px;
+  background: white;
+  font-size: inherit;
+  border-radius: $border-radius;
+  border: 1px solid $nav-border-color;
+}
+
+.delete__item-btn {
+  margin-left: 10px;
+  border-radius: 20px;
+  background: $delete-btn-bg;
+  svg {
+    pointer-events: none;
+  }
+  &:hover {
+    background: darken($delete-btn-bg, 5%);
+  }
+}
+
+@media (max-width: 768px) {
+  .delete__item-btn {
+    margin: 0;
+    margin-top: 10px;
+    svg {
+      margin: 0 auto;
+    }
+  }
+}

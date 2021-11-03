@@ -30,9 +30,8 @@ const reducer = (state, action) => {
       const exists = state.cartItems.some(({ id }) => id === itemId);
 
       if (exists) {
-        const items = state.cartItems.map((cartItem) => (cartItem.id === itemId
-          ? { ...cartItem, qty: cartItem.qty + 1 }
-          : { ...cartItem }));
+        const items = state.cartItems.map((item) => (item.id === itemId
+          ? { ...item, qty: item.qty + 1 } : { ...item }));
         return { ...state, cartItems: items };
       }
 
@@ -46,6 +45,14 @@ const reducer = (state, action) => {
         ...state,
         cartItems: state.cartItems.filter((item) => item.id !== action.payload),
       };
+    case cart.updateItem: {
+      return {
+        ...state,
+        cartItems: state.cartItems.map((item) => (item.id === action.payload.id
+          ? { ...item, qty: action.payload.qty }
+          : { ...item })),
+      };
+    }
     default:
       return state;
   }

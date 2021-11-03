@@ -2,15 +2,25 @@ import React from 'react';
 import classNames from 'classnames';
 import NotFound from 'pages/NotFound';
 import formatCurrency from 'helpers/currency';
+import { BiCreditCard } from 'react-icons/bi';
 import { useGlobalContext } from 'context/GlobalContext';
+import QtySelect from 'components/QtySelect';
 import styles from './Cart.module.scss';
 
 const Cart = () => {
+  let totalAmount = 0;
   const { cartItems } = useGlobalContext();
+
   const containerStyles = {
     [styles['cart-container']]: true,
     [styles['container-loading']]: false,
     [styles['container-not-found']]: false,
+  };
+
+  const checkoutBtnStyles = {
+    [styles.btn]: true,
+    [styles.primary]: true,
+    [styles['checkout-btn']]: true,
   };
 
   return (
@@ -21,25 +31,53 @@ const Cart = () => {
         <>
           <h1>Shopping cart</h1>
           <div className={styles['cart-table']}>
-            {/* <h2>Your products</h2> */}
             <table>
               <tbody>
                 <tr>
                   <th>Product</th>
-                  <th>Price per unit</th>
+                  <th>Price</th>
                   <th>Quantity</th>
-                  <th>Total</th>
+                  <th>Subtotal</th>
                 </tr>
-                {cartItems.map(({ id, data, qty }) => (
-                  <tr key={`${id}-cart-item`}>
-                    <td>{data.name}</td>
-                    <td>{formatCurrency(data.price)}</td>
-                    <td>{qty}</td>
-                    <td>{formatCurrency(qty * data.price)}</td>
-                  </tr>
-                ))}
+                {cartItems.map((item) => {
+                  const { id, data, qty } = item;
+                  const {
+                    stock,
+                    mainimage: { alt, url },
+                  } = data;
+                  totalAmount += data.price * qty;
+                  return (
+                    <tr key={`${id}-cart-item`}>
+                      <td className={styles['flex-td']}>
+                        <img src={url} alt={alt} className={styles['td-img']} />
+                        <span className={styles['semibold-font']}>
+                          {data.name}
+                        </span>
+                      </td>
+                      <td>{formatCurrency(data.price)}</td>
+                      <td>
+                        <QtySelect id={id} qty={qty} opts={stock} />
+                      </td>
+                      <td>{formatCurrency(qty * data.price)}</td>
+                    </tr>
+                  );
+                })}
+                <tr>
+                  <td colSpan="3">&nbsp;</td>
+                  <td className={styles.total}>
+                    Total:
+                    {' '}
+                    {formatCurrency(totalAmount)}
+                  </td>
+                </tr>
               </tbody>
             </table>
+          </div>
+          <div className={styles['checkout-container']}>
+            <button type="button" className={classNames(checkoutBtnStyles)}>
+              Checkout
+              <BiCreditCard />
+            </button>
           </div>
         </>
       )}

@@ -7,4 +7,5 @@ export const product = {
 export const cart = {
   addItem: 'ADD_CART_ITEM',
   removeItem: 'REMOVE_CART_ITEM',
+  updateItem: 'UPDATE_CART_ITEM',
 };
