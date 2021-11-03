@@ -43,7 +43,7 @@ const QtySelect = ({ id, qty, opts }) => {
         ))}
       </select>
       <BiTrash
-        title="Delete item"
+        title="Remove from cart"
         className={styles['delete__item-btn']}
         onClick={() => dispatch({ type: cart.removeItem, payload: id })}
       />
