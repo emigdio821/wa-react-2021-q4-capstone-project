@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import Cart from 'components/Cart';
+import Cart from 'components/NavCart';
 import { BiSearchAlt } from 'react-icons/bi';
 import { SEARCH_PATH } from 'utils/constants';
 import { Link, useLocation } from 'react-router-dom';

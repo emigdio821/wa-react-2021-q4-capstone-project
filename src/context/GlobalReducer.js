@@ -24,15 +24,27 @@ const reducer = (state, action) => {
         ...state,
         productFilteredBy: [],
       };
-    case cart.addItem:
+    case cart.addItem: {
+      const { payload } = action;
+      const itemId = payload.id;
+      const exists = state.cartItems.some(({ id }) => id === itemId);
+
+      if (exists) {
+        const items = state.cartItems.map((cartItem) => (cartItem.id === itemId
+          ? { ...cartItem, qty: cartItem.qty + 1 }
+          : { ...cartItem }));
+        return { ...state, cartItems: items };
+      }
+
       return {
         ...state,
-        cart: [...state.cartItems, action.payload],
+        cartItems: [...state.cartItems, { ...payload, qty: 1 }],
       };
+    }
     case cart.removeItem:
       return {
         ...state,
-        cart: state.cartItems.filter((item) => item.id !== action.payload),
+        cartItems: state.cartItems.filter((item) => item.id !== action.payload),
       };
     default:
       return state;

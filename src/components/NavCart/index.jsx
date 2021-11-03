@@ -3,11 +3,12 @@ import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 import { BiCartAlt } from 'react-icons/bi';
 import { useGlobalContext } from 'context/GlobalContext';
-import styles from './Cart.module.scss';
+import styles from './NavCart.module.scss';
 
-const Cart = () => {
+const NavCart = () => {
   const { cartItems } = useGlobalContext();
   const emptyCart = cartItems.length === 0;
+  const itemsLength = cartItems.reduce((acc, { qty }) => acc + qty, 0);
 
   const handleCartClick = (e) => {
     if (emptyCart) {
@@ -33,11 +34,9 @@ const Cart = () => {
       <span>
         <BiCartAlt />
       </span>
-      {cartItems.length > 0 && (
-        <span className={styles.badge}>{cartItems.length}</span>
-      )}
+      {!emptyCart && <span className={styles.badge}>{itemsLength}</span>}
     </Link>
   );
 };
 
-export default Cart;
+export default NavCart;

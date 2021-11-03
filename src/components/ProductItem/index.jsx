@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import formatCurrency from 'helpers/currency';
-import { BiCartAlt } from 'react-icons/bi';
 import classNames from 'classnames';
+import AddToCartBtn from 'components/AddToCartBtn';
 import { Swiper, SwiperSlide } from 'swiper/react/swiper-react';
 import SwiperCore, { Zoom, Navigation, Pagination } from 'swiper';
 import styles from './ProductItem.module.scss';
@@ -46,12 +46,6 @@ const ProductItem = ({ item }) => {
     if (value >= 1) {
       setQty(value);
     }
-  };
-
-  const cartStyles = {
-    [styles.btn]: true,
-    [styles.yellow]: true,
-    [styles.cart]: true,
   };
 
   return (
@@ -128,12 +122,7 @@ const ProductItem = ({ item }) => {
             +
           </button>
         </div>
-        <div className={styles['cart-container']}>
-          <span className={classNames(cartStyles)}>
-            Add to cart
-            <BiCartAlt />
-          </span>
-        </div>
+        <AddToCartBtn item={item} />
         <div className={styles['price-container']}>
           <span className={styles.price}>{formatCurrency(price)}</span>
         </div>

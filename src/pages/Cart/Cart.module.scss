@@ -1,3 +1,5 @@
+@import 'styles/global';
+
 .cart-container {
   height: 100%;
   min-height: 400px;
@@ -11,6 +13,26 @@
   }
   .item-container {
     // margin-top: 20px;
+  }
+}
+
+.cart-table {
+  margin-top: 20px;
+  table {
+    width: 100%;
+    // font-size: 12px;
+    border-collapse: collapse;
+  }
+
+  td,
+  th {
+    text-align: left;
+    padding: 10px;
+    border: 1px solid $nav-border-color;
+  }
+
+  tr:nth-child(even) {
+    background: lighten($nav-border-color, 2%);
   }
 }
 

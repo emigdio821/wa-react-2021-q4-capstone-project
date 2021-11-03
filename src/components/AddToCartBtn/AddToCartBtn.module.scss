@@ -1,0 +1,15 @@
+@import 'styles/global';
+
+.cart-container {
+  margin: 20px 0;
+  .cart {
+    width: 100%;
+    display: flex;
+    border-radius: 20px;
+    align-items: center;
+    align-content: center;
+    svg {
+      margin-left: 4px;
+    }
+  }
+}

@@ -2,8 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import formatCurrency from 'helpers/currency';
-import { BiCartAlt } from 'react-icons/bi';
-import classNames from 'classnames';
+import AddToCartBtn from 'components/AddToCartBtn';
 import styles from './GridItem.module.scss';
 
 const GridItem = ({ item, showDesc }) => {
@@ -15,12 +14,6 @@ const GridItem = ({ item, showDesc }) => {
     mainimage: { url, alt },
     category: { slug: categorySlug },
   } = data;
-
-  const cartStyles = {
-    [styles.btn]: true,
-    [styles.yellow]: true,
-    [styles.cart]: true,
-  };
 
   return (
     <div className={styles['grid-item']}>
@@ -38,12 +31,7 @@ const GridItem = ({ item, showDesc }) => {
           <p className={styles['product-description']}>{shortDescription}</p>
         </div>
       )}
-      <div className={styles['cart-container']}>
-        <span className={classNames(cartStyles)}>
-          Add to cart
-          <BiCartAlt />
-        </span>
-      </div>
+      <AddToCartBtn item={item} />
       <div className={styles['price-container']}>
         <span className={styles.price}>{formatCurrency(price)}</span>
       </div>
