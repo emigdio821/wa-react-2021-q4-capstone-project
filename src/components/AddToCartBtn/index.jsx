@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { cart } from 'context/Types';
-import { BiCartAlt } from 'react-icons/bi';
+import { BiCartAlt, BiCheck } from 'react-icons/bi';
 import { useGlobalContext } from 'context/GlobalContext';
 import styles from './AddToCartBtn.module.scss';
 
@@ -14,11 +14,23 @@ const AddToCartBtn = ({ item }) => {
   const selectRef = useRef(null);
   const [currStock, setCurrStock] = useState(0);
   const { dispatch, cartItems } = useGlobalContext();
+  const [addedToCart, setAddedToCart] = useState(false);
   const outOfStock = stock === 0 || currStock === stock;
 
+  const addedToCartDelay = () => {
+    setAddedToCart(true);
+    const timer = setTimeout(() => {
+      setAddedToCart(false);
+    }, 600);
+
+    return () => clearTimeout(timer);
+  };
+
   const handleAddToCartClick = () => {
+    if (addedToCart) return;
     const qty = Number(selectRef.current.value);
     dispatch({ type: cart.addItem, payload: { item, qty } });
+    addedToCartDelay();
   };
 
   const selectOptions = (opts) => {
@@ -65,12 +77,30 @@ const AddToCartBtn = ({ item }) => {
       )}
       <button
         type="button"
-        disabled={outOfStock}
-        className={classNames(cartStyles)}
         onClick={handleAddToCartClick}
+        className={classNames(cartStyles)}
+        disabled={outOfStock}
       >
-        {outOfStock ? <span>Out of stock</span> : <span>Add to cart</span>}
-        <BiCartAlt />
+        {outOfStock ? (
+          <>
+            Out of stock
+            <BiCartAlt />
+          </>
+        ) : (
+          <>
+            {addedToCart ? (
+              <>
+                Added
+                <BiCheck />
+              </>
+            ) : (
+              <>
+                Add to cart
+                <BiCartAlt />
+              </>
+            )}
+          </>
+        )}
       </button>
     </div>
   );
