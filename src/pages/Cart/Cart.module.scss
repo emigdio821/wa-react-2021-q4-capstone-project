@@ -31,3 +31,10 @@
     width: 100% !important;
   }
 }
+
+@media (min-width: 2561px) {
+  .cart-container {
+    width: 50%;
+    margin: 0 auto;
+  }
+}
