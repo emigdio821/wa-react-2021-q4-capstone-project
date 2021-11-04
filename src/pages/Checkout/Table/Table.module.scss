@@ -1,0 +1,38 @@
+@import 'styles/global';
+
+.checkout-table {
+  .summary-title {
+    margin-bottom: 10px;
+  }
+  overflow: auto;
+  margin-top: 20px;
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  td,
+  th {
+    text-align: left;
+    padding: 10px;
+    border: 1px solid $nav-border-color;
+  }
+
+  tr:nth-child(even) {
+    background: lighten($nav-border-color, 2%);
+  }
+
+  .total {
+    font-weight: 500;
+  }
+}
+
+@media (max-width: 768px) {
+  .checkout-table {
+    th,
+    td {
+      font-size: 13px;
+      padding: 4px;
+    }
+  }
+}
