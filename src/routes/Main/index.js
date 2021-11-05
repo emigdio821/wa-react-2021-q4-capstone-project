@@ -6,7 +6,7 @@ import Products from 'pages/Products';
 import NotFound from 'pages/NotFound';
 import Checkout from 'pages/Checkout';
 
-const routes = [
+const mainRoutes = [
   {
     path: '/',
     component: Home,
@@ -43,4 +43,4 @@ const routes = [
   },
 ];
 
-export default routes;
+export default mainRoutes;

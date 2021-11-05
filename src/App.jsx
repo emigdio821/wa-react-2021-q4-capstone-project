@@ -9,7 +9,7 @@ import Navbar from 'components/Navbar';
 import Footer from 'components/Footer';
 import './App.scss';
 import ScrollTop from 'components/ScrollTop';
-import routes from './routes';
+import mainRoutes from './routes/Main';
 
 const App = () => (
   <>
@@ -20,7 +20,7 @@ const App = () => (
           <Route exact path="/home">
             <Redirect to="/" />
           </Route>
-          {routes.map((route) => (
+          {mainRoutes.map((route) => (
             <Route
               path={route.path}
               exact={route.exact}
