@@ -5,7 +5,7 @@ import {
   Route,
   Redirect,
 } from 'react-router-dom';
-import routes from 'Routes';
+import routes from 'routes';
 import Navbar from 'components/Navbar';
 import Footer from 'components/Footer';
 import './App.scss';

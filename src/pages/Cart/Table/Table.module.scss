@@ -3,6 +3,7 @@
 .cart-table {
   overflow: auto;
   margin-top: 20px;
+  @include slideIn;
   table {
     width: 100%;
     border-collapse: collapse;
@@ -32,6 +33,7 @@
   .td-img {
     width: 100px;
     margin-right: 10px;
+    @include slideIn;
     border-radius: $border-radius;
   }
 }
