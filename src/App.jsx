@@ -5,11 +5,11 @@ import {
   Route,
   Redirect,
 } from 'react-router-dom';
-import routes from 'routes';
 import Navbar from 'components/Navbar';
 import Footer from 'components/Footer';
 import './App.scss';
 import ScrollTop from 'components/ScrollTop';
+import routes from './routes';
 
 const App = () => (
   <>
