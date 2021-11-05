@@ -4,6 +4,7 @@ import useAxiosRequest from 'utils/hooks/useAxiosRequest';
 import Loader from 'components/Loader';
 import classNames from 'classnames';
 import { CATEGORIES_URL } from 'utils/constants';
+import ErrorBoundary from 'components/ErrorBoundary';
 import CategoryItem from './CategoryItem';
 import styles from './Categories.module.scss';
 
@@ -31,7 +32,11 @@ const Categories = () => {
           <div className={styles.categories}>
             {results.map((item) => {
               const { id } = item;
-              return <CategoryItem key={id} item={item} />;
+              return (
+                <ErrorBoundary key={id}>
+                  <CategoryItem item={item} />
+                </ErrorBoundary>
+              );
             })}
           </div>
         </>

@@ -1,4 +1,6 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, {
+  useState, useRef, useEffect, memo,
+} from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import NavCart from 'components/NavCart';
@@ -8,9 +10,9 @@ import { Link, useLocation } from 'react-router-dom';
 import styles from './Navbar.module.scss';
 
 const NavItems = ({ setHambMenu }) => {
-  const [inputVal, setInputVal] = useState('');
   const searchBtn = useRef(null);
   const { pathname } = useLocation();
+  const [inputVal, setInputVal] = useState('');
 
   const handleSearchInputChange = (e) => {
     setInputVal(e.target.value);
@@ -68,7 +70,7 @@ const NavItems = ({ setHambMenu }) => {
   );
 };
 
-export default NavItems;
+export default memo(NavItems);
 
 NavItems.propTypes = {
   setHambMenu: PropTypes.func.isRequired,

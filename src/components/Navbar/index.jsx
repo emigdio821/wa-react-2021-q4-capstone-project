@@ -39,15 +39,21 @@ const Navbar = () => {
   };
 
   useEffect(() => {
-    if (showHambMenu) setRenderHambMenu(true);
-    /* eslint no-unused-expressions: ["error", { "allowTernary": true }] */
-    scroll.y > 80 ? setFixedNavBg(true) : setFixedNavBg(false);
-    if (scroll.y > 80 && scroll.y - scroll.lastY > 0) {
-      setScrolledNav(true);
+    if (scroll.y > 80) {
+      setFixedNavBg(true);
     } else {
-      setScrolledNav(false);
+      setFixedNavBg(false);
     }
-  }, [scroll.lastY, scroll.y, showHambMenu]);
+
+    if (pathname !== HOME_PATH) {
+      if (scroll.y > 80 && scroll.y - scroll.lastY > 0) {
+        setScrolledNav(true);
+      } else {
+        setScrolledNav(false);
+      }
+    }
+    if (showHambMenu) setRenderHambMenu(true);
+  }, [scroll.y, showHambMenu]);
 
   return (
     <>
