@@ -1,10 +1,25 @@
 import React from 'react';
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
+import useForm from 'utils/hooks/useForm';
 import { BiArrowBack } from 'react-icons/bi';
+import { formValues, validations } from './validations';
 import styles from './Form.module.scss';
 
 const CheckoutForm = () => {
+  const formCallback = () => {
+    // eslint-disable-next-line no-alert
+    alert('Place order, still WIP 🤠');
+  };
+
+  const {
+    handleFormChange, values, errors, handleFormSubmit,
+  } = useForm({
+    formValues,
+    validations,
+    formCallback,
+  });
+
   const backCartBtnStyles = {
     [styles.btn]: true,
     [styles.primary]: true,
@@ -21,13 +36,51 @@ const CheckoutForm = () => {
     <>
       <div className={styles['form-container']}>
         <h3 className={styles['info-title']}>Information</h3>
-        <form className={styles.form} id="contact">
+        <form
+          id="checkout-form"
+          className={styles.form}
+          onSubmit={handleFormSubmit}
+        >
           <div className={styles['horizontal-group']}>
-            <input placeholder="Name" type="text" required />
-            <input placeholder="Email address" type="email" required />
-            <input placeholder="ZIP code" type="number" required />
+            <div className={styles['name-container']}>
+              <input
+                name="name"
+                type="text"
+                placeholder="Name"
+                value={values.name}
+                onChange={handleFormChange}
+              />
+              {errors.name && <p className={styles.error}>{errors.name}</p>}
+            </div>
+            <div className={styles['email-container']}>
+              <input
+                name="email"
+                type="text"
+                value={values.email}
+                placeholder="Email address"
+                onChange={handleFormChange}
+              />
+              {errors.email && <p className={styles.error}>{errors.email}</p>}
+            </div>
+            <div className={styles['zip-container']}>
+              <input
+                type="text"
+                name="zipcode"
+                placeholder="ZIP code"
+                value={values.zipcode}
+                onChange={handleFormChange}
+              />
+              {errors.zipcode && (
+                <p className={styles.error}>{errors.zipcode}</p>
+              )}
+            </div>
           </div>
-          <textarea placeholder="Order notes..." />
+          <textarea
+            name="ordernotes"
+            placeholder="Order notes..."
+            onChange={handleFormChange}
+            value={values.ordernotes}
+          />
         </form>
         <div className={styles['back__to-cart-container']}>
           <Link to="/cart" className={classNames(backCartBtnStyles)}>
@@ -35,9 +88,9 @@ const CheckoutForm = () => {
             Go back to cart
           </Link>
           <button
-            type="button"
+            type="submit"
+            form="checkout-form"
             className={classNames(placeOrderBtnStyles)}
-            disabled
           >
             Place order
           </button>

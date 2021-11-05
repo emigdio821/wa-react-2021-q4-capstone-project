@@ -22,23 +22,35 @@
     .horizontal-group {
       gap: 10px;
       display: flex;
-      align-items: center;
-      align-content: center;
     }
-    input[type='text'] {
+    .name-container {
       width: 50%;
+      input {
+        width: 100%;
+      }
     }
-    input[type='email'] {
+    .email-container {
       width: 30%;
+      input {
+        width: 100%;
+      }
     }
-    input[type='number'] {
+    .zip-container {
       width: 20%;
+      input {
+        width: 100%;
+      }
     }
     textarea {
       width: 100%;
       resize: none;
       height: 80px;
       margin-top: 10px;
+    }
+    .error {
+      color: #d57e7e;
+      margin-top: 4px;
+      font-size: 13px;
     }
   }
   .back__to-cart-container {
@@ -70,7 +82,9 @@
 @media (max-width: 768px) {
   .horizontal-group {
     flex-direction: column;
-    input {
+    .name-container,
+    .email-container,
+    .zip-container {
       width: 100% !important;
     }
   }
