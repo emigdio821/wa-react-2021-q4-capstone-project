@@ -1,44 +1,69 @@
 @import 'styles/global';
 
-.info-title {
-  margin-top: 20px;
-  margin-bottom: 10px;
-}
-
-.form {
-  padding: 20px;
-  border-radius: $border-radius;
-  border: 1px solid $nav-border-color;
-  input[type='text'],
-  input[type='email'],
-  input[type='number'],
-  textarea {
-    padding: 10px;
-    background: white;
-    font-size: inherit;
+.form-container {
+  width: 40%;
+  .info-title {
+    margin-bottom: 10px;
+  }
+  .form {
+    padding: 20px;
     border-radius: $border-radius;
-    border: 1px solid darken($nav-border-color, 5%);
+    border: 1px solid $nav-border-color;
+    input[type='text'],
+    input[type='email'],
+    input[type='number'],
+    textarea {
+      padding: 10px;
+      background: white;
+      font-size: inherit;
+      border-radius: $border-radius;
+      border: 1px solid darken($nav-border-color, 5%);
+    }
+    .horizontal-group {
+      gap: 10px;
+      display: flex;
+      align-items: center;
+      align-content: center;
+    }
+    input[type='text'] {
+      width: 50%;
+    }
+    input[type='email'] {
+      width: 30%;
+    }
+    input[type='number'] {
+      width: 20%;
+    }
+    textarea {
+      width: 100%;
+      resize: none;
+      height: 80px;
+      margin-top: 10px;
+    }
   }
-  .horizontal-group {
-    gap: 10px;
+  .back__to-cart-container {
     display: flex;
-    align-items: center;
-    align-content: center;
-  }
-  input[type='text'] {
-    width: 60%;
-  }
-  input[type='email'] {
-    width: 30%;
-  }
-  input[type='number'] {
-    width: 10%;
-  }
-  textarea {
-    width: 100%;
-    resize: none;
-    height: 80px;
-    margin-top: 10px;
+    margin-top: 20px;
+    text-align: right;
+    .back__to-cart-btn,
+    .place__order-btn {
+      margin-right: 10px;
+      align-items: center;
+      display: inline-flex;
+      align-content: center;
+      svg {
+        margin-right: 4px;
+      }
+    }
+    .back__to-cart-btn {
+      margin-left: auto;
+    }
+    .place__order-btn {
+      margin: 0;
+      svg {
+        margin-left: 4px;
+      }
+    }
   }
 }
 
@@ -48,5 +73,11 @@
     input {
       width: 100% !important;
     }
+  }
+}
+
+@media (max-width: 1600px) {
+  .form-container {
+    width: 100%;
   }
 }

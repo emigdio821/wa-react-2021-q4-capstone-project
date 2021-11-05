@@ -5,29 +5,14 @@
   min-height: 400px;
   padding: 100px 20px;
   padding-bottom: 20px;
-  .back__to-cart-container {
+  .checkout-title {
+    margin-bottom: 20px;
+  }
+  .checkout-items {
+    gap: 20px;
     display: flex;
-    margin-top: 20px;
-    text-align: right;
-    .back__to-cart-btn,
-    .place__order-btn {
-      margin-right: 10px;
-      align-items: center;
-      display: inline-flex;
-      align-content: center;
-      svg {
-        margin-right: 4px;
-      }
-    }
-    .back__to-cart-btn {
-      margin-left: auto;
-    }
-    .place__order-btn {
-      margin: 0;
-      svg {
-        margin-left: 4px;
-      }
-    }
+    align-content: center;
+    align-items: flex-start;
   }
 }
 
@@ -37,8 +22,14 @@
   }
 }
 
-@media (min-width: 2561px) {
+@media (max-width: 1600px) {
   .checkout-items {
+    flex-direction: column;
+  }
+}
+
+@media (min-width: 2561px) {
+  .checkout-container {
     width: 50%;
     margin: 0 auto;
   }

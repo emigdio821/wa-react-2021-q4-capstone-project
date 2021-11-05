@@ -1,11 +1,11 @@
 @import 'styles/global';
 
 .checkout-table {
+  width: 60%;
   .summary-title {
     margin-bottom: 10px;
   }
   overflow: auto;
-  margin-top: 20px;
   table {
     width: 100%;
     border-collapse: collapse;
@@ -34,5 +34,11 @@
       font-size: 13px;
       padding: 4px;
     }
+  }
+}
+
+@media (max-width: 1600px) {
+  .checkout-table {
+    width: 100%;
   }
 }
