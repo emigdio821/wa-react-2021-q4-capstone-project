@@ -38,6 +38,7 @@
   border: none;
   cursor: pointer;
   padding: 10px 20px;
+  font-size: 0.875rem;
   color: $nav-bg-color;
   transition: all 0.3s;
   text-decoration: none;
@@ -53,7 +54,8 @@
     &:active {
       @include btn-active;
     }
-    &:disabled {
+    &:disabled,
+    &.disabled {
       @include btn-disabled;
     }
   }
@@ -68,7 +70,8 @@
     &:active {
       @include btn-active;
     }
-    &:disabled {
+    &:disabled,
+    &.disabled {
       @include btn-disabled;
     }
   }

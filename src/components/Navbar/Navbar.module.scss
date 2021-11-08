@@ -12,11 +12,9 @@
   align-content: center;
   background: transparent;
   justify-content: space-between;
-  &.fixed__nav-bg {
-    background: darken($footer-bg, 5%);
-  }
+  &.fixed__nav-bg,
   &.static__nav-bg {
-    background: $footer-bg;
+    background: darken($footer-bg, 5%);
   }
 }
 
@@ -97,19 +95,6 @@
 .nav-btn-container {
   display: flex;
   align-items: center;
-}
-
-.shopping-cart {
-  display: flex;
-  border-radius: 20px;
-  align-items: center;
-  align-content: center;
-  span {
-    display: flex;
-    margin-left: 4px;
-    align-items: center;
-    align-content: center;
-  }
 }
 
 .hamb-icon,

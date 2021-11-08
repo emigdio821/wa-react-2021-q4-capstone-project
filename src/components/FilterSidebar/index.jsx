@@ -32,17 +32,16 @@ const FilterSidebar = () => {
   };
 
   useEffect(() => {
-    if (clearedFilter) {
-      setClearedFilter(false);
-      dispatch({ type: product.clearFilters });
-    }
-
     if (scroll.y > 80 && scroll.y - scroll.lastY > 0) {
       setScrolledWindow(true);
     } else {
       setScrolledWindow(false);
     }
-  }, [scroll.lastY, scroll.y, clearedFilter]);
+    if (clearedFilter) {
+      setClearedFilter(false);
+      dispatch({ type: product.clearFilters });
+    }
+  }, [scroll.y, clearedFilter]);
 
   const sidebarClasses = {
     [styles.sidebar]: true,

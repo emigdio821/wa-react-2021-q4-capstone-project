@@ -1,0 +1,42 @@
+@import 'styles/global';
+
+.shopping-cart {
+  display: flex;
+  position: relative;
+  border-radius: 20px;
+  align-items: center;
+  align-content: center;
+  span {
+    display: flex;
+    margin-left: 4px;
+    align-items: center;
+    align-content: center;
+  }
+  .badge {
+    top: -8px;
+    right: -8px;
+    padding: 0 6px;
+    min-width: 24px;
+    max-width: 40px;
+    overflow: hidden;
+    font-weight: 500;
+    @include slideIn;
+    position: absolute;
+    text-align: center;
+    white-space: nowrap;
+    border-radius: 20px;
+    align-items: center;
+    background: #ffaaa7;
+    height: fit-content;
+    display: inline-block;
+    text-overflow: ellipsis;
+    justify-content: center;
+    @include main-box-shadow;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .shopping-cart {
+    margin-top: 20px;
+  }
+}

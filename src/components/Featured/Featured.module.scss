@@ -14,8 +14,11 @@
 }
 
 .featured__action-btns {
-  padding: 20px 0;
+  margin: 20px 0;
   text-align: right;
+  .action-btn {
+    display: inline-block;
+  }
 }
 
 .pagination {

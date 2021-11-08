@@ -1,0 +1,29 @@
+@import 'styles/global';
+
+.cart-container {
+  margin: 20px 0;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  flex-direction: column;
+  .cart__qty-select {
+    min-width: 60px;
+    padding: 8px 10px;
+    background: white;
+    color: $footer-bg;
+    border-radius: $border-radius;
+    border: 1px solid $nav-border-color;
+  }
+  .cart {
+    width: 100%;
+    display: flex;
+    margin-top: 10px;
+    border-radius: 20px;
+    align-items: center;
+    align-content: center;
+    svg {
+      margin-left: 4px;
+      pointer-events: none;
+    }
+  }
+}

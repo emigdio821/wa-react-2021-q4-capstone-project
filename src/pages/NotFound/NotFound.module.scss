@@ -9,6 +9,9 @@
   &.no-height {
     height: 100%;
   }
+  &.no-extra-padding {
+    padding: 20px;
+  }
   .error {
     display: table-cell;
     vertical-align: middle;

@@ -1,0 +1,31 @@
+@import 'styles/global';
+
+.qty-select {
+  min-width: 60px;
+  padding: 8px 10px;
+  background: white;
+  color: $footer-bg;
+  font-size: inherit;
+  border-radius: $border-radius;
+  border: 1px solid $nav-border-color;
+}
+
+.delete__item-btn {
+  cursor: pointer;
+  font-size: 1.5rem;
+  margin-left: 10px;
+  color: $footer-bg;
+  vertical-align: middle;
+  transition: color 0.3s;
+  &:hover {
+    color: lighten($footer-bg, 20%);
+  }
+}
+
+@media (max-width: 768px) {
+  .delete__item-btn {
+    display: block;
+    margin: 0 auto;
+    margin-top: 10px;
+  }
+}
