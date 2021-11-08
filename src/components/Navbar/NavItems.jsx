@@ -1,17 +1,13 @@
-import React, {
-  useState, useRef, useEffect, memo,
-} from 'react';
+import React, { useState, useRef, memo } from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import NavCart from 'components/NavCart';
 import { BiSearchAlt } from 'react-icons/bi';
-import { SEARCH_PATH } from 'utils/constants';
-import { Link, useLocation } from 'react-router-dom';
 import styles from './Navbar.module.scss';
 
 const NavItems = ({ setHambMenu }) => {
   const searchBtn = useRef(null);
-  const { pathname } = useLocation();
   const [inputVal, setInputVal] = useState('');
 
   const handleSearchInputChange = (e) => {
@@ -22,6 +18,7 @@ const NavItems = ({ setHambMenu }) => {
     if (!inputVal) {
       e.preventDefault();
     } else {
+      setInputVal('');
       setHambMenu(false);
     }
   };
@@ -40,10 +37,6 @@ const NavItems = ({ setHambMenu }) => {
     [styles['search-btn']]: true,
     [styles['no-decoration']]: true,
   };
-
-  useEffect(() => {
-    if (pathname !== SEARCH_PATH) setInputVal('');
-  }, [pathname]);
 
   return (
     <div className={styles['nav-btn-container']}>

@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
 import { product } from 'context/Types';
 import { HOME_PATH } from 'utils/constants';
-import { useGlobalContext } from 'context/GlobalContext';
 import { Link, useLocation } from 'react-router-dom';
+import { useGlobalContext } from 'context/GlobalContext';
 import useScrollListener from 'utils/hooks/useScrollListener';
 import { BiHomeHeart, BiMenu } from 'react-icons/bi';
 import HambContent from './HambContent';
@@ -12,10 +12,9 @@ import NavItems from './NavItems';
 
 const Navbar = () => {
   const scroll = useScrollListener();
-  const [scrolledNav, setScrolledNav] = useState(false);
   const [fixedNavBg, setFixedNavBg] = useState(false);
+  const [scrolledNav, setScrolledNav] = useState(false);
   const [showHambMenu, setShowHambMenu] = useState(false);
-  const [renderHambMenu, setRenderHambMenu] = useState(showHambMenu);
   const { dispatch } = useGlobalContext();
   const { pathname } = useLocation();
   const navClasses = {
@@ -34,10 +33,6 @@ const Navbar = () => {
     setShowHambMenu(!showHambMenu);
   };
 
-  const onAnimationEnd = () => {
-    if (!showHambMenu) setRenderHambMenu(false);
-  };
-
   useEffect(() => {
     if (scroll.y > 80) {
       setFixedNavBg(true);
@@ -52,8 +47,7 @@ const Navbar = () => {
         setScrolledNav(false);
       }
     }
-    if (showHambMenu) setRenderHambMenu(true);
-  }, [scroll.y, showHambMenu]);
+  }, [scroll.y]);
 
   return (
     <>
@@ -75,12 +69,8 @@ const Navbar = () => {
         </div>
         <NavItems setHambMenu={setShowHambMenu} />
       </nav>
-      {renderHambMenu && (
-        <HambContent
-          show={showHambMenu}
-          callback={onshowHambMenu}
-          animationEnd={onAnimationEnd}
-        >
+      {showHambMenu && (
+        <HambContent callback={onshowHambMenu}>
           <NavItems setHambMenu={setShowHambMenu} />
         </HambContent>
       )}
