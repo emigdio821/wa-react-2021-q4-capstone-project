@@ -37,6 +37,21 @@
     @include slideIn;
     border-radius: $border-radius;
   }
+
+  .delete__all-btn {
+    display: flex;
+    background: #ffaaa7;
+    align-items: center;
+    border-radius: 20px;
+    svg {
+      margin-left: 4px;
+    }
+    &:hover,
+    &:focus {
+      @include up-animation;
+      background: darken(#ffaaa7, 5%);
+    }
+  }
 }
 
 @media (max-width: 768px) {
@@ -58,6 +73,11 @@
     }
     .qty-td {
       text-align: center;
+    }
+    .delete__all-btn {
+      display: block;
+      font-size: 12px;
+      padding: 6px 10px;
     }
   }
 }

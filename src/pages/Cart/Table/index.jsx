@@ -1,5 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
+import { cart } from 'context/Types';
 import QtySelect from 'components/QtySelect';
 import formatCurrency from 'helpers/currency';
 import { useGlobalContext } from 'context/GlobalContext';
@@ -7,11 +8,20 @@ import styles from './Table.module.scss';
 
 const CartTable = () => {
   let totalAmount = 0;
-  const { cartItems } = useGlobalContext();
+  const { dispatch, cartItems } = useGlobalContext();
+
+  const handleDeleteAll = () => {
+    dispatch({ type: cart.clearItems });
+  };
 
   const pNameStyles = {
     [styles['td__p-name']]: true,
     [styles['semibold-font']]: true,
+  };
+
+  const deleteAllBtnClasses = {
+    [styles.btn]: true,
+    [styles['delete__all-btn']]: true,
   };
 
   return (
@@ -46,7 +56,16 @@ const CartTable = () => {
             );
           })}
           <tr>
-            <td colSpan="3">&nbsp;</td>
+            <td colSpan="2">&nbsp;</td>
+            <td>
+              <button
+                type="button"
+                className={classNames(deleteAllBtnClasses)}
+                onClick={handleDeleteAll}
+              >
+                Remove all
+              </button>
+            </td>
             <td className={styles.total}>
               Total:
               {' '}

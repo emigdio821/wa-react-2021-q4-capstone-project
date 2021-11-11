@@ -8,6 +8,12 @@ const useGlobalContext = () => useContext(GlobalContext);
 const GlobalProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
+  if (state.cartItems.length) {
+    localStorage.setItem('cartItems', JSON.stringify(state.cartItems));
+  } else {
+    localStorage.removeItem('cartItems');
+  }
+
   return (
     <GlobalContext.Provider
       value={{
