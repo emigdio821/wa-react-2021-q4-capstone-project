@@ -8,4 +8,5 @@ export const cart = {
   addItem: 'ADD_CART_ITEM',
   removeItem: 'REMOVE_CART_ITEM',
   updateItem: 'UPDATE_CART_ITEM',
+  clearItems: 'CLEAR_CART_ITEMS',
 };

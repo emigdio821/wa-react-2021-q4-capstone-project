@@ -1,8 +1,8 @@
 import { product, cart } from './Types';
 
 const initialState = {
-  cartItems: [],
   productFilteredBy: [],
+  cartItems: JSON.parse(localStorage.getItem('cartItems')) || [],
 };
 
 const reducer = (state, action) => {
@@ -54,6 +54,11 @@ const reducer = (state, action) => {
           : { ...item })),
       };
     }
+    case cart.clearItems:
+      return {
+        ...state,
+        cartItems: [],
+      };
     default:
       return state;
   }
