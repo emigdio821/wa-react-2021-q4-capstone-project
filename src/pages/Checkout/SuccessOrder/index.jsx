@@ -1,34 +1,47 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import SuccessLogo from 'img/undraw_confirmed.svg';
+import classNames from 'classnames';
+import { Link } from 'react-router-dom';
+import { BiCheckCircle } from 'react-icons/bi';
 import styles from './SuccessOrder.module.scss';
 
-const SuccessOrder = ({ orderDetails }) => (
-  <div className={styles['succes-container']}>
-    <div className={styles['img-container']}>
-      <img src={SuccessLogo} alt="success_logo" width={240} />
-    </div>
-    <h1 className={styles['succes-title']}>
-      <span>Order confirmed</span>
-    </h1>
-    <div className={styles['details-container']}>
-      We have sent an email to
-      {' '}
-      <span className={styles['bold-font']}>{orderDetails.email}</span>
-      {' '}
-      with
-      your order details.
-      <div className={styles['thanks-container']}>
-        Thank you for choosing us,
+const SuccessOrder = ({ orderDetails }) => {
+  const backToHomeClasses = {
+    [styles.btn]: true,
+    [styles.primary]: true,
+    [styles['back__home-btn']]: true,
+  };
+
+  return (
+    <div className={styles['succes-container']}>
+      <div className={styles['img-container']}>
+        <BiCheckCircle />
       </div>
-      <div>
-        THE
-        <span className={styles['bold-font']}>COOL</span>
-        HOUSE Team.
+      <h1 className={styles['succes-title']}>
+        <span>Order confirmed</span>
+      </h1>
+      <div className={styles['details-container']}>
+        We have sent an email to
+        {' '}
+        <span className={styles['bold-font']}>{orderDetails.email}</span>
+        {' '}
+        with
+        your order details.
+        <div className={styles['thanks-container']}>
+          Thank you for choosing us,
+        </div>
+        <div>
+          THE
+          <span className={styles['bold-font']}>COOL</span>
+          HOUSE Team.
+        </div>
+        <Link to="/" className={classNames(backToHomeClasses)}>
+          Back to home
+        </Link>
       </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default SuccessOrder;
 

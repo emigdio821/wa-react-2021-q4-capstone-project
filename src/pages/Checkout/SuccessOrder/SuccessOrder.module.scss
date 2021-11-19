@@ -2,8 +2,10 @@
 
 .succes-container {
   .img-container {
-    @include slideIn;
-    height: 300px;
+    svg {
+      @include slideIn;
+      font-size: 18rem;
+    }
   }
   text-align: center;
   .succes-title {
@@ -18,6 +20,10 @@
     font-size: 1.2rem;
   }
   .thanks-container {
+    margin-top: 20px;
+  }
+  .back__home-btn {
+    display: inline-block;
     margin-top: 20px;
   }
 }
