@@ -1,9 +1,9 @@
 @import 'styles/global';
 
 .succes-container {
-  img {
-    transition: all 0.3s;
-    animation: zoomOut 0.3s;
+  .img-container {
+    @include slideIn;
+    height: 300px;
   }
   text-align: center;
   .succes-title {
@@ -19,14 +19,5 @@
   }
   .thanks-container {
     margin-top: 20px;
-  }
-}
-
-@keyframes zoomOut {
-  from {
-    transform: translateY(-100%);
-  }
-  to {
-    transform: translateY(0);
   }
 }

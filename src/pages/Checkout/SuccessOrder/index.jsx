@@ -5,7 +5,9 @@ import styles from './SuccessOrder.module.scss';
 
 const SuccessOrder = ({ orderDetails }) => (
   <div className={styles['succes-container']}>
-    <img src={SuccessLogo} alt="success_logo" width={240} />
+    <div className={styles['img-container']}>
+      <img src={SuccessLogo} alt="success_logo" width={240} />
+    </div>
     <h1 className={styles['succes-title']}>
       <span>Order confirmed</span>
     </h1>
