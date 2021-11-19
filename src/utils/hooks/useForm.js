@@ -21,7 +21,7 @@ const useForm = ({ formValues, validations, formCallback }) => {
 
   useEffect(() => {
     if (!Object.keys(errors).length && isSubmitted) {
-      formCallback();
+      formCallback(values);
     }
   }, [errors]);
 

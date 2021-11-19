@@ -1,15 +1,20 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { cart } from 'context/Types';
 import { Link } from 'react-router-dom';
 import useForm from 'utils/hooks/useForm';
 import { BiArrowBack } from 'react-icons/bi';
+import { useGlobalContext } from 'context/GlobalContext';
 import { formValues, validations } from './validations';
 import styles from './Form.module.scss';
 
-const CheckoutForm = () => {
-  const formCallback = () => {
-    // eslint-disable-next-line no-alert
-    alert('Place order, still WIP 🤠');
+const CheckoutForm = ({ checkoutCallback }) => {
+  const { dispatch } = useGlobalContext();
+
+  const formCallback = (values) => {
+    checkoutCallback(values);
+    dispatch({ type: cart.clearItems });
   };
 
   const {
@@ -101,3 +106,7 @@ const CheckoutForm = () => {
 };
 
 export default CheckoutForm;
+
+CheckoutForm.propTypes = {
+  checkoutCallback: PropTypes.func.isRequired,
+};

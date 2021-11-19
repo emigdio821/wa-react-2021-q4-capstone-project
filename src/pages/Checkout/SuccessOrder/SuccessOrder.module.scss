@@ -1,0 +1,32 @@
+@import 'styles/global';
+
+.succes-container {
+  img {
+    transition: all 0.3s;
+    animation: zoomOut 0.3s;
+  }
+  text-align: center;
+  .succes-title {
+    svg {
+      margin-left: auto;
+    }
+    span {
+      margin-right: auto;
+    }
+  }
+  .details-container {
+    font-size: 1.2rem;
+  }
+  .thanks-container {
+    margin-top: 20px;
+  }
+}
+
+@keyframes zoomOut {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
