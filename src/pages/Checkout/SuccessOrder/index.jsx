@@ -14,33 +14,35 @@ const SuccessOrder = ({ orderDetails }) => {
 
   return (
     <div className={styles['succes-container']}>
-      <div className={styles['img-container']}>
-        <BiCheckCircle style={{ color: '#6d8299' }} />
-      </div>
-      <h1 className={styles['succes-title']}>
-        <span>Order confirmed</span>
-      </h1>
-      <div className={styles['details-container']}>
-        We have sent an email to
-        {' '}
-        <span className={styles['bold-font']}>{orderDetails.email}</span>
-        {' '}
-        with
-        your order details.
-        <div className={styles['thanks-container']}>
-          Thank you for choosing us,
+      <div className={styles['success__main-container']}>
+        <div className={styles['img-container']}>
+          <BiCheckCircle style={{ color: '#6d8299' }} />
         </div>
-        <div>
-          THE
-          <span className={styles['bold-font']}>COOL</span>
-          HOUSE Team.
+        <h1 className={styles['succes-title']}>
+          <span>Order confirmed</span>
+        </h1>
+        <div className={styles['details-container']}>
+          We have sent an email to
+          {' '}
+          <span className={styles['bold-font']}>{orderDetails.email}</span>
+          {' '}
+          with
+          your order details.
+          <div className={styles['thanks-container']}>
+            Thank you for choosing us,
+          </div>
+          <div>
+            THE
+            <span className={styles['bold-font']}>COOL</span>
+            HOUSE Team.
+          </div>
+          <div>
+            <BiHomeHeart className={styles['house-logo']} />
+          </div>
+          <Link to="/" className={classNames(backToHomeClasses)}>
+            Back to home
+          </Link>
         </div>
-        <div>
-          <BiHomeHeart className={styles['house-logo']} />
-        </div>
-        <Link to="/" className={classNames(backToHomeClasses)}>
-          Back to home
-        </Link>
       </div>
     </div>
   );
