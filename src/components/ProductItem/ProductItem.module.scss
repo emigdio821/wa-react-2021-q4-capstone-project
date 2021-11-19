@@ -77,6 +77,8 @@
   text-align: center;
   background: lighten(#fafafa, 10%);
   border: 1px solid $nav-border-color;
+  border-left: 0;
+  border-right: 0;
 }
 
 .specs-table {

@@ -71,20 +71,26 @@
   display: flex;
   margin: 20px 0;
   max-height: 240px;
+  margin-left: -20px;
+  margin-right: -20px;
   align-items: center;
   align-content: center;
   flex-direction: column;
 }
 
 .product-description {
-  padding: 10px;
   overflow: auto;
   margin: 10px 0;
   @include slideIn;
   max-height: 200px;
+  padding: 10px 20px;
+  text-align: justify;
   font-size: 0.875rem;
   background: lighten(#fafafa, 10%);
   border: 1px solid $nav-border-color;
+  border-left: 0;
+  border-right: 0;
+  transition: overflow 0.3s;
 }
 
 @media (max-width: 768px) {

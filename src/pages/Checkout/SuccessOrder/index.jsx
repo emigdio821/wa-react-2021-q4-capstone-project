@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
-import { BiCheckCircle } from 'react-icons/bi';
+import { BiCheckCircle, BiHomeHeart } from 'react-icons/bi';
 import styles from './SuccessOrder.module.scss';
 
 const SuccessOrder = ({ orderDetails }) => {
@@ -15,7 +15,7 @@ const SuccessOrder = ({ orderDetails }) => {
   return (
     <div className={styles['succes-container']}>
       <div className={styles['img-container']}>
-        <BiCheckCircle />
+        <BiCheckCircle style={{ color: '#6d8299' }} />
       </div>
       <h1 className={styles['succes-title']}>
         <span>Order confirmed</span>
@@ -34,6 +34,9 @@ const SuccessOrder = ({ orderDetails }) => {
           THE
           <span className={styles['bold-font']}>COOL</span>
           HOUSE Team.
+        </div>
+        <div>
+          <BiHomeHeart className={styles['house-logo']} />
         </div>
         <Link to="/" className={classNames(backToHomeClasses)}>
           Back to home

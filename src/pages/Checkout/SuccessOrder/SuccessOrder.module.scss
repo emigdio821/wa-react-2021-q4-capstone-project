@@ -1,9 +1,14 @@
 @import 'styles/global';
 
 .succes-container {
+  width: 50%;
+  margin: 0 auto;
+  @include slideIn;
+  padding: 20px 0 40px;
+  border-radius: $border-radius;
+  background: $nav-border-color;
   .img-container {
     svg {
-      @include slideIn;
       font-size: 18rem;
     }
   }
@@ -25,5 +30,15 @@
   .back__home-btn {
     display: inline-block;
     margin-top: 20px;
+  }
+  .house-logo {
+    font-size: 2rem;
+    margin-top: 20px;
+  }
+}
+
+@media (max-width: 1600px) {
+  .succes-container {
+    width: 100%;
   }
 }
